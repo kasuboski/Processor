@@ -1,0 +1,39 @@
+/* $Author: karu $ */
+/* $LastChangedDate: 2009-03-04 23:09:45 -0600 (Wed, 04 Mar 2009) $ */
+/* $Rev: 45 $ */
+module proc (/*AUTOARG*/
+   // Outputs
+   err, 
+   // Inputs
+   clk, rst
+   );
+
+   input clk;
+   input rst;
+
+   output err;
+
+   // None of the above lines can be modified
+
+   // OR all the err ouputs for every sub-module and assign it as this
+   // err output
+   
+   // As desribed in the homeworks, use the err signal to trap corner
+   // cases that you think are illegal in your statemachines
+   
+   wire [15:0] instr;
+   wire [15:0] PC, nextPC;
+   wire [15:0] readdata1, readdata2;
+   wire jump, branch;
+   wire memRead, memWrite, memToReg;
+   wire ALUsrc;
+   wire [3:0] ALUOp; // don't know if this many bits is necessary
+
+   fetch fetch0(.nextPC(nextPC), .instr(instr));
+   decode decode0(.instr(instr), .PC(PC), .readdata1(), .readdata2(), .jump(), .branch(), .memRead(), .memWrite(), .memToReg(), .ALUOp(), .ALUSrc());
+   execute ex0();
+   memory memory0();
+   writeBack wb0();
+   
+endmodule // proc
+// DUMMY LINE FOR REV CONTROL :0:
