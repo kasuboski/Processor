@@ -34,10 +34,14 @@ module proc (/*AUTOARG*/
 
    wire fetchErr, decodeErr, executeErr, memoryErr, writeBackErr;
 
-   fetch fetch0(.clk(clk), .rst(rst), .halt(1'b0), .nextPC(nextPC), .instr(instr), .err(fetchErr));
+   fetch fetch0(.clk(clk), .rst(rst), .halt(1'b0), .nextPC(nextPC), .PC2(PC), .instr(instr), .err(fetchErr));
+
    decode decode0(.clk(clk), .rst(rst), .instr(instr), .PC(PC), .writeBackData(writeBackData), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .err(decodeErr));
+
    execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes), .err(executeErr));
+
    memory memory0(.clk(clk), .rst(rst), .addr(ALURes), .writeData(readdata2), .memWrite(memWrite), .memRead(memRead), .readData(readData), .err(memoryErr));
+
    writeBack wb0(.memData(readData), .ALUData(ALURes), .memToReg(memToReg), .writeBackData(writeBackData), .err(writeBackErr));
    
 endmodule // proc
