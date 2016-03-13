@@ -20,6 +20,7 @@ module proc (/*AUTOARG*/
    
    // As desribed in the homeworks, use the err signal to trap corner
    // cases that you think are illegal in your statemachines
+   assign err = fetchErr | decodeErr | executeErr | memoryErr | writeBackErr;
    
    wire [15:0] instr;
    wire [15:0] PC, nextPC;
@@ -31,11 +32,13 @@ module proc (/*AUTOARG*/
    wire [15:0] ALURes;
    wire [15:0] readData;
 
-   fetch fetch0(.nextPC(nextPC), .instr(instr));
-   decode decode0(.instr(instr), .PC(PC), .writeBackData(writeBackData), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc));
-   execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes));
-   memory memory0(.addr(ALURes), .writeData(readdata2), .memWrite(memWrite), .memRead(memRead), .readData(readData));
-   writeBack wb0(.memData(readData), .ALUData(ALURes), .memToReg(memToReg), .writeBackData(writeBackData));
+   wire fetchErr, decodeErr, executeErr, memoryErr, writeBackErr;
+
+   fetch fetch0(.clk(clk), .rst(rst), .halt(1'b0), .nextPC(nextPC), .instr(instr), .err(fetchErr));
+   decode decode0(.clk(clk), .rst(rst), .instr(instr), .PC(PC), .writeBackData(writeBackData), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .err(decodeErr));
+   execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes), .err(executeErr));
+   memory memory0(.clk(clk), .rst(rst), .addr(ALURes), .writeData(readdata2), .memWrite(memWrite), .memRead(memRead), .readData(readData), .err(memoryErr));
+   writeBack wb0(.memData(readData), .ALUData(ALURes), .memToReg(memToReg), .writeBackData(writeBackData), .err(writeBackErr));
    
 endmodule // proc
 // DUMMY LINE FOR REV CONTROL :0:
