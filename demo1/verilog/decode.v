@@ -15,8 +15,9 @@ module decode(clk, rst, instr, PC, writeBackData, readdata1, readdata2, immediat
     output ALUSrc;
     output err;
 
-    wire [1:0] regDst;
-    wire whichImm, toExt, regWrite;
+    wire [2:0] regDst;
+    wire [1:0] whichImm;
+    wire toExt, regWrite;
 
     reg [2:0] writereg; // where to get the writeregsel
     wire writedata;
@@ -31,9 +32,10 @@ module decode(clk, rst, instr, PC, writeBackData, readdata1, readdata2, immediat
         writeRegMuxErr = 1'b0;
 
         case(regDst)
-        `REG_I_FORMAT: writereg = instr[7:5];
+        `REG_I_FORMAT_LOW: writereg = instr[7:5];
         `REG_R_FORMAT: writereg = instr[4:2];
         `REG_R7: writereg = 3'd7;
+	`REG_I_FORMAT_UP: writereg = instr[10:8];
         default: begin
             writereg = 3'bx;
             writeRegMuxErr = 1'b1;
@@ -47,7 +49,7 @@ module decode(clk, rst, instr, PC, writeBackData, readdata1, readdata2, immediat
     
         case(whichImm)
         `IMM_J: immediate = {{5{instr[10]}}, instr[10:0]};
-        `IMM_I1: immediate = instr[4:0];
+        `IMM_I1: immediate = (toExt) ? {{11{instr[4]}}, instr[4:0]} : {11'b0, instr[4:0]};
         `IMM_I2: immediate = {{8{instr[7]}},instr[7:0]};
         default: begin
             immediateMuxErr = 1'b1;
