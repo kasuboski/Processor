@@ -7,17 +7,17 @@ module comparator_tb();
  comparator iDUT(.A(A), .B(B), .out(out));
  initial begin
    clk = 0;
-   A = 16'hffff;
-   B = 16'h0000;
+   A = 16'h7fff;
+   B = 16'h8000;
  end
  
  always @(posedge clk) begin
- 	if(((A > B) &&  !out) || ((A < B) && out))begin
+ 	if((($signed(A) > $signed(B)) &&  !out) || (($signed(A) < $signed(B)) && out)) begin
  		$display("Somethings wrong\n");
  		$stop;	
  	end
  	
- 	else if(A == 0) begin
+ 	else if(A == 16'h8000) begin
  		$display("Success!\n");
  		$stop;
  	end
