@@ -26,9 +26,7 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, zero);
     assign Ofl = (sign ? overflow : Cout) & Op[2] & ~Op[1] & ~Op[0];
 	
 	assign equal = ~(A_inv ^ B_inv);
-	/*assign lt = (~A[15] & ~B[15]) & ((~B[0] & A[0]) | 
-									((~B[0] & ~A[0]) & (~B[1] & A[1] */
-	//TODO: figure out if we can use <, > operators.
+	
     /*****************************
     * Shifter Op Codes
     * 000 = ROL
@@ -39,8 +37,6 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, zero);
     *****************************/
     shifter shift(.In(A_inv), .Cnt(B_inv[3:0]), .Op(Op[2:0]), .Out(shift_out));
     adder add(.A(A_inv), .B(B_inv), .Cin(Cin), .Overflow(overflow), .Cout(cout), .Sum(sum));
-    adder ltAdder(.A(B), .B(~A), .Cin(1), .Overflow(ltOfl), .Cout(ltCout), .Sum(ltSum));
-    adder gtAdder(.A(A), .B(~B), .Cin(1), .Overflow(gtOfl), .Cout(gtCout), .Sum(gtSum));
     
     always @(*) begin
         casex(Op)
