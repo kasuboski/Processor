@@ -4,6 +4,7 @@ module comparator_tb();
  reg clk;
  wire out;
  
+ comparator iDUT(.A(A), .B(B), .out(out));
  initial begin
    clk = 0;
    A = 16'hffff;
