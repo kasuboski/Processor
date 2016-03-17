@@ -29,7 +29,7 @@ module proc (/*AUTOARG*/
    wire memRead, memWrite, memToReg;
    wire ALUSrc;
    wire [3:0] ALUOp;
-   wire invSrc1, invSrc2, sub, halt, passthrough;
+   wire invSrc1, invSrc2, sub, halt, passthrough, reverse;
    wire [15:0] ALURes;
    wire [15:0] readData;
 
@@ -39,9 +39,9 @@ module proc (/*AUTOARG*/
 
    fetch fetch0(.clk(clk), .rst(rst), .halt(halt), .nextPC(nextPC), .PC2(PC), .instr(instr), .err(fetchErr));
 
-   decode decode0(.clk(clk), .rst(rst), .instr(instr), .PC(PC), .writeBackData(writeBackData), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .err(decodeErr));
+   decode decode0(.clk(clk), .rst(rst), .instr(instr), .PC(PC), .writeBackData(writeBackData), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .err(decodeErr));
 
-   execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .BranchOP(branchOp), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .PC(PC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes), .passthrough(passthrough), .err(executeErr));
+   execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .BranchOP(branchOp), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .PC(PC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes), .passthrough(passthrough), .reverse(reverse), .err(executeErr));
 
    memory memory0(.clk(clk), .rst(rst), .addr(ALURes), .writeData(readdata2), .memWrite(memWrite), .memRead(memRead), .halt(halt), .readData(readData), .err(memoryErr));
 

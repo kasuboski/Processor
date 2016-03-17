@@ -24,7 +24,6 @@
 # Loading __work.groupcla
 # Loading __work.decode
 # Loading __work.control
-# Loading __work.rf_bypass
 # Loading __work.rf
 # Loading __work.register
 # Loading __work.execute
@@ -40,6 +39,5 @@
 run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.trace for output
-# ** Fatal: (vsim-3603) Zero-delay oscillation loop detected at time 701 ns.
-# 
-# <EOF> 
+# ** Note: $finish    : proc_hier_bench.v(96)
+#    Time: 800 ns  Iteration: 0  Instance: /proc_hier_bench

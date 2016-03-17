@@ -18,6 +18,7 @@ entity execute is
         nextpc          : out    vl_logic_vector(15 downto 0);
         alures          : out    vl_logic_vector(15 downto 0);
         passthrough     : in     vl_logic;
+        reverse         : in     vl_logic;
         err             : out    vl_logic
     );
 end execute;

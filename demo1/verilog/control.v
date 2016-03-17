@@ -1,4 +1,4 @@
-module control(instr, func, regDst, regWrite, whichImm, toExt, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, err);
+module control(instr, func, regDst, regWrite, whichImm, toExt, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, err);
     input [4:0] instr;
     input [1:0] func;
 
@@ -11,7 +11,7 @@ module control(instr, func, regDst, regWrite, whichImm, toExt, jump, jumpReg, br
     output memRead, memWrite, memToReg;
     output reg [3:0] ALUOp;
     output ALUSrc;
-    output invSrc1, invSrc2, sub, halt, passthrough;
+    output invSrc1, invSrc2, sub, halt, passthrough, reverse;
 
     output err;
    
@@ -64,7 +64,7 @@ module control(instr, func, regDst, regWrite, whichImm, toExt, jump, jumpReg, br
 	    5'b0101x: toExt = 1'b0;
 	    5'b101xx: toExt = 1'b0;
 	    default: begin
-		    toExt = 1'b0;
+		    toExt = 1'b1;
 	    end
 	    endcase	
     end 
@@ -113,8 +113,7 @@ module control(instr, func, regDst, regWrite, whichImm, toExt, jump, jumpReg, br
         7'b11011_01 : ALUOp = 4'b1000;
         7'b10000_xx : ALUOp = 4'b1000;
         7'b10001_xx : ALUOp = 4'b1000;
-        7'b10011_xx : ALUOp = 4'b1000;
-        7'b11111_xx : ALUOp = 4'b1000;
+        7'b10011_xx : ALUOp = 4'b1000; 
         7'b00101_xx : ALUOp = 4'b1000;
         7'b00111_xx : ALUOp = 4'b1000;
         //SLBI
@@ -149,5 +148,7 @@ module control(instr, func, regDst, regWrite, whichImm, toExt, jump, jumpReg, br
     assign halt = (instr == 5'b00000);
 
     assign passthrough = (instr == 5'b11000);
+
+    assign reverse = (instr == 5'b11001);
 
 endmodule

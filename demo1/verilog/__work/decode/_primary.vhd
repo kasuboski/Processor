@@ -24,6 +24,7 @@ entity decode is
         sub             : out    vl_logic;
         halt            : out    vl_logic;
         passthrough     : out    vl_logic;
+        reverse         : out    vl_logic;
         err             : out    vl_logic
     );
 end decode;

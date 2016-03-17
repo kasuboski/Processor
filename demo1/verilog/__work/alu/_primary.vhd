@@ -7,6 +7,7 @@ entity alu is
         cin             : in     vl_logic;
         op              : in     vl_logic_vector(3 downto 0);
         passthrough     : in     vl_logic;
+        reverse         : in     vl_logic;
         inva            : in     vl_logic;
         invb            : in     vl_logic;
         sign            : in     vl_logic;

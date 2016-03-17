@@ -1,5 +1,5 @@
 `include "control_config.v"
-module decode(clk, rst, instr, PC, writeBackData, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, err);
+module decode(clk, rst, instr, PC, writeBackData, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, err);
 
     input clk, rst;
     
@@ -15,7 +15,7 @@ module decode(clk, rst, instr, PC, writeBackData, readdata1, readdata2, immediat
     output [3:0] ALUOp;
     output ALUSrc;
 
-    output invSrc1, invSrc2, sub, halt, passthrough;
+    output invSrc1, invSrc2, sub, halt, passthrough, reverse;
 
     output err;
 
@@ -63,9 +63,9 @@ module decode(clk, rst, instr, PC, writeBackData, readdata1, readdata2, immediat
         endcase
     end
 
-    control ctrl(.instr(instr[15:11]), .func(instr[1:0]), .regDst(regDst), .regWrite(regWrite), .whichImm(whichImm), .toExt(toExt), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .err(ctrlErr));
+    control ctrl(.instr(instr[15:11]), .func(instr[1:0]), .regDst(regDst), .regWrite(regWrite), .whichImm(whichImm), .toExt(toExt), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .err(ctrlErr));
 
-    rf_bypass register(
+    rf register(
            .read1data(readdata1), .read2data(readdata2), .err(regErr),
            .clk(clk), .rst(rst), .read1regsel(instr[10:8]), .read2regsel(instr[7:5]), .writeregsel(writereg), .writedata(writedata), .write(regWrite)
            );

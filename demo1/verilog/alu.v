@@ -1,11 +1,11 @@
-module alu (A, B, Cin, Op, passthrough, invA, invB, sign, Out, Ofl, zero);
+module alu (A, B, Cin, Op, passthrough, reverse, invA, invB, sign, Out, Ofl, zero);
    
     input [15:0] A;
     input [15:0] B;
     input Cin;
     
     input [3:0] Op;
-    input passthrough;
+    input passthrough, reverse;
     input invA;
     input invB;
     input sign;
@@ -37,39 +37,40 @@ module alu (A, B, Cin, Op, passthrough, invA, invB, sign, Out, Ofl, zero);
     * 100 = SRL
     *****************************/
     shifter shift(.In(A_inv), .Cnt(B_inv[3:0]), .Op(Op[2:0]), .Out(shift_out));
-    adder add(.A(A_inv), .B(B_inv), .Cin(Cin), .Overflow(overflow), .Cout(cout), .Sum(sum));
+    adder add(.A(A_inv), .B(B_inv), .Cin(Cin), .Overflow(overflow), .Cout(Cout), .Sum(sum));
     
     comparator gtComp(.A(A), .B(B), .out(gt));
     comparator ltComp(.A(B), .B(A), .out(lt));
     
     always @(*) begin
-        casex({Op, passthrough})
-            5'bxxxx_1: Out = B;
-            5'b0xxx_0:
+        casex({Op, passthrough, reverse})
+	    6'bxxxx_x_1: Out = {A[0], A[1], A[2], A[3], A[4], A[5], A[6], A[7], A[8], A[9], A[10], A[11], A[12], A[13], A[14], A[15]};
+            6'bxxxx_1_x: Out = B;
+            6'b0xxx_0_x:
                 Out = shift_out;
-            5'b1000_0:
+            6'b1000_0_x:
                 Out = sum;
-            5'b1001_0:
+            6'b1001_0_x:
                 Out = {A[7:0], B[7:0]};
-            5'b1010_0:
+            6'b1010_0_x:
                 Out = A_inv ^ B_inv;
-            5'b1011_0:
+            6'b1011_0_x:
                 Out = A_inv & B_inv;
             
             //SCO
-            5'b1100_0: 
-            	Out = {{15{1'b0}}, cout};
+            6'b1100_0_x: 
+            	Out = {{15{1'b0}}, Cout};
             
             //SLE
-            5'b1101_0:
+            6'b1101_0_x:
             	Out =  {{15{1'b0}} ,(equal | lt)};
             
             //SLT
-            5'b1110_0:
+            6'b1110_0_x:
             	Out = {{15{1'b0}}, lt};
             	
             //SEQ
-            5'b1111_0:
+            6'b1111_0_x:
             	Out = {{15{1'b0}}, equal};
             	
             default:
