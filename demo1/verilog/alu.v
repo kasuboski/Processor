@@ -17,7 +17,7 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, zero);
     wire [15:0] shift_out;
     wire overflow, Cout;
     wire [15:0] sum;
-    wire equal, lt, gt, ltOfl, gtOfl, ltCout, gtCout, ltSum, gtSum;
+    wire equal, lt, gt;
 	
     assign A_inv = invA ? ~A : A;
     assign B_inv = invB ? ~B : B;
@@ -37,6 +37,9 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, zero);
     *****************************/
     shifter shift(.In(A_inv), .Cnt(B_inv[3:0]), .Op(Op[2:0]), .Out(shift_out));
     adder add(.A(A_inv), .B(B_inv), .Cin(Cin), .Overflow(overflow), .Cout(cout), .Sum(sum));
+    
+    comparator gtComp(.A(A), .B(B), .out(gt));
+    comparator ltComp(.A(B), .B(A), .out(lt));
     
     always @(*) begin
         casex(Op)
