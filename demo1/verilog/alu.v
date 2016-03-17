@@ -18,7 +18,7 @@ module alu (A, B, Cin, Op, passthrough, reverse, invA, invB, sign, Out, Ofl, zer
     wire [15:0] shift_out;
     wire overflow, Cout;
     wire [15:0] sum;
-    wire equal, lt, gt;
+    wire equal;
 	
     assign A_inv = invA ? ~A : A;
     assign B_inv = invB ? ~B : B;
@@ -26,7 +26,7 @@ module alu (A, B, Cin, Op, passthrough, reverse, invA, invB, sign, Out, Ofl, zer
     assign zero = ~(|Out);
     assign Ofl = (sign ? overflow : Cout) & Op[2] & ~Op[1] & ~Op[0];
 	
-	assign equal = ~(A_inv ^ B_inv);
+	assign equal = (A_inv == B_inv);
 	
     /*****************************
     * Shifter Op Codes
@@ -38,10 +38,7 @@ module alu (A, B, Cin, Op, passthrough, reverse, invA, invB, sign, Out, Ofl, zer
     *****************************/
     shifter shift(.In(A_inv), .Cnt(B_inv[3:0]), .Op(Op[2:0]), .Out(shift_out));
     adder add(.A(A_inv), .B(B_inv), .Cin(Cin), .Overflow(overflow), .Cout(Cout), .Sum(sum));
-    
-    comparator gtComp(.A(A), .B(B), .out(gt));
-    comparator ltComp(.A(B), .B(A), .out(lt));
-    
+ 
     always @(*) begin
         casex({Op, passthrough, reverse})
 	    6'bxxxx_x_1: Out = {A[0], A[1], A[2], A[3], A[4], A[5], A[6], A[7], A[8], A[9], A[10], A[11], A[12], A[13], A[14], A[15]};
@@ -63,11 +60,11 @@ module alu (A, B, Cin, Op, passthrough, reverse, invA, invB, sign, Out, Ofl, zer
             
             //SLE
             6'b1101_0_x:
-            	Out =  {{15{1'b0}} ,(equal | lt)};
+            	Out =  {{15{1'b0}} ,(equal | $signed(A)<$signed(B))};
             
             //SLT
             6'b1110_0_x:
-            	Out = {{15{1'b0}}, lt};
+            	Out = {{15{1'b0}}, $signed(A)<$signed(B)};
             	
             //SEQ
             6'b1111_0_x:

@@ -33,11 +33,10 @@
 # Loading __work.shifter_2
 # Loading __work.shifter_4
 # Loading __work.shifter_8
-# Loading __work.comparator
 # Loading __work.memory
 # Loading __work.writeBack
 run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.trace for output
 # ** Note: $finish    : proc_hier_bench.v(96)
-#    Time: 800 ns  Iteration: 0  Instance: /proc_hier_bench
+#    Time: 19700 ns  Iteration: 0  Instance: /proc_hier_bench
