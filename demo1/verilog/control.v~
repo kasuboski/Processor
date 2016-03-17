@@ -1,13 +1,153 @@
-module control(instr, regDst, whichImm, toExt, jump, jumpReg, branch, memRead, memWrite, memToReg, ALUOp, ALUSrc, err);
-    input [15:11] instr;
+module control(instr, func, regDst, regWrite, whichImm, toExt, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, err);
+    input [4:0] instr;
+    input [1:0] func;
 
-    output [1:0] regDst;
-    output whichImm, toExt;
+    output reg [1:0] regDst;
+    output regWrite;
+    output reg [1:0] whichImm;
+    output reg toExt;
     output jump, jumpReg, branch;
+    output reg [1:0] branchOp;
     output memRead, memWrite, memToReg;
-    output [3:0] ALUOp;
+    output reg [3:0] ALUOp;
     output ALUSrc;
+    output invSrc1, invSrc2, sub, halt, passthrough;
 
     output err;
+   
+    assign err = 1'b0;
+ 
+    /*assign regDst = (instr[4:3] == 2'b11) ? `REG_R_FORMAT : 
+		    (instr[4:2] == 3'b001) ? `REG_R7 : 
+                    (instr == 5'b10011 || instr == 5'b11000 ||
+		     instr == 5'b10010) ? `REG_I_FORMAT_UP : `REG_I_FORMAT_LOW;*/
+
+    always @(*) begin
+        casex(instr)
+        5'b11001: regDst = 2'b00;//`REG_R_FORMAT;
+        5'b1101x: regDst = 2'b00;
+        5'b111xx: regDst = 2'b00;
+        5'b001xx: regDst = 2'b01;
+        5'b10011: regDst = 2'b10;
+        5'b11000: regDst = 2'b10;
+        5'b10010: regDst = 2'b10;
+        default: regDst = 2'b11;
+        endcase
+    end
+
+    //assign regWrite if not one of the instructions that doesn't write
+    //a register
+    assign regWrite = ~(instr[4:2] == 3'b000 || instr == 5'b10000 ||
+			instr[4:2] == 3'b011 || instr[4:1] == 4'b0010); 
+
+    always @(*) begin
+	    casex(instr)
+	    5'b010xx: whichImm = 2'b01;
+	    5'b101xx: whichImm = 2'b01;
+	    5'b1000x: whichImm = 2'b01;
+	    5'b10011: whichImm = 2'b01;
+	    5'b011xx: whichImm = 2'b10;
+	    5'b11000: whichImm = 2'b10;
+	    5'b10010: whichImm = 2'b10;
+	    5'b00101: whichImm = 2'b10;
+	    5'b00111: whichImm = 2'b10;
+	    5'b00100: whichImm = 2'b00;
+	    5'b00110: whichImm = 2'b00;
+	    default: begin
+		    whichImm = 3'b0;
+	    end 
+	    endcase
+    end
+
+    always @(*) begin
+	    casex(instr)
+	    5'b0101x: toExt = 1'b0;
+	    5'b101xx: toExt = 1'b0;
+	    default: begin
+		    toExt = 1'b0;
+	    end
+	    endcase	
+    end 
+
+    assign jump = (instr == 5'b00100 || instr == 5'b00110);
+
+    assign jumpReg = (instr == 5'b00111 || instr == 5'b00101);
+
+    assign branch = (instr[4:2] == 3'b011);
+
+    always @(*) begin
+
+        case(instr)
+            5'b01100: branchOp = 2'b00;
+            5'b01101: branchOp = 2'b01;
+            5'b01110: branchOp = 2'b10;
+            5'b01111: branchOp = 2'b11;
+            default: begin
+                branchOp = 2'b00;
+            end
+        endcase
+        
+    end
+
+    assign memRead = (instr == 5'b10001);
+
+    assign memWrite = (instr == 5'b10000 || instr == 5'b10011);
+
+    assign memToReg = (instr == 5'b10001);
+
+    always @(*) begin
+        casex({instr, func})
+        5'b10100_xx: ALUOp = 4'b0000;
+        5'b11010_00: ALUOp = 4'b0000;
+        5'b10110_xx: ALUOp = 4'b0001;
+        5'b11010_10: ALUOp = 4'b0001;
+        5'b10101_xx: ALUOp = 4'b0010;
+        5'b11010_01: ALUOp = 4'b0010;
+        5'b10111_xx: ALUOp = 4'b0100;
+        5'b11010_11: ALUOp = 4'b0100;
+        //add
+        5'b01000_xx : ALUOp = 4'b1000;
+        5'b11011_00 : ALUOp = 4'b1000;
+        5'b01001_xx : ALUOp = 4'b1000;
+        5'b01000_xx : ALUOp = 4'b1000;
+        5'b11011_01 : ALUOp = 4'b1000;
+        5'b10000_xx : ALUOp = 4'b1000;
+        5'b10001_xx : ALUOp = 4'b1000;
+        5'b10011_xx : ALUOp = 4'b1000;
+        5'b11111_xx : ALUOp = 4'b1000;
+        5'b00101_xx : ALUOp = 4'b1000;
+        5'b00111_xx : ALUOp = 4'b1000;
+        //SLBI
+        5'b10010_xx : ALUOp = 4'b1001;
+        //XOR
+        5'b01010_xx : ALUOp = 4'b1010;
+        5'b11011_10 : ALUOp = 4'b1010;
+        //AND
+        5'b01011_xx : ALUOp = 4'b1011;
+        5'b11011_11 : ALUOp = 4'b1011;
+        //SCO
+        5'b11111_xx : ALUOp = 4'b1100;
+        //SLE
+        5'b11110_xx : ALUOp = 4'b1101;
+        //SLT
+        5'b11101_xx : ALUOp = 4'b1110;
+        //SEQ
+        5'b11100_xx : ALUOp = 4'b1111;
+        default: ALUOp = 4'b0000;
+        endcase
+    end
+
+    assign ALUSrc = (instr[4:1] == 4'b1101 || instr[4:2] == 3'b111) ? 
+			1'b0 : 1'b1; 
+
+    assign invSrc1 = ((instr == 5'b11011 && func == 2'b01) || instr == 5'b01001) ? 1'b1 : 1'b0;
+    
+    assign invSrc2 = ((instr == 5'b01011) || (instr == 5'b11011 && func == 2'b11)) ? 1'b1 : 1'b0;
+    
+    assign sub = ((instr == 5'b11011 && func == 2'b01) || instr == 5'b01001);
+
+    assign halt = (instr == 5'b00000);
+
+    assign passthrough = (instr == 5'b11000);
 
 endmodule

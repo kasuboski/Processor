@@ -12,7 +12,7 @@ module shifter_1(in, op, sh, out);
 		4'b1_000:
 			out = {in[14:0], in[15]};
 		4'b1_001:
-			out = {in[0], in[15:1]}
+			out = {in[0], in[15:1]};
 		4'b1_010:
 			out = {in[14:0], 1'b0};
 		4'b1_011:

@@ -20,27 +20,30 @@ module proc (/*AUTOARG*/
    
    // As desribed in the homeworks, use the err signal to trap corner
    // cases that you think are illegal in your statemachines
-   assign err = fetchErr | decodeErr | executeErr | memoryErr | writeBackErr;
    
    wire [15:0] instr;
    wire [15:0] PC, nextPC;
    wire [15:0] readdata1, readdata2, immediate, writeBackData;
    wire jump, jumpReg, branch;
+   wire [1:0] branchOp;
    wire memRead, memWrite, memToReg;
    wire ALUsrc;
-   wire [3:0] ALUOp; // don't know if this many bits is necessary
+   wire [3:0] ALUOp;
+   wire invSrc1, invSrc2, sub, halt, passthrough;
    wire [15:0] ALURes;
    wire [15:0] readData;
 
    wire fetchErr, decodeErr, executeErr, memoryErr, writeBackErr;
 
-   fetch fetch0(.clk(clk), .rst(rst), .halt(1'b0), .nextPC(nextPC), .currentPC(PC), .instr(instr), .err(fetchErr));
+   assign err = fetchErr | decodeErr | executeErr | memoryErr | writeBackErr;
 
-   decode decode0(.clk(clk), .rst(rst), .instr(instr), .PC(PC), .writeBackData(writeBackData), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .err(decodeErr));
+   fetch fetch0(.clk(clk), .rst(rst), .halt(halt), .nextPC(nextPC), .PC2(PC), .instr(instr), .err(fetchErr));
 
-   execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes), .err(executeErr));
+   decode decode0(.clk(clk), .rst(rst), .instr(instr), .PC(PC), .writeBackData(writeBackData), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .err(decodeErr));
 
-   memory memory0(.clk(clk), .rst(rst), .addr(ALURes), .writeData(readdata2), .memWrite(memWrite), .memRead(memRead), .readData(readData), .err(memoryErr));
+   execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .BranchOP(branchOp), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .PC(PC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes), .passthrough(passthrough), .err(executeErr));
+
+   memory memory0(.clk(clk), .rst(rst), .addr(ALURes), .writeData(readdata2), .memWrite(memWrite), .memRead(memRead), .halt(halt), .readData(readData), .err(memoryErr));
 
    writeBack wb0(.memData(readData), .ALUData(ALURes), .memToReg(memToReg), .writeBackData(writeBackData), .err(writeBackErr));
    

@@ -1,10 +1,11 @@
-module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, zero);
+module alu (A, B, Cin, Op, passthrough, invA, invB, sign, Out, Ofl, zero);
    
     input [15:0] A;
     input [15:0] B;
     input Cin;
     
     input [3:0] Op;
+    input passthrough;
     input invA;
     input invB;
     input sign;
@@ -42,33 +43,34 @@ module alu (A, B, Cin, Op, invA, invB, sign, Out, Ofl, zero);
     comparator ltComp(.A(B), .B(A), .out(lt));
     
     always @(*) begin
-        casex(Op)
-            4'b0xxx:
+        casex({Op, passthrough})
+            5'bxxxx_1: Out = B;
+            5'b0xxx_0:
                 Out = shift_out;
-            4'b1000:
+            5'b1000_0:
                 Out = sum;
-            4'b1001:
-                Out = A_inv | B_inv;
-            4'b1010:
+            5'b1001_0:
+                Out = {A[7:0], B[7:0]};
+            5'b1010_0:
                 Out = A_inv ^ B_inv;
-            4'b1011:
+            5'b1011_0:
                 Out = A_inv & B_inv;
             
             //SCO
-            4'b1100: 
-            	Out = {15{1'b0}, cout};
+            5'b1100_0: 
+            	Out = {{15{1'b0}}, cout};
             
             //SLE
-            4'b1101:
-            	Out =  {15{1'b0} ,(equal | lt)};
+            5'b1101_0:
+            	Out =  {{15{1'b0}} ,(equal | lt)};
             
             //SLT
-            4'b1110:
-            	Out = {15{1'b0}, lt};
+            5'b1110_0:
+            	Out = {{15{1'b0}}, lt};
             	
             //SEQ
-            4'b1111:
-            	Out = {15{1'b0}, equal};
+            5'b1111_0:
+            	Out = {{15{1'b0}}, equal};
             	
             default:
                 Out = 16'hXXXX;
