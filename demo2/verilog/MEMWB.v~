@@ -1,10 +1,10 @@
-module MEMWB(clk, rst,memData, ALUData, memToReg, regWrite, memDataOut, ALUDataOut, memToRegOut,
-	regWriteOut);
+module MEMWB(clk, rst,memData, ALUData, memToReg, regWrite, memDataOut, ALUDataOut, memToRegOut
+	output regWriteOut);
 	input [15:0] memData, ALUData;
 	input memToReg, regWrite, clk, rst;
 	
 	output [15:0] memDataOut, ALUDataOut;
-	output memToRegOut, regWriteOut;
+	output memToRegOut;
 	
 	dff memDataFF[15:0](.q(memDataOut), .d(memData), .clk(clk), .rst(rst));
 	dff ALUDataFF[15:0](.q(ALUDataOut), .d(ALUData), .clk(clk), .rst(rst));

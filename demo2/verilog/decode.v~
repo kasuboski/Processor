@@ -6,7 +6,7 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdat
     input [15:0] instr;
     input [15:0] PC, writeBackData;
 
-    input [2:0] writeRegIn;
+    input [2:0] writeregIn;
     
     output [15:0] readdata1, readdata2;
     output reg [15:0] immediate;

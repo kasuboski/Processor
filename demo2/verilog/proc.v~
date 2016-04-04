@@ -35,6 +35,8 @@ module proc (/*AUTOARG*/
 
    wire [2:0] writereg, writeregIn;
 
+   wire regWrite;
+
    wire fetchErr, decodeErr, executeErr, memoryErr, writeBackErr;
 
    wire [15:0] ifidPC, ifidAddr;
@@ -47,6 +49,12 @@ module proc (/*AUTOARG*/
    wire idex_ALUSrc;
    wire idex_invSrc1, idex_invSrc2, idex_sub, idex_passthrough, idex_reverse;
    wire [2:0] idex_writereg;
+   wire [15:0] idex_PC;
+   wire idex_regWrite;
+
+   input [15:0] exmem_readData2, exmem_ALURes, exmem_nextPC;
+   input [2:0] exmem_writeReg;
+   input exmem_regWrite, exmem_memToReg, exmem_memRead, exmem_memWrite;
 
    assign err = fetchErr | decodeErr | executeErr | memoryErr | writeBackErr;
 
@@ -54,14 +62,15 @@ module proc (/*AUTOARG*/
 
    IFID ifidReg(.clk(clk), .rst(rst), .PC(PC), .addr(instr), .PCout(ifidPC), .addrOut(ifidAddr));
 
-   decode decode0(.clk(clk), .rst(rst), .instr(ifidAddr), .PC(ifidPC), .writeBackData(writeBackData), .writeregIn(writeregIn), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .err(decodeErr));
+   decode decode0(.clk(clk), .rst(rst), .instr(ifidAddr), .PC(ifidPC), .writeBackData(writeBackData), .writeregIn(writeregIn), .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(regWrite), .err(decodeErr));
 
    IDEX idexReg(.clk(clk), .rst(rst), 
-    .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .writereg(writereg),
-    .readdata1Out(idex_readdata1), .readdata2Out(idex_readdata2), .immediateOut(idex_immediate), .jumpOut(idex_jump), .jumpRegOut(idex_jumpReg), .branchOut(idex_branch), .branchOpOut(idex_branchOp), .memReadOut(idex_memRead), .memWriteOut(idex_memWrite), .memToRegOut(idex_memToReg), .ALUOpOut(idex_ALUOp), .ALUSrcOut(idex_ALUSrc), .invSrc1Out(idex_invSrc1), .invSrc2Out(idex_invSrc2), .subOut(idex_sub), .passthroughOut(idex_passthrough), .reverseOut(idex_reverse), .writeregOut(idex_writereg)
-    );
+    .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .PC(ifidPC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(regWrite),
+    .readdata1Out(idex_readdata1), .readdata2Out(idex_readdata2), .immediateOut(idex_immediate), .jumpOut(idex_jump), .jumpRegOut(idex_jumpReg), .branchOut(idex_branch), .branchOpOut(idex_branchOp), .memReadOut(idex_memRead), .memWriteOut(idex_memWrite), .memToRegOut(idex_memToReg), .ALUOpOut(idex_ALUOp), .ALUSrcOut(idex_ALUSrc), .invSrc1Out(idex_invSrc1), .invSrc2Out(idex_invSrc2), .subOut(idex_sub), .passthroughOut(idex_passthrough), .reverseOut(idex_reverse), .writeregOut(idex_writereg), .PCOut(idex_PC), .regWriteOut(idex_regWrite));
 
-   execute ex0(.readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .BranchOP(branchOp), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .PC(PC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .nextPC(nextPC), .ALURes(ALURes), .passthrough(passthrough), .reverse(reverse), .err(executeErr));
+   execute ex0(.readdata1(idex_readdata1), .readdata2(idex_readdata2), .immediate(idex_immediate), .BranchOP(idex_branchOp), .ALUOp(idex_ALUOp), .ALUSrc(idex_ALUSrc), .invSrc1(idex_invSrc1), .invSrc2(idex_invSrc2), .sub(idex_sub), .PC(idex_PC), .jump(idex_jump), .jumpReg(idex_jumpReg), .branch(idex_branch), .nextPC(idex_PC), .ALURes(ALURes), .passthrough(idex_passthrough), .reverse(idex_reverse), .err(executeErr));
+
+   EXMEM exmemReg(.clk(clk), .rst(clk), .readData2(idex_readdata2), .ALURes(ALURes), .nextPC(idex_PC), .writeReg(idex_writereg), .regWrite(idex_regWrite), .memToReg(idex_memToReg), .memRead(idex_memRead), .memWrite(idex_memWrite), .readData2Out(exmem_readData2), .ALUResOut(exmem_ALURes), .nextPCOut(exmem_nextPC), .writeRegOut(exmem_writeReg), .regWriteOut(exmem_regWrite), .memToRegOut(exmem_memToReg), .memReadOut(exmem_memRead), .memWriteOut(exmem_memWrite));
 
    memory memory0(.clk(clk), .rst(rst), .addr(ALURes), .writeData(readdata2), .memWrite(memWrite), .memRead(memRead), .halt(halt), .readData(readData), .err(memoryErr));
 

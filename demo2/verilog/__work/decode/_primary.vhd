@@ -27,6 +27,7 @@ entity decode is
         passthrough     : out    vl_logic;
         reverse         : out    vl_logic;
         writereg        : out    vl_logic_vector(2 downto 0);
+        regwrite        : out    vl_logic;
         err             : out    vl_logic
     );
 end decode;

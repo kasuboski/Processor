@@ -1,10 +1,10 @@
 module IDEX(clk, rst, 
-    readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, passthrough, reverse, writereg,
-    readdata1Out, readdata2Out, immediateOut, jumpOut, jumpRegOut, branchOut, branchOpOut, memReadOut, memWriteOut, memToRegOut, ALUOpOut, ALUSrcOut, invSrc1Out, invSrc2Out, subOut, passthroughOut, reverseOut, writeregOut
+    readdata1, readdata2, immediate, PC, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, passthrough, reverse, writereg, regWrite
+    readdata1Out, readdata2Out, immediateOut, PCOut, jumpOut, jumpRegOut, branchOut, branchOpOut, memReadOut, memWriteOut, memToRegOut, ALUOpOut, ALUSrcOut, invSrc1Out, invSrc2Out, subOut, passthroughOut, reverseOut, writeregOut, regWriteOut
     );
     input clk, rst;
 
-    input [15:0] readdata1, readdata2, immediate;
+    input [15:0] readdata1, readdata2, immediate, PC;
     input jump, jumpReg, branch;
     input [1:0] branchOp;
     input memRead, memWrite, memToReg;
@@ -14,8 +14,9 @@ module IDEX(clk, rst,
     input invSrc1, invSrc2, sub, passthrough, reverse;
 
     input [2:0] writereg;
+    input regWrite;
 
-    output [15:0] readdata1Out, readdata2Out, immediateOut;
+    output [15:0] readdata1Out, readdata2Out, immediateOut, PCOut;
     output jumpOut, jumpRegOut, branchOut;
     output [1:0] branchOpOut;
     output memReadOut, memWriteOut, memToRegOut;
@@ -25,10 +26,12 @@ module IDEX(clk, rst,
     output invSrc1Out, invSrc2Out, subOut, passthroughOut, reverseOut;
 
     output [2:0] writeregOut;
+    output regWriteOut;
 
     dff readdata1Reg[15:0](.q(readdata1Out), .d(readdata1), .clk(clk), .rst(rst));
     dff readdata2Reg[15:0](.q(readdata2Out), .d(readdata2), .clk(clk), .rst(rst));
     dff immediateReg[15:0](.q(immediateOut), .d(immediate), .clk(clk), .rst(rst));
+    dff PCReg[15:0](.q(PCOut), .d(PC), .clk(clk), .rst(rst));
 
     dff jumpFF(.q(jumpOut), .d(jump), .clk(clk), .rst(rst));
     dff jumpRegFF(.q(jumpRegOut), .d(jumpReg), .clk(clk), .rst(rst));
@@ -50,6 +53,8 @@ module IDEX(clk, rst,
     dff passthroughReg(.q(passthroughOut), .d(passthrough), .clk(clk), .rst(rst));
     dff reverseReg(.q(reverseOut), .d(reverse), .clk(clk), .rst(rst));
 
-    dff writeregFF(.q(writeregOut), .d(writereg), .clk(clk), .rst(rst));
+    dff writeregFF[2:0](.q(writeregOut), .d(writereg), .clk(clk), .rst(rst));
+
+    dff regWriteReg(.q(regWriteOut), .d(regWrite), .clk(clk), .rst(rst));
 
 endmodule

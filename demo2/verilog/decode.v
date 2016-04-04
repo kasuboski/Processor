@@ -1,5 +1,5 @@
 `include "control_config.v"
-module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, err);
+module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, err);
 
     input clk, rst;
     
@@ -23,7 +23,8 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdat
 
     wire [1:0] regDst;
     wire [1:0] whichImm;
-    wire toExt, regWrite;
+    wire toExt;
+    output regWrite;
 
     output reg [2:0] writereg; // where to get the writeregsel
     wire [15:0] writedata;

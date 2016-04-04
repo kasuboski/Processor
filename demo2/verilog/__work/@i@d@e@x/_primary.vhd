@@ -7,6 +7,7 @@ entity idex is
         readdata1       : in     vl_logic_vector(15 downto 0);
         readdata2       : in     vl_logic_vector(15 downto 0);
         immediate       : in     vl_logic_vector(15 downto 0);
+        pc              : in     vl_logic_vector(15 downto 0);
         jump            : in     vl_logic;
         jumpreg         : in     vl_logic;
         branch          : in     vl_logic;
@@ -22,9 +23,11 @@ entity idex is
         passthrough     : in     vl_logic;
         reverse         : in     vl_logic;
         writereg        : in     vl_logic_vector(2 downto 0);
+        regwrite        : in     vl_logic;
         readdata1out    : out    vl_logic_vector(15 downto 0);
         readdata2out    : out    vl_logic_vector(15 downto 0);
         immediateout    : out    vl_logic_vector(15 downto 0);
+        pcout           : out    vl_logic_vector(15 downto 0);
         jumpout         : out    vl_logic;
         jumpregout      : out    vl_logic;
         branchout       : out    vl_logic;
@@ -39,6 +42,7 @@ entity idex is
         subout          : out    vl_logic;
         passthroughout  : out    vl_logic;
         reverseout      : out    vl_logic;
-        writeregout     : out    vl_logic_vector(2 downto 0)
+        writeregout     : out    vl_logic_vector(2 downto 0);
+        regwriteout     : out    vl_logic
     );
 end idex;
