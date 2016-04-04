@@ -7,6 +7,7 @@ entity decode is
         instr           : in     vl_logic_vector(15 downto 0);
         pc              : in     vl_logic_vector(15 downto 0);
         writebackdata   : in     vl_logic_vector(15 downto 0);
+        writeregin      : in     vl_logic_vector(2 downto 0);
         readdata1       : out    vl_logic_vector(15 downto 0);
         readdata2       : out    vl_logic_vector(15 downto 0);
         immediate       : out    vl_logic_vector(15 downto 0);
@@ -25,6 +26,7 @@ entity decode is
         halt            : out    vl_logic;
         passthrough     : out    vl_logic;
         reverse         : out    vl_logic;
+        writereg        : out    vl_logic_vector(2 downto 0);
         err             : out    vl_logic
     );
 end decode;
