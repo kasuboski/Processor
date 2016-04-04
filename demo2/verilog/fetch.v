@@ -1,0 +1,21 @@
+module fetch(clk, rst, halt, nextPC, PC2, instr, err);
+    input clk, rst;
+    
+    input halt;
+    input [15:0] nextPC;
+
+    output [15:0] instr;
+    output [15:0] PC2; // currentPC + 2
+    
+    output err;
+
+    wire [15:0] currentPC;
+
+    assign err = 1'b0;
+
+    dff pc[15:0](.q(currentPC), .d(nextPC), .clk(clk), .rst(rst));
+    memory2c instrmem(.data_out(instr), .data_in(16'b0), .addr(currentPC), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
+
+    adder pcAdd(.A(currentPC), .B(16'd2), .Cin(1'b0), .Overflow(), .Cout(), .Sum(PC2));
+
+endmodule
