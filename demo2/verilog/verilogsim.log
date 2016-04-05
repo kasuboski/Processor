@@ -1,7 +1,15 @@
-SIMLOG:: Cycle           4 PC:     0000 I:     c100 R: 0   z     0000 M: 0 0     0000     0000
+SIMLOG:: Cycle           4 PC:     zzzz I:     zzzz R: 0   Z     0000 M: 0 0     0000     0000
 SIMLOG:: Processor halted
 
 SIMLOG:: sim_cycles           4
 
 SIMLOG:: inst_count           1
+
+SIMLOG:: dcachehit_count           0
+
+SIMLOG:: icachehit_count           0
+
+SIMLOG:: dcachereq_count           0
+
+SIMLOG:: icachereq_count           0
 

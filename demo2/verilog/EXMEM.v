@@ -10,7 +10,7 @@ module EXMEM(clk, rst, readData2, ALURes, nextPC, writeReg, regWrite, memToReg, 
 	
 	dff readData2FF[15:0](.q(readData2Out), .d(readData2), .clk(clk), .rst(rst));
 	dff ALUResFF[15:0](.q(ALUResOut), .d(ALURes), .clk(clk), .rst(rst));
-	dff nextPCFF[15:0](.q(nexPCOut), .d(nextPC), .clk(clk), .rst(rst));
+	dff nextPCFF[15:0](.q(nextPCOut), .d(nextPC), .clk(clk), .rst(rst));
 	dff writeRegFF[2:0](.q(writeRegOut), .d(writeReg), .clk(clk), .rst(rst));
 	dff regWriteFF(.q(regWriteOut), .d(regWrite), .clk(clk), .rst(rst));
 	dff memToRegFF(.q(memToRegOut), .d(memToReg), .clk(clk), .rst(rst));

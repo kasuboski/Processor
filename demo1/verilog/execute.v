@@ -19,7 +19,7 @@ module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1
 	
 	assign GEZ = ~LTZ;
 	assign NEZ = ~zero;
-	assign LTZ = (ALURes[15]);
+	assign LTZ = (readdata1[15]);
 	
 	//Directly linked the error signal to the overflow signal
 	alu ALU(.A(readdata1), .B(src2), .Cin(sub), .Op(ALUOp), .invA(invSrc1), .invB(invSrc2), .sign(sign), .Out(ALURes), .Ofl(aluErr), .zero(zero), .passthrough(passthrough), .reverse(reverse));
