@@ -13,9 +13,9 @@ module fetch(clk, rst, halt, nextPC, PC2, instr, err);
 
     assign err = 1'b0;
 
-    assign actualNextPC = (nextPC == 16'b0) ? currentPC : nextPC;
+    assign actualNextPC = (nextPC == 16'b0) ? PC2 : nextPC;
 
-    dff pc[15:0](.q(currentPC), .d(actualNextPC), .clk(clk), .rst(rst));
+    dff pc[15:0](.q(currentPC), .d(PC2), .clk(clk), .rst(rst));
     memory2c instrmem(.data_out(instr), .data_in(16'b0), .addr(currentPC), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(rst));
 
     adder pcAdd(.A(currentPC), .B(16'd2), .Cin(1'b0), .Overflow(), .Cout(), .Sum(PC2));

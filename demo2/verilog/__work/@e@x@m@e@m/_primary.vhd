@@ -12,6 +12,7 @@ entity exmem is
         memtoreg        : in     vl_logic;
         memread         : in     vl_logic;
         memwrite        : in     vl_logic;
+        halt            : in     vl_logic;
         readdata2out    : out    vl_logic_vector(15 downto 0);
         aluresout       : out    vl_logic_vector(15 downto 0);
         nextpcout       : out    vl_logic_vector(15 downto 0);
@@ -19,6 +20,7 @@ entity exmem is
         regwriteout     : out    vl_logic;
         memtoregout     : out    vl_logic;
         memreadout      : out    vl_logic;
-        memwriteout     : out    vl_logic
+        memwriteout     : out    vl_logic;
+        haltout         : out    vl_logic
     );
 end exmem;

@@ -1,5 +1,5 @@
 `include "control_config.v"
-module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, err);
+module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, err);
 
     input clk, rst;
     
@@ -7,6 +7,7 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdat
     input [15:0] PC, writeBackData;
 
     input [2:0] writeregIn;
+    input regWriteIn;
     
     output [15:0] readdata1, readdata2;
     output reg [15:0] immediate;
@@ -32,6 +33,13 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdat
     reg writeRegMuxErr, immediateMuxErr;
     wire ctrlErr, regErr;
     assign err = ctrlErr | regErr;
+
+    wire cycle, haltCtrl;
+
+    assign halt = haltCtrl & cycle;
+
+    //determine if past first cycle
+    dff cycleFF(.q(cycle), .d(1'b1), .clk(clk), .rst(rst));
 
     assign writedata = (regDst == 2'b01) ? PC : writeBackData;
 
@@ -66,11 +74,11 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, readdata1, readdat
         endcase
     end
 
-    control ctrl(.instr(instr[15:11]), .func(instr[1:0]), .regDst(regDst), .regWrite(regWrite), .whichImm(whichImm), .toExt(toExt), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .err(ctrlErr));
+    control ctrl(.instr(instr[15:11]), .func(instr[1:0]), .regDst(regDst), .regWrite(regWrite), .whichImm(whichImm), .toExt(toExt), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(haltCtrl), .passthrough(passthrough), .reverse(reverse), .err(ctrlErr));
 
     rf register(
            .read1data(readdata1), .read2data(readdata2), .err(regErr),
-           .clk(clk), .rst(rst), .read1regsel(instr[10:8]), .read2regsel(instr[7:5]), .writeregsel(writeregIn), .writedata(writedata), .write(regWrite)
+           .clk(clk), .rst(rst), .read1regsel(instr[10:8]), .read2regsel(instr[7:5]), .writeregsel(writeregIn), .writedata(writedata), .write(regWriteIn)
            );
 
 endmodule

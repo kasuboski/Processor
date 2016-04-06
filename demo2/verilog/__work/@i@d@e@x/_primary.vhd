@@ -24,6 +24,7 @@ entity idex is
         reverse         : in     vl_logic;
         writereg        : in     vl_logic_vector(2 downto 0);
         regwrite        : in     vl_logic;
+        halt            : in     vl_logic;
         readdata1out    : out    vl_logic_vector(15 downto 0);
         readdata2out    : out    vl_logic_vector(15 downto 0);
         immediateout    : out    vl_logic_vector(15 downto 0);
@@ -43,6 +44,7 @@ entity idex is
         passthroughout  : out    vl_logic;
         reverseout      : out    vl_logic;
         writeregout     : out    vl_logic_vector(2 downto 0);
-        regwriteout     : out    vl_logic
+        regwriteout     : out    vl_logic;
+        haltout         : out    vl_logic
     );
 end idex;
