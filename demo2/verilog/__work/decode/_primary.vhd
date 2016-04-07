@@ -29,6 +29,8 @@ entity decode is
         reverse         : out    vl_logic;
         writereg        : out    vl_logic_vector(2 downto 0);
         regwrite        : out    vl_logic;
+        rs              : out    vl_logic_vector(2 downto 0);
+        rt              : out    vl_logic_vector(2 downto 0);
         err             : out    vl_logic
     );
 end decode;

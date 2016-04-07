@@ -1,5 +1,5 @@
 `include "control_config.v"
-module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, err);
+module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, rs, rt, err);
 
     input clk, rst;
     
@@ -26,6 +26,7 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     wire [1:0] whichImm;
     wire toExt;
     output regWrite;
+    output [2:0] rs, rt;
 
     output reg [2:0] writereg; // where to get the writeregsel
     wire [15:0] writedata;
@@ -74,9 +75,12 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
         endcase
     end
 
+    assign rs = instr[10:8];
+    assign rt = instr[7:5];
+
     control ctrl(.instr(instr[15:11]), .func(instr[1:0]), .regDst(regDst), .regWrite(regWrite), .whichImm(whichImm), .toExt(toExt), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(haltCtrl), .passthrough(passthrough), .reverse(reverse), .err(ctrlErr));
 
-    rf register(
+    rf_bypass register(
            .read1data(readdata1), .read2data(readdata2), .err(regErr),
            .clk(clk), .rst(rst), .read1regsel(instr[10:8]), .read2regsel(instr[7:5]), .writeregsel(writeregIn), .writedata(writedata), .write(regWriteIn)
            );
