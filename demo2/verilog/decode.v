@@ -37,7 +37,9 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
 
     wire cycle, haltCtrl;
 
-    assign halt = haltCtrl & cycle;
+    assign haltWire = (haltCtrl & cycle) | halt;
+
+    dff haltFF(.q(halt), .d(haltWire), .clk(clk), .rst(rst));
 
     //determine if past first cycle
     dff cycleFF(.q(cycle), .d(1'b1), .clk(clk), .rst(rst));

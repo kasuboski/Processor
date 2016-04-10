@@ -1,11 +1,20 @@
-          // Original test: ./ziliang/hw4/problem6/add_1.asm
-          // Author: ziliang
-          // Test source code follows
-          
-          
-          //This tests the 0 output value check in the ALU
-          
-0000 c100 lbi r1, 0
-0002 c200 lbi r2, 0
-0004 d94c add r3, r1, r2
-0006 0000 halt
+0000 c000         lbi r0, 0
+0002 0800         nop     
+0004 0800         nop
+0006 0800         nop
+0008 0800         nop
+000a 4001         addi r0, r0, 1
+000c 0800         nop
+000e 0800         nop
+0010 0800         nop
+0012 0800         nop
+0014 0800         nop
+0016 4001         addi r0, r0, 1
+0018 0800         nop
+001a 0800         nop
+001c 0800         nop
+001e 0800         nop
+0020 0800         nop
+0022 4001         addi r0, r0, 1
+0024 0000         halt
+                  
