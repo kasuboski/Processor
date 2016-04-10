@@ -1,5 +1,5 @@
 `include "control_config.v"
-module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, rs, rt, err);
+module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, rs, rt, err, nextPC);
 
     input clk, rst;
     
@@ -38,6 +38,12 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     wire cycle, haltCtrl;
 
     assign halt = haltCtrl & cycle;
+	
+    //Branch signals
+    wire zero, LTZ, GEZ, NEZ;
+    wire [15:0] pcImmAddSum, jumpRegAddSum;
+    output [15:0] nextPC;
+    reg branchCondition;
 
     //determine if past first cycle
     dff cycleFF(.q(cycle), .d(1'b1), .clk(clk), .rst(rst));
@@ -85,4 +91,34 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
            .clk(clk), .rst(rst), .read1regsel(instr[10:8]), .read2regsel(instr[7:5]), .writeregsel(writeregIn), .writedata(writedata), .write(regWriteIn)
            );
 
+	//Branching logic
+	
+	assign zero = ~(|readdata1);
+	assign GEZ = ~LTZ;
+	assign NEZ = ~zero;
+	assign LTZ = (readdata1[15]);
+	
+	adder pcImmAdd(.A(PC), .B(immediate), .Cin(1'b0), .Overflow(pcImmAddOfl), .Cout(), .Sum(pcImmAddSum));
+	adder jumpRegAdd(.A(readdata1), .B(immediate), .Cin(1'b0), .Overflow(), .Cout(), .Sum(jumpRegAddSum));	
+	assign nextPC = jumpReg ? jumpRegAddSum : (((branchCondition & branch) | jump) ? pcImmAddSum : PC);
+	
+	always @(*) begin
+		casex(BranchOP)
+			//In the case of no branch, just use 00 as branch opcode.
+			2'b00 : 
+				branchCondition = zero;
+			
+			2'b01 : 
+				branchCondition = NEZ;
+			
+			2'b10 :
+				branchCondition = LTZ;
+			
+			2'b11 : 
+				branchCondition = GEZ;
+				
+			default : 
+				branchCondition = 1'bx;	
+		endcase
+	end
 endmodule

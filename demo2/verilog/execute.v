@@ -49,7 +49,6 @@ module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1
 	
 	adder pcImmAdd(.A(PC), .B(immediate), .Cin(1'b0), .Overflow(pcImmAddOfl), .Cout(), .Sum(pcImmAddSum));
 	
-	assign nextPC = jumpReg ?  ALURes : (((branchCondition & branch) | jump) ? pcImmAddSum : PC);
 	assign jumpErr = ((branchCondition & branch) | jump) & pcImmAddOfl;
 	assign err = 1'b0;
 	
