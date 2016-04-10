@@ -28,6 +28,7 @@
 # Loading __work.rf_bypass
 # Loading __work.rf
 # Loading __work.register
+# Loading __work.hazard
 # Loading __work.IDEX
 # Loading __work.forwarding
 # Loading __work.execute
@@ -45,4 +46,4 @@ run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 1005 ns  Iteration: 0  Instance: /proc_hier_pbench
+#    Time: 1805 ns  Iteration: 0  Instance: /proc_hier_pbench

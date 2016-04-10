@@ -36,14 +36,16 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     assign err = ctrlErr | regErr;
 
     wire cycle, haltCtrl;
-
-    assign halt = haltCtrl & cycle;
 	
     //Branch signals
     wire zero, LTZ, GEZ, NEZ;
     wire [15:0] pcImmAddSum, jumpRegAddSum;
     output [15:0] nextPC;
     reg branchCondition;
+
+    assign haltWire = (haltCtrl & cycle) | halt;
+
+    dff haltFF(.q(halt), .d(haltWire), .clk(clk), .rst(rst));
 
     //determine if past first cycle
     dff cycleFF(.q(cycle), .d(1'b1), .clk(clk), .rst(rst));
@@ -103,7 +105,7 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
 	assign nextPC = jumpReg ? jumpRegAddSum : (((branchCondition & branch) | jump) ? pcImmAddSum : PC);
 	
 	always @(*) begin
-		casex(BranchOP)
+		casex(branchOp)
 			//In the case of no branch, just use 00 as branch opcode.
 			2'b00 : 
 				branchCondition = zero;

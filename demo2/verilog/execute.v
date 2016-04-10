@@ -1,4 +1,4 @@
-module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1, invSrc2, sub, PC, jump, jumpReg, branch, nextPC, ALURes, passthrough, reverse, exmem_ALURes, memwb_writeBack, forwardA, forwardB, err);
+module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1, invSrc2, sub, PC, jump, jumpReg, branch, nextPC, ALURes, passthrough, reverse, exmem_ALURes, memwb_writeBack, forwardA, forwardB, rt, err);
 	
 	input [15:0] readdata1, readdata2, immediate, PC;
 	input [3:0] ALUOp;
@@ -8,7 +8,7 @@ module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1
 	input [15:0] exmem_ALURes, memwb_writeBack;
 	input [1:0] forwardA, forwardB;
 	
-	output [15:0] nextPC, ALURes;
+	output [15:0] nextPC, ALURes, rt;
 	output err;
 	
 	wire [15:0] src2, pcImmAddSum;
@@ -43,6 +43,8 @@ module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1
 		default: srcB = readdata2;
 		endcase
 	end
+
+	assign rt = srcB;
 	
 	//Directly linked the error signal to the overflow signal
 	alu ALU(.A(src1), .B(src2), .Cin(sub), .Op(ALUOp), .invA(invSrc1), .invB(invSrc2), .sign(sign), .Out(ALURes), .Ofl(aluErr), .zero(zero), .passthrough(passthrough), .reverse(reverse));

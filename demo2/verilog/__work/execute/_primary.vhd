@@ -23,6 +23,7 @@ entity execute is
         memwb_writeback : in     vl_logic_vector(15 downto 0);
         forwarda        : in     vl_logic_vector(1 downto 0);
         forwardb        : in     vl_logic_vector(1 downto 0);
+        rt              : out    vl_logic_vector(15 downto 0);
         err             : out    vl_logic
     );
 end execute;

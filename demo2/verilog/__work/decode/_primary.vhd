@@ -31,6 +31,7 @@ entity decode is
         regwrite        : out    vl_logic;
         rs              : out    vl_logic_vector(2 downto 0);
         rt              : out    vl_logic_vector(2 downto 0);
-        err             : out    vl_logic
+        err             : out    vl_logic;
+        nextpc          : out    vl_logic_vector(15 downto 0)
     );
 end decode;
