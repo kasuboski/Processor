@@ -15,6 +15,10 @@ entity memwb is
         memtoregout     : out    vl_logic;
         regwriteout     : out    vl_logic;
         writeregout     : out    vl_logic_vector(2 downto 0);
-        haltout         : out    vl_logic
+        haltout         : out    vl_logic;
+        regdst          : in     vl_logic_vector(1 downto 0);
+        regdstout       : out    vl_logic_vector(1 downto 0);
+        nextpc          : in     vl_logic_vector(15 downto 0);
+        nextpcout       : out    vl_logic_vector(15 downto 0)
     );
 end memwb;

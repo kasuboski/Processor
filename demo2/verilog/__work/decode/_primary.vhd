@@ -32,6 +32,10 @@ entity decode is
         rs              : out    vl_logic_vector(2 downto 0);
         rt              : out    vl_logic_vector(2 downto 0);
         err             : out    vl_logic;
-        nextpc          : out    vl_logic_vector(15 downto 0)
+        nextpc          : out    vl_logic_vector(15 downto 0);
+        regdstin        : in     vl_logic_vector(1 downto 0);
+        regdstout       : out    vl_logic_vector(1 downto 0);
+        linkpc          : in     vl_logic_vector(15 downto 0);
+        flush           : out    vl_logic
     );
 end decode;

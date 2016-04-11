@@ -1,14 +1,14 @@
 `include "control_config.v"
-module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, rs, rt, err, nextPC);
+module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, rs, rt, err, nextPC, regDstIn, regDstOut, linkPC, flush);
 
     input clk, rst;
     
     input [15:0] instr;
     input [15:0] PC, writeBackData;
-
+    input [15:0] linkPC;
     input [2:0] writeregIn;
     input regWriteIn;
-    
+    input [1:0] regDstIn;
     output [15:0] readdata1, readdata2;
     output reg [15:0] immediate;
 
@@ -21,20 +21,20 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     output invSrc1, invSrc2, sub, halt, passthrough, reverse;
 
     output err;
-
+    output flush;
     wire [1:0] regDst;
     wire [1:0] whichImm;
     wire toExt;
     output regWrite;
     output [2:0] rs, rt;
-
+    output [1:0] regDstOut;
     output reg [2:0] writereg; // where to get the writeregsel
     wire [15:0] writedata;
 
     reg writeRegMuxErr, immediateMuxErr;
     wire ctrlErr, regErr;
     assign err = ctrlErr | regErr;
-
+    assign flush = jump | jumpReg;
     wire cycle, haltCtrl;
 	
     //Branch signals
@@ -44,13 +44,13 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     reg branchCondition;
 
     assign haltWire = (haltCtrl & cycle) | halt;
-
+    assign regDstOut = regDst;
     dff haltFF(.q(halt), .d(haltWire), .clk(clk), .rst(rst));
 
     //determine if past first cycle
     dff cycleFF(.q(cycle), .d(1'b1), .clk(clk), .rst(rst));
 
-    assign writedata = (regDst == 2'b01) ? PC : writeBackData;
+    assign writedata = (regDstIn == 2'b01) ? linkPC : writeBackData;
 
     //determine writeReg
     always @(*) begin

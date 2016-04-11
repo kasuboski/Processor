@@ -1,12 +1,12 @@
-module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1, invSrc2, sub, PC, jump, jumpReg, branch, nextPC, ALURes, passthrough, reverse, exmem_ALURes, memwb_writeBack, forwardA, forwardB, rt, err);
+module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1, invSrc2, sub, PC, jump, jumpReg, branch, nextPC, ALURes, passthrough, reverse, exmem_ALURes, memwb_writeBack, forwardA, forwardB, rt, err, exmem_nextPC, memwb_nextPC);
 	
 	input [15:0] readdata1, readdata2, immediate, PC;
 	input [3:0] ALUOp;
 	input [1:0] BranchOP;
 	input ALUSrc, jump, jumpReg, branch, invSrc1, invSrc2, sub, passthrough, reverse;
 
-	input [15:0] exmem_ALURes, memwb_writeBack;
-	input [1:0] forwardA, forwardB;
+	input [15:0] exmem_ALURes, memwb_writeBack, exmem_nextPC, memwb_nextPC;
+	input [2:0] forwardA, forwardB;
 	
 	output [15:0] nextPC, ALURes, rt;
 	output err;
@@ -28,18 +28,22 @@ module execute(readdata1, readdata2, immediate, BranchOP, ALUOp, ALUSrc, invSrc1
 
         always @(*) begin
 		case(forwardA)
-		2'b00: src1 = readdata1;
-		2'b01: src1 = memwb_writeBack;
-		2'b10: src1 = exmem_ALURes;
+		3'b000: src1 = readdata1;
+		3'b001: src1 = memwb_writeBack;
+		3'b010: src1 = exmem_ALURes;
+		3'b011: src1 = exmem_nextPC;
+		3'b100: src1 = memwb_nextPC;
 		default: src1 = readdata1;
 		endcase
 	end	
 
 	always @(*) begin
 		case(forwardB)
-		2'b00: srcB = readdata2;
-		2'b01: srcB = memwb_writeBack;
-		2'b10: srcB = exmem_ALURes;
+		3'b000: srcB = readdata2;
+		3'b001: srcB = memwb_writeBack;
+		3'b010: srcB = exmem_ALURes;
+		3'b011: srcB = exmem_nextPC;
+		3'b100: srcB = memwb_nextPC;
 		default: srcB = readdata2;
 		endcase
 	end

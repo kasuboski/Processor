@@ -8,6 +8,7 @@ entity ifid is
         pc              : in     vl_logic_vector(15 downto 0);
         addr            : in     vl_logic_vector(15 downto 0);
         pcout           : out    vl_logic_vector(15 downto 0);
-        addrout         : out    vl_logic_vector(15 downto 0)
+        addrout         : out    vl_logic_vector(15 downto 0);
+        flush           : in     vl_logic
     );
 end ifid;

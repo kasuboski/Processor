@@ -21,9 +21,11 @@ entity execute is
         reverse         : in     vl_logic;
         exmem_alures    : in     vl_logic_vector(15 downto 0);
         memwb_writeback : in     vl_logic_vector(15 downto 0);
-        forwarda        : in     vl_logic_vector(1 downto 0);
-        forwardb        : in     vl_logic_vector(1 downto 0);
+        forwarda        : in     vl_logic_vector(2 downto 0);
+        forwardb        : in     vl_logic_vector(2 downto 0);
         rt              : out    vl_logic_vector(15 downto 0);
-        err             : out    vl_logic
+        err             : out    vl_logic;
+        exmem_nextpc    : in     vl_logic_vector(15 downto 0);
+        memwb_nextpc    : in     vl_logic_vector(15 downto 0)
     );
 end execute;

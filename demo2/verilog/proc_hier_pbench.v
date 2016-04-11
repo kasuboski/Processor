@@ -127,7 +127,7 @@ module proc_hier_pbench();
    // Edit the example below. You must change the signal
    // names on the right hand side
     
-   assign PC = DUT.p0.fetch0.currentPC;
+   assign PC = DUT.p0.fetch0.actualNextPC;
    assign Inst = DUT.p0.fetch0.instr;
    
    assign RegWrite = DUT.p0.decode0.register.write;
