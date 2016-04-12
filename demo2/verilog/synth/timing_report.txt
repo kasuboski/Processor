@@ -1,0 +1,2128 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : proc
+Version: B-2008.09-SP3
+Date   : Mon Apr 11 22:12:41 2016
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: ifidReg/address[12]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: ifidReg/pc[15]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[12]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[12]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[12]/q (dff_351)                         0.00       0.11 f
+  ifidReg/addrOut<12> (IFID)                              0.00       0.11 f
+  decode0/instr<12> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<1> (control)                         0.00       0.11 f
+  decode0/ctrl/U118/Y (INVX1)                             0.01       0.12 r
+  decode0/ctrl/U177/Y (NOR3X1)                            0.02       0.14 f
+  decode0/ctrl/U178/Y (OAI21X1)                           0.05       0.19 r
+  decode0/ctrl/whichImm<0> (control)                      0.00       0.19 r
+  decode0/U107/Y (INVX2)                                  0.02       0.21 f
+  decode0/U340/Y (AND2X2)                                 0.04       0.25 f
+  decode0/U336/Y (INVX1)                                  0.00       0.25 r
+  decode0/U139/Y (AND2X2)                                 0.03       0.28 r
+  decode0/U141/Y (INVX1)                                  0.01       0.29 f
+  decode0/U238/Y (AND2X2)                                 0.03       0.33 f
+  decode0/pcImmAdd/B<5> (adder_3)                         0.00       0.33 f
+  decode0/pcImmAdd/add3/B<1> (cla_4_13)                   0.00       0.33 f
+  decode0/pcImmAdd/add3/fa2/B (fulladder_1_54)            0.00       0.33 f
+  decode0/pcImmAdd/add3/fa2/U5/Y (AND2X2)                 0.03       0.36 f
+  decode0/pcImmAdd/add3/fa2/g (fulladder_1_54)            0.00       0.36 f
+  decode0/pcImmAdd/add3/cla/g<1> (groupcla_14)            0.00       0.36 f
+  decode0/pcImmAdd/add3/cla/U7/Y (OR2X2)                  0.05       0.41 f
+  decode0/pcImmAdd/add3/cla/U8/Y (INVX1)                  0.00       0.40 r
+  decode0/pcImmAdd/add3/cla/U21/Y (AND2X2)                0.03       0.44 r
+  decode0/pcImmAdd/add3/cla/U23/Y (INVX1)                 0.02       0.45 f
+  decode0/pcImmAdd/add3/cla/U43/Y (OAI21X1)               0.04       0.50 r
+  decode0/pcImmAdd/add3/cla/U4/Y (OR2X2)                  0.05       0.54 r
+  decode0/pcImmAdd/add3/cla/U5/Y (INVX1)                  0.02       0.56 f
+  decode0/pcImmAdd/add3/cla/gg (groupcla_14)              0.00       0.56 f
+  decode0/pcImmAdd/add3/g (cla_4_13)                      0.00       0.56 f
+  decode0/pcImmAdd/cla/g<1> (groupcla_23)                 0.00       0.56 f
+  decode0/pcImmAdd/cla/U9/Y (INVX1)                       0.00       0.56 r
+  decode0/pcImmAdd/cla/U11/Y (AND2X2)                     0.03       0.59 r
+  decode0/pcImmAdd/cla/U12/Y (INVX1)                      0.02       0.61 f
+  decode0/pcImmAdd/cla/c<1> (groupcla_23)                 0.00       0.61 f
+  decode0/pcImmAdd/add2/Cin (cla_4_14)                    0.00       0.61 f
+  decode0/pcImmAdd/add2/cla/Cin (groupcla_15)             0.00       0.61 f
+  decode0/pcImmAdd/add2/cla/U21/Y (AND2X2)                0.04       0.65 f
+  decode0/pcImmAdd/add2/cla/U22/Y (INVX1)                 0.00       0.64 r
+  decode0/pcImmAdd/add2/cla/U11/Y (AND2X2)                0.03       0.67 r
+  decode0/pcImmAdd/add2/cla/U12/Y (INVX1)                 0.02       0.70 f
+  decode0/pcImmAdd/add2/cla/c<2> (groupcla_15)            0.00       0.70 f
+  decode0/pcImmAdd/add2/fa4/Cin (fulladder_1_56)          0.00       0.70 f
+  decode0/pcImmAdd/add2/fa4/U2/Y (XOR2X1)                 0.03       0.73 r
+  decode0/pcImmAdd/add2/fa4/S (fulladder_1_56)            0.00       0.73 r
+  decode0/pcImmAdd/add2/S<3> (cla_4_14)                   0.00       0.73 r
+  decode0/pcImmAdd/Sum<11> (adder_3)                      0.00       0.73 r
+  decode0/U106/Y (AND2X2)                                 0.03       0.76 r
+  decode0/U136/Y (INVX1)                                  0.02       0.78 f
+  decode0/U424/Y (NAND3X1)                                0.03       0.81 r
+  decode0/nextPC<11> (decode)                             0.00       0.81 r
+  fetch0/nextPC<11> (fetch)                               0.00       0.81 r
+  fetch0/U50/Y (BUFX2)                                    0.03       0.84 r
+  fetch0/U8/Y (AND2X2)                                    0.03       0.87 r
+  fetch0/U90/Y (INVX1)                                    0.01       0.89 f
+  fetch0/U63/Y (AND2X2)                                   0.03       0.92 f
+  fetch0/U26/Y (INVX1)                                    0.00       0.92 r
+  fetch0/pcAdd/A<11> (adder_4)                            0.00       0.92 r
+  fetch0/pcAdd/add2/A<3> (cla_4_18)                       0.00       0.92 r
+  fetch0/pcAdd/add2/fa4/A (fulladder_1_72)                0.00       0.92 r
+  fetch0/pcAdd/add2/fa4/U3/Y (INVX1)                      0.02       0.94 f
+  fetch0/pcAdd/add2/fa4/U2/Y (XNOR2X1)                    0.03       0.98 r
+  fetch0/pcAdd/add2/fa4/p (fulladder_1_72)                0.00       0.98 r
+  fetch0/pcAdd/add2/cla/p<3> (groupcla_19)                0.00       0.98 r
+  fetch0/pcAdd/add2/cla/U13/Y (INVX1)                     0.02       1.00 f
+  fetch0/pcAdd/add2/cla/U9/Y (AND2X2)                     0.03       1.03 f
+  fetch0/pcAdd/add2/cla/U41/Y (AOI21X1)                   0.01       1.05 r
+  fetch0/pcAdd/add2/cla/U23/Y (BUFX2)                     0.03       1.08 r
+  fetch0/pcAdd/add2/cla/U42/Y (AND2X2)                    0.03       1.12 r
+  fetch0/pcAdd/add2/cla/gg (groupcla_19)                  0.00       1.12 r
+  fetch0/pcAdd/add2/g (cla_4_18)                          0.00       1.12 r
+  fetch0/pcAdd/cla/g<2> (groupcla_24)                     0.00       1.12 r
+  fetch0/pcAdd/cla/U24/Y (AOI21X1)                        0.01       1.13 f
+  fetch0/pcAdd/cla/U18/Y (BUFX2)                          0.04       1.16 f
+  fetch0/pcAdd/cla/U14/Y (INVX4)                          0.02       1.18 r
+  fetch0/pcAdd/cla/c<2> (groupcla_24)                     0.00       1.18 r
+  fetch0/pcAdd/add1/Cin (cla_4_19)                        0.00       1.18 r
+  fetch0/pcAdd/add1/cla/Cin (groupcla_20)                 0.00       1.18 r
+  fetch0/pcAdd/add1/cla/U9/Y (INVX1)                      0.01       1.19 f
+  fetch0/pcAdd/add1/cla/U43/Y (AOI21X1)                   0.03       1.22 r
+  fetch0/pcAdd/add1/cla/c<2> (groupcla_20)                0.00       1.22 r
+  fetch0/pcAdd/add1/fa4/Cin (fulladder_1_76)              0.00       1.22 r
+  fetch0/pcAdd/add1/fa4/U4/Y (INVX1)                      0.03       1.25 f
+  fetch0/pcAdd/add1/fa4/U3/Y (XNOR2X1)                    0.03       1.28 f
+  fetch0/pcAdd/add1/fa4/S (fulladder_1_76)                0.00       1.28 f
+  fetch0/pcAdd/add1/S<3> (cla_4_19)                       0.00       1.28 f
+  fetch0/pcAdd/Sum<15> (adder_4)                          0.00       1.28 f
+  fetch0/PC2<15> (fetch)                                  0.00       1.28 f
+  ifidReg/PC<15> (IFID)                                   0.00       1.28 f
+  ifidReg/U91/Y (INVX1)                                   0.01       1.28 r
+  ifidReg/U104/Y (AOI22X1)                                0.01       1.29 f
+  ifidReg/pc[15]/d (dff_370)                              0.00       1.29 f
+  ifidReg/pc[15]/U5/Y (BUFX2)                             0.04       1.33 f
+  ifidReg/pc[15]/U3/Y (AND2X2)                            0.03       1.36 f
+  ifidReg/pc[15]/state_reg/D (DFFPOSX1)                   0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  ifidReg/pc[15]/state_reg/CLK (DFFPOSX1)                 0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: ifidReg/address[13]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: ifidReg/pc[14]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[13]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[13]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[13]/q (dff_352)                         0.00       0.11 f
+  ifidReg/addrOut<13> (IFID)                              0.00       0.11 f
+  decode0/instr<13> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<2> (control)                         0.00       0.11 f
+  decode0/ctrl/U141/Y (INVX1)                             0.01       0.12 r
+  decode0/ctrl/U18/Y (INVX1)                              0.02       0.14 f
+  decode0/ctrl/U147/Y (AND2X2)                            0.04       0.17 f
+  decode0/ctrl/U176/Y (MUX2X1)                            0.04       0.22 r
+  decode0/ctrl/toExt (control)                            0.00       0.22 r
+  decode0/U68/Y (AND2X2)                                  0.04       0.25 r
+  decode0/U215/Y (AND2X2)                                 0.03       0.29 r
+  decode0/U216/Y (INVX1)                                  0.02       0.31 f
+  decode0/U114/Y (AND2X2)                                 0.03       0.34 f
+  decode0/U12/Y (INVX1)                                   0.00       0.34 r
+  decode0/jumpRegAdd/B<7> (adder_2)                       0.00       0.34 r
+  decode0/jumpRegAdd/add3/B<3> (cla_4_9)                  0.00       0.34 r
+  decode0/jumpRegAdd/add3/fa4/B (fulladder_1_36)          0.00       0.34 r
+  decode0/jumpRegAdd/add3/fa4/U1/Y (INVX1)                0.01       0.35 f
+  decode0/jumpRegAdd/add3/fa4/U2/Y (INVX1)                0.02       0.37 r
+  decode0/jumpRegAdd/add3/fa4/U5/Y (XOR2X1)               0.05       0.42 r
+  decode0/jumpRegAdd/add3/fa4/p (fulladder_1_36)          0.00       0.42 r
+  decode0/jumpRegAdd/add3/cla/p<3> (groupcla_10)          0.00       0.42 r
+  decode0/jumpRegAdd/add3/cla/U10/Y (OR2X2)               0.05       0.47 r
+  decode0/jumpRegAdd/add3/cla/U36/Y (NAND3X1)             0.02       0.48 f
+  decode0/jumpRegAdd/add3/cla/U5/Y (BUFX2)                0.03       0.52 f
+  decode0/jumpRegAdd/add3/cla/U35/Y (AOI21X1)             0.01       0.53 r
+  decode0/jumpRegAdd/add3/cla/gg (groupcla_10)            0.00       0.53 r
+  decode0/jumpRegAdd/add3/g (cla_4_9)                     0.00       0.53 r
+  decode0/jumpRegAdd/cla/g<1> (groupcla_22)               0.00       0.53 r
+  decode0/jumpRegAdd/cla/U14/Y (BUFX2)                    0.04       0.57 r
+  decode0/jumpRegAdd/cla/U6/Y (INVX1)                     0.02       0.59 f
+  decode0/jumpRegAdd/cla/U41/Y (OAI21X1)                  0.04       0.63 r
+  decode0/jumpRegAdd/cla/c<1> (groupcla_22)               0.00       0.63 r
+  decode0/jumpRegAdd/add2/Cin (cla_4_10)                  0.00       0.63 r
+  decode0/jumpRegAdd/add2/cla/Cin (groupcla_11)           0.00       0.63 r
+  decode0/jumpRegAdd/add2/cla/U25/Y (AND2X2)              0.03       0.66 r
+  decode0/jumpRegAdd/add2/cla/U26/Y (INVX1)               0.02       0.67 f
+  decode0/jumpRegAdd/add2/cla/U1/Y (AND2X2)               0.03       0.71 f
+  decode0/jumpRegAdd/add2/cla/U16/Y (INVX1)               0.01       0.71 r
+  decode0/jumpRegAdd/add2/cla/c<1> (groupcla_11)          0.00       0.71 r
+  decode0/jumpRegAdd/add2/fa3/Cin (fulladder_1_41)        0.00       0.71 r
+  decode0/jumpRegAdd/add2/fa3/U2/Y (XOR2X1)               0.03       0.74 f
+  decode0/jumpRegAdd/add2/fa3/S (fulladder_1_41)          0.00       0.74 f
+  decode0/jumpRegAdd/add2/S<2> (cla_4_10)                 0.00       0.74 f
+  decode0/jumpRegAdd/Sum<10> (adder_2)                    0.00       0.74 f
+  decode0/U34/Y (AND2X1)                                  0.03       0.77 f
+  decode0/U185/Y (INVX1)                                  0.01       0.78 r
+  decode0/U423/Y (NAND3X1)                                0.01       0.79 f
+  decode0/nextPC<10> (decode)                             0.00       0.79 f
+  fetch0/nextPC<10> (fetch)                               0.00       0.79 f
+  fetch0/U56/Y (BUFX2)                                    0.03       0.82 f
+  fetch0/U102/Y (AOI21X1)                                 0.03       0.85 r
+  fetch0/U93/Y (BUFX2)                                    0.04       0.89 r
+  fetch0/U28/Y (INVX1)                                    0.02       0.91 f
+  fetch0/pcAdd/A<10> (adder_4)                            0.00       0.91 f
+  fetch0/pcAdd/add2/A<2> (cla_4_18)                       0.00       0.91 f
+  fetch0/pcAdd/add2/fa3/A (fulladder_1_73)                0.00       0.91 f
+  fetch0/pcAdd/add2/fa3/U6/Y (AND2X2)                     0.04       0.95 f
+  fetch0/pcAdd/add2/fa3/g (fulladder_1_73)                0.00       0.95 f
+  fetch0/pcAdd/add2/cla/g<2> (groupcla_19)                0.00       0.95 f
+  fetch0/pcAdd/add2/cla/U40/Y (OR2X2)                     0.04       0.98 f
+  fetch0/pcAdd/add2/cla/U25/Y (OR2X2)                     0.04       1.02 f
+  fetch0/pcAdd/add2/cla/U5/Y (OR2X2)                      0.04       1.06 f
+  fetch0/pcAdd/add2/cla/U42/Y (AND2X2)                    0.03       1.09 f
+  fetch0/pcAdd/add2/cla/gg (groupcla_19)                  0.00       1.09 f
+  fetch0/pcAdd/add2/g (cla_4_18)                          0.00       1.09 f
+  fetch0/pcAdd/cla/g<2> (groupcla_24)                     0.00       1.09 f
+  fetch0/pcAdd/cla/U24/Y (AOI21X1)                        0.01       1.10 r
+  fetch0/pcAdd/cla/U18/Y (BUFX2)                          0.04       1.14 r
+  fetch0/pcAdd/cla/U14/Y (INVX4)                          0.02       1.17 f
+  fetch0/pcAdd/cla/c<2> (groupcla_24)                     0.00       1.17 f
+  fetch0/pcAdd/add1/Cin (cla_4_19)                        0.00       1.17 f
+  fetch0/pcAdd/add1/cla/Cin (groupcla_20)                 0.00       1.17 f
+  fetch0/pcAdd/add1/cla/U38/Y (NAND3X1)                   0.03       1.19 r
+  fetch0/pcAdd/add1/cla/U22/Y (BUFX2)                     0.03       1.23 r
+  fetch0/pcAdd/add1/cla/U12/Y (AND2X2)                    0.03       1.26 r
+  fetch0/pcAdd/add1/cla/U13/Y (INVX1)                     0.01       1.27 f
+  fetch0/pcAdd/add1/cla/c<1> (groupcla_20)                0.00       1.27 f
+  fetch0/pcAdd/add1/fa3/Cin (fulladder_1_77)              0.00       1.27 f
+  fetch0/pcAdd/add1/fa3/U3/Y (INVX1)                      0.01       1.28 r
+  fetch0/pcAdd/add1/fa3/U2/Y (XNOR2X1)                    0.02       1.31 f
+  fetch0/pcAdd/add1/fa3/S (fulladder_1_77)                0.00       1.31 f
+  fetch0/pcAdd/add1/S<2> (cla_4_19)                       0.00       1.31 f
+  fetch0/pcAdd/Sum<14> (adder_4)                          0.00       1.31 f
+  fetch0/PC2<14> (fetch)                                  0.00       1.31 f
+  ifidReg/PC<14> (IFID)                                   0.00       1.31 f
+  ifidReg/U74/Y (INVX1)                                   0.00       1.31 r
+  ifidReg/U51/Y (MUX2X1)                                  0.02       1.33 f
+  ifidReg/pc[14]/d (dff_369)                              0.00       1.33 f
+  ifidReg/pc[14]/U3/Y (AND2X1)                            0.03       1.36 f
+  ifidReg/pc[14]/state_reg/D (DFFPOSX1)                   0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  ifidReg/pc[14]/state_reg/CLK (DFFPOSX1)                 0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: ifidReg/address[14]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[14]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[14]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[14]/q (dff_353)                         0.00       0.11 f
+  ifidReg/addrOut<14> (IFID)                              0.00       0.11 f
+  decode0/instr<14> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<3> (control)                         0.00       0.11 f
+  decode0/ctrl/U20/Y (INVX1)                              0.01       0.13 r
+  decode0/ctrl/U131/Y (INVX1)                             0.02       0.14 f
+  decode0/ctrl/U33/Y (AND2X2)                             0.04       0.18 f
+  decode0/ctrl/U180/Y (NAND3X1)                           0.03       0.20 r
+  decode0/ctrl/U30/Y (INVX1)                              0.02       0.23 f
+  decode0/ctrl/U29/Y (OR2X2)                              0.04       0.26 f
+  decode0/ctrl/U28/Y (OR2X2)                              0.05       0.31 f
+  decode0/ctrl/whichImm<1> (control)                      0.00       0.31 f
+  decode0/U62/Y (INVX1)                                   0.00       0.31 r
+  decode0/U344/Y (AND2X2)                                 0.03       0.34 r
+  decode0/U154/Y (AND2X2)                                 0.03       0.37 r
+  decode0/U155/Y (INVX1)                                  0.01       0.39 f
+  decode0/U381/Y (AND2X2)                                 0.04       0.43 f
+  decode0/U93/Y (INVX4)                                   0.02       0.44 r
+  decode0/pcImmAdd/B<8> (adder_3)                         0.00       0.44 r
+  decode0/pcImmAdd/add2/B<0> (cla_4_14)                   0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/B (fulladder_1_59)            0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/U4/Y (XOR2X1)                 0.04       0.49 r
+  decode0/pcImmAdd/add2/fa1/p (fulladder_1_59)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/p<0> (groupcla_15)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/U43/Y (NAND3X1)               0.02       0.51 f
+  decode0/pcImmAdd/add2/cla/U18/Y (BUFX2)                 0.03       0.55 f
+  decode0/pcImmAdd/add2/cla/U13/Y (OR2X2)                 0.04       0.58 f
+  decode0/pcImmAdd/add2/cla/U14/Y (INVX1)                 0.00       0.58 r
+  decode0/pcImmAdd/add2/cla/pg (groupcla_15)              0.00       0.58 r
+  decode0/pcImmAdd/add2/p (cla_4_14)                      0.00       0.58 r
+  decode0/pcImmAdd/cla/p<2> (groupcla_23)                 0.00       0.58 r
+  decode0/pcImmAdd/cla/U26/Y (INVX1)                      0.02       0.60 f
+  decode0/pcImmAdd/cla/U35/Y (OAI21X1)                    0.05       0.65 r
+  decode0/pcImmAdd/cla/c<2> (groupcla_23)                 0.00       0.65 r
+  decode0/pcImmAdd/add1/Cin (cla_4_15)                    0.00       0.65 r
+  decode0/pcImmAdd/add1/U3/Y (BUFX4)                      0.02       0.67 r
+  decode0/pcImmAdd/add1/cla/Cin (groupcla_16)             0.00       0.67 r
+  decode0/pcImmAdd/add1/cla/U11/Y (OR2X2)                 0.04       0.71 r
+  decode0/pcImmAdd/add1/cla/U12/Y (INVX1)                 0.02       0.72 f
+  decode0/pcImmAdd/add1/cla/U38/Y (AOI21X1)               0.02       0.74 r
+  decode0/pcImmAdd/add1/cla/c<1> (groupcla_16)            0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/Cin (fulladder_1_61)          0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/U3/Y (INVX1)                  0.03       0.77 f
+  decode0/pcImmAdd/add1/fa3/U2/Y (XNOR2X1)                0.03       0.80 f
+  decode0/pcImmAdd/add1/fa3/S (fulladder_1_61)            0.00       0.80 f
+  decode0/pcImmAdd/add1/S<2> (cla_4_15)                   0.00       0.80 f
+  decode0/pcImmAdd/Sum<14> (adder_3)                      0.00       0.80 f
+  decode0/U427/Y (OAI21X1)                                0.04       0.84 r
+  decode0/U428/Y (OAI21X1)                                0.02       0.86 f
+  decode0/nextPC<14> (decode)                             0.00       0.86 f
+  fetch0/nextPC<14> (fetch)                               0.00       0.86 f
+  fetch0/U82/Y (AND2X2)                                   0.04       0.89 f
+  fetch0/U83/Y (INVX1)                                    0.00       0.89 r
+  fetch0/U34/Y (AND2X2)                                   0.03       0.92 r
+  fetch0/U35/Y (INVX1)                                    0.02       0.94 f
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.94 f
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       0.98 f
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.05       1.03 f
+  fetch0/instrmem/U1196/Y (INVX1)                         0.00       1.02 r
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.06 r
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.10 r
+  fetch0/instrmem/U4446/Y (INVX1)                         0.02       1.12 f
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.16 f
+  fetch0/instrmem/U3256/Y (INVX1)                         0.00       1.16 r
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.19 r
+  fetch0/instrmem/U2174/Y (INVX1)                         0.02       1.21 f
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.03       1.24 r
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.27 r
+  fetch0/instrmem/U689/Y (INVX1)                          0.02       1.29 f
+  fetch0/instrmem/U461/Y (INVX1)                          0.01       1.30 r
+  fetch0/instrmem/U464/Y (INVX1)                          0.02       1.32 f
+  fetch0/instrmem/U6028/Y (NAND2X1)                       0.02       1.34 r
+  fetch0/instrmem/U6029/Y (NAND3X1)                       0.02       1.36 f
+  fetch0/instrmem/mem_reg<8><0>/D (DFFPOSX1)              0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><0>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: ifidReg/address[14]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><1>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[14]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[14]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[14]/q (dff_353)                         0.00       0.11 f
+  ifidReg/addrOut<14> (IFID)                              0.00       0.11 f
+  decode0/instr<14> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<3> (control)                         0.00       0.11 f
+  decode0/ctrl/U20/Y (INVX1)                              0.01       0.13 r
+  decode0/ctrl/U131/Y (INVX1)                             0.02       0.14 f
+  decode0/ctrl/U33/Y (AND2X2)                             0.04       0.18 f
+  decode0/ctrl/U180/Y (NAND3X1)                           0.03       0.20 r
+  decode0/ctrl/U30/Y (INVX1)                              0.02       0.23 f
+  decode0/ctrl/U29/Y (OR2X2)                              0.04       0.26 f
+  decode0/ctrl/U28/Y (OR2X2)                              0.05       0.31 f
+  decode0/ctrl/whichImm<1> (control)                      0.00       0.31 f
+  decode0/U62/Y (INVX1)                                   0.00       0.31 r
+  decode0/U344/Y (AND2X2)                                 0.03       0.34 r
+  decode0/U154/Y (AND2X2)                                 0.03       0.37 r
+  decode0/U155/Y (INVX1)                                  0.01       0.39 f
+  decode0/U381/Y (AND2X2)                                 0.04       0.43 f
+  decode0/U93/Y (INVX4)                                   0.02       0.44 r
+  decode0/pcImmAdd/B<8> (adder_3)                         0.00       0.44 r
+  decode0/pcImmAdd/add2/B<0> (cla_4_14)                   0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/B (fulladder_1_59)            0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/U4/Y (XOR2X1)                 0.04       0.49 r
+  decode0/pcImmAdd/add2/fa1/p (fulladder_1_59)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/p<0> (groupcla_15)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/U43/Y (NAND3X1)               0.02       0.51 f
+  decode0/pcImmAdd/add2/cla/U18/Y (BUFX2)                 0.03       0.55 f
+  decode0/pcImmAdd/add2/cla/U13/Y (OR2X2)                 0.04       0.58 f
+  decode0/pcImmAdd/add2/cla/U14/Y (INVX1)                 0.00       0.58 r
+  decode0/pcImmAdd/add2/cla/pg (groupcla_15)              0.00       0.58 r
+  decode0/pcImmAdd/add2/p (cla_4_14)                      0.00       0.58 r
+  decode0/pcImmAdd/cla/p<2> (groupcla_23)                 0.00       0.58 r
+  decode0/pcImmAdd/cla/U26/Y (INVX1)                      0.02       0.60 f
+  decode0/pcImmAdd/cla/U35/Y (OAI21X1)                    0.05       0.65 r
+  decode0/pcImmAdd/cla/c<2> (groupcla_23)                 0.00       0.65 r
+  decode0/pcImmAdd/add1/Cin (cla_4_15)                    0.00       0.65 r
+  decode0/pcImmAdd/add1/U3/Y (BUFX4)                      0.02       0.67 r
+  decode0/pcImmAdd/add1/cla/Cin (groupcla_16)             0.00       0.67 r
+  decode0/pcImmAdd/add1/cla/U11/Y (OR2X2)                 0.04       0.71 r
+  decode0/pcImmAdd/add1/cla/U12/Y (INVX1)                 0.02       0.72 f
+  decode0/pcImmAdd/add1/cla/U38/Y (AOI21X1)               0.02       0.74 r
+  decode0/pcImmAdd/add1/cla/c<1> (groupcla_16)            0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/Cin (fulladder_1_61)          0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/U3/Y (INVX1)                  0.03       0.77 f
+  decode0/pcImmAdd/add1/fa3/U2/Y (XNOR2X1)                0.03       0.80 f
+  decode0/pcImmAdd/add1/fa3/S (fulladder_1_61)            0.00       0.80 f
+  decode0/pcImmAdd/add1/S<2> (cla_4_15)                   0.00       0.80 f
+  decode0/pcImmAdd/Sum<14> (adder_3)                      0.00       0.80 f
+  decode0/U427/Y (OAI21X1)                                0.04       0.84 r
+  decode0/U428/Y (OAI21X1)                                0.02       0.86 f
+  decode0/nextPC<14> (decode)                             0.00       0.86 f
+  fetch0/nextPC<14> (fetch)                               0.00       0.86 f
+  fetch0/U82/Y (AND2X2)                                   0.04       0.89 f
+  fetch0/U83/Y (INVX1)                                    0.00       0.89 r
+  fetch0/U34/Y (AND2X2)                                   0.03       0.92 r
+  fetch0/U35/Y (INVX1)                                    0.02       0.94 f
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.94 f
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       0.98 f
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.05       1.03 f
+  fetch0/instrmem/U1196/Y (INVX1)                         0.00       1.02 r
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.06 r
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.10 r
+  fetch0/instrmem/U4446/Y (INVX1)                         0.02       1.12 f
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.16 f
+  fetch0/instrmem/U3256/Y (INVX1)                         0.00       1.16 r
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.19 r
+  fetch0/instrmem/U2174/Y (INVX1)                         0.02       1.21 f
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.03       1.24 r
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.27 r
+  fetch0/instrmem/U689/Y (INVX1)                          0.02       1.29 f
+  fetch0/instrmem/U461/Y (INVX1)                          0.01       1.30 r
+  fetch0/instrmem/U463/Y (INVX1)                          0.02       1.32 f
+  fetch0/instrmem/U6030/Y (NAND2X1)                       0.02       1.34 r
+  fetch0/instrmem/U6031/Y (NAND3X1)                       0.02       1.36 f
+  fetch0/instrmem/mem_reg<8><1>/D (DFFPOSX1)              0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><1>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: ifidReg/address[14]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><3>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[14]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[14]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[14]/q (dff_353)                         0.00       0.11 f
+  ifidReg/addrOut<14> (IFID)                              0.00       0.11 f
+  decode0/instr<14> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<3> (control)                         0.00       0.11 f
+  decode0/ctrl/U20/Y (INVX1)                              0.01       0.13 r
+  decode0/ctrl/U131/Y (INVX1)                             0.02       0.14 f
+  decode0/ctrl/U33/Y (AND2X2)                             0.04       0.18 f
+  decode0/ctrl/U180/Y (NAND3X1)                           0.03       0.20 r
+  decode0/ctrl/U30/Y (INVX1)                              0.02       0.23 f
+  decode0/ctrl/U29/Y (OR2X2)                              0.04       0.26 f
+  decode0/ctrl/U28/Y (OR2X2)                              0.05       0.31 f
+  decode0/ctrl/whichImm<1> (control)                      0.00       0.31 f
+  decode0/U62/Y (INVX1)                                   0.00       0.31 r
+  decode0/U344/Y (AND2X2)                                 0.03       0.34 r
+  decode0/U154/Y (AND2X2)                                 0.03       0.37 r
+  decode0/U155/Y (INVX1)                                  0.01       0.39 f
+  decode0/U381/Y (AND2X2)                                 0.04       0.43 f
+  decode0/U93/Y (INVX4)                                   0.02       0.44 r
+  decode0/pcImmAdd/B<8> (adder_3)                         0.00       0.44 r
+  decode0/pcImmAdd/add2/B<0> (cla_4_14)                   0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/B (fulladder_1_59)            0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/U4/Y (XOR2X1)                 0.04       0.49 r
+  decode0/pcImmAdd/add2/fa1/p (fulladder_1_59)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/p<0> (groupcla_15)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/U43/Y (NAND3X1)               0.02       0.51 f
+  decode0/pcImmAdd/add2/cla/U18/Y (BUFX2)                 0.03       0.55 f
+  decode0/pcImmAdd/add2/cla/U13/Y (OR2X2)                 0.04       0.58 f
+  decode0/pcImmAdd/add2/cla/U14/Y (INVX1)                 0.00       0.58 r
+  decode0/pcImmAdd/add2/cla/pg (groupcla_15)              0.00       0.58 r
+  decode0/pcImmAdd/add2/p (cla_4_14)                      0.00       0.58 r
+  decode0/pcImmAdd/cla/p<2> (groupcla_23)                 0.00       0.58 r
+  decode0/pcImmAdd/cla/U26/Y (INVX1)                      0.02       0.60 f
+  decode0/pcImmAdd/cla/U35/Y (OAI21X1)                    0.05       0.65 r
+  decode0/pcImmAdd/cla/c<2> (groupcla_23)                 0.00       0.65 r
+  decode0/pcImmAdd/add1/Cin (cla_4_15)                    0.00       0.65 r
+  decode0/pcImmAdd/add1/U3/Y (BUFX4)                      0.02       0.67 r
+  decode0/pcImmAdd/add1/cla/Cin (groupcla_16)             0.00       0.67 r
+  decode0/pcImmAdd/add1/cla/U11/Y (OR2X2)                 0.04       0.71 r
+  decode0/pcImmAdd/add1/cla/U12/Y (INVX1)                 0.02       0.72 f
+  decode0/pcImmAdd/add1/cla/U38/Y (AOI21X1)               0.02       0.74 r
+  decode0/pcImmAdd/add1/cla/c<1> (groupcla_16)            0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/Cin (fulladder_1_61)          0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/U3/Y (INVX1)                  0.03       0.77 f
+  decode0/pcImmAdd/add1/fa3/U2/Y (XNOR2X1)                0.03       0.80 f
+  decode0/pcImmAdd/add1/fa3/S (fulladder_1_61)            0.00       0.80 f
+  decode0/pcImmAdd/add1/S<2> (cla_4_15)                   0.00       0.80 f
+  decode0/pcImmAdd/Sum<14> (adder_3)                      0.00       0.80 f
+  decode0/U427/Y (OAI21X1)                                0.04       0.84 r
+  decode0/U428/Y (OAI21X1)                                0.02       0.86 f
+  decode0/nextPC<14> (decode)                             0.00       0.86 f
+  fetch0/nextPC<14> (fetch)                               0.00       0.86 f
+  fetch0/U82/Y (AND2X2)                                   0.04       0.89 f
+  fetch0/U83/Y (INVX1)                                    0.00       0.89 r
+  fetch0/U34/Y (AND2X2)                                   0.03       0.92 r
+  fetch0/U35/Y (INVX1)                                    0.02       0.94 f
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.94 f
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       0.98 f
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.05       1.03 f
+  fetch0/instrmem/U1196/Y (INVX1)                         0.00       1.02 r
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.06 r
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.10 r
+  fetch0/instrmem/U4446/Y (INVX1)                         0.02       1.12 f
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.16 f
+  fetch0/instrmem/U3256/Y (INVX1)                         0.00       1.16 r
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.19 r
+  fetch0/instrmem/U2174/Y (INVX1)                         0.02       1.21 f
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.03       1.24 r
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.27 r
+  fetch0/instrmem/U689/Y (INVX1)                          0.02       1.29 f
+  fetch0/instrmem/U461/Y (INVX1)                          0.01       1.30 r
+  fetch0/instrmem/U464/Y (INVX1)                          0.02       1.32 f
+  fetch0/instrmem/U6034/Y (NAND2X1)                       0.02       1.34 r
+  fetch0/instrmem/U6035/Y (NAND3X1)                       0.02       1.36 f
+  fetch0/instrmem/mem_reg<8><3>/D (DFFPOSX1)              0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><3>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: ifidReg/address[14]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><4>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[14]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[14]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[14]/q (dff_353)                         0.00       0.11 f
+  ifidReg/addrOut<14> (IFID)                              0.00       0.11 f
+  decode0/instr<14> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<3> (control)                         0.00       0.11 f
+  decode0/ctrl/U20/Y (INVX1)                              0.01       0.13 r
+  decode0/ctrl/U131/Y (INVX1)                             0.02       0.14 f
+  decode0/ctrl/U33/Y (AND2X2)                             0.04       0.18 f
+  decode0/ctrl/U180/Y (NAND3X1)                           0.03       0.20 r
+  decode0/ctrl/U30/Y (INVX1)                              0.02       0.23 f
+  decode0/ctrl/U29/Y (OR2X2)                              0.04       0.26 f
+  decode0/ctrl/U28/Y (OR2X2)                              0.05       0.31 f
+  decode0/ctrl/whichImm<1> (control)                      0.00       0.31 f
+  decode0/U62/Y (INVX1)                                   0.00       0.31 r
+  decode0/U344/Y (AND2X2)                                 0.03       0.34 r
+  decode0/U154/Y (AND2X2)                                 0.03       0.37 r
+  decode0/U155/Y (INVX1)                                  0.01       0.39 f
+  decode0/U381/Y (AND2X2)                                 0.04       0.43 f
+  decode0/U93/Y (INVX4)                                   0.02       0.44 r
+  decode0/pcImmAdd/B<8> (adder_3)                         0.00       0.44 r
+  decode0/pcImmAdd/add2/B<0> (cla_4_14)                   0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/B (fulladder_1_59)            0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/U4/Y (XOR2X1)                 0.04       0.49 r
+  decode0/pcImmAdd/add2/fa1/p (fulladder_1_59)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/p<0> (groupcla_15)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/U43/Y (NAND3X1)               0.02       0.51 f
+  decode0/pcImmAdd/add2/cla/U18/Y (BUFX2)                 0.03       0.55 f
+  decode0/pcImmAdd/add2/cla/U13/Y (OR2X2)                 0.04       0.58 f
+  decode0/pcImmAdd/add2/cla/U14/Y (INVX1)                 0.00       0.58 r
+  decode0/pcImmAdd/add2/cla/pg (groupcla_15)              0.00       0.58 r
+  decode0/pcImmAdd/add2/p (cla_4_14)                      0.00       0.58 r
+  decode0/pcImmAdd/cla/p<2> (groupcla_23)                 0.00       0.58 r
+  decode0/pcImmAdd/cla/U26/Y (INVX1)                      0.02       0.60 f
+  decode0/pcImmAdd/cla/U35/Y (OAI21X1)                    0.05       0.65 r
+  decode0/pcImmAdd/cla/c<2> (groupcla_23)                 0.00       0.65 r
+  decode0/pcImmAdd/add1/Cin (cla_4_15)                    0.00       0.65 r
+  decode0/pcImmAdd/add1/U3/Y (BUFX4)                      0.02       0.67 r
+  decode0/pcImmAdd/add1/cla/Cin (groupcla_16)             0.00       0.67 r
+  decode0/pcImmAdd/add1/cla/U11/Y (OR2X2)                 0.04       0.71 r
+  decode0/pcImmAdd/add1/cla/U12/Y (INVX1)                 0.02       0.72 f
+  decode0/pcImmAdd/add1/cla/U38/Y (AOI21X1)               0.02       0.74 r
+  decode0/pcImmAdd/add1/cla/c<1> (groupcla_16)            0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/Cin (fulladder_1_61)          0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/U3/Y (INVX1)                  0.03       0.77 f
+  decode0/pcImmAdd/add1/fa3/U2/Y (XNOR2X1)                0.03       0.80 f
+  decode0/pcImmAdd/add1/fa3/S (fulladder_1_61)            0.00       0.80 f
+  decode0/pcImmAdd/add1/S<2> (cla_4_15)                   0.00       0.80 f
+  decode0/pcImmAdd/Sum<14> (adder_3)                      0.00       0.80 f
+  decode0/U427/Y (OAI21X1)                                0.04       0.84 r
+  decode0/U428/Y (OAI21X1)                                0.02       0.86 f
+  decode0/nextPC<14> (decode)                             0.00       0.86 f
+  fetch0/nextPC<14> (fetch)                               0.00       0.86 f
+  fetch0/U82/Y (AND2X2)                                   0.04       0.89 f
+  fetch0/U83/Y (INVX1)                                    0.00       0.89 r
+  fetch0/U34/Y (AND2X2)                                   0.03       0.92 r
+  fetch0/U35/Y (INVX1)                                    0.02       0.94 f
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.94 f
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       0.98 f
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.05       1.03 f
+  fetch0/instrmem/U1196/Y (INVX1)                         0.00       1.02 r
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.06 r
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.10 r
+  fetch0/instrmem/U4446/Y (INVX1)                         0.02       1.12 f
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.16 f
+  fetch0/instrmem/U3256/Y (INVX1)                         0.00       1.16 r
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.19 r
+  fetch0/instrmem/U2174/Y (INVX1)                         0.02       1.21 f
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.03       1.24 r
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.27 r
+  fetch0/instrmem/U689/Y (INVX1)                          0.02       1.29 f
+  fetch0/instrmem/U461/Y (INVX1)                          0.01       1.30 r
+  fetch0/instrmem/U463/Y (INVX1)                          0.02       1.32 f
+  fetch0/instrmem/U6036/Y (NAND2X1)                       0.02       1.34 r
+  fetch0/instrmem/U6037/Y (NAND3X1)                       0.02       1.36 f
+  fetch0/instrmem/mem_reg<8><4>/D (DFFPOSX1)              0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><4>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: ifidReg/address[14]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><5>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[14]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[14]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[14]/q (dff_353)                         0.00       0.11 f
+  ifidReg/addrOut<14> (IFID)                              0.00       0.11 f
+  decode0/instr<14> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<3> (control)                         0.00       0.11 f
+  decode0/ctrl/U20/Y (INVX1)                              0.01       0.13 r
+  decode0/ctrl/U131/Y (INVX1)                             0.02       0.14 f
+  decode0/ctrl/U33/Y (AND2X2)                             0.04       0.18 f
+  decode0/ctrl/U180/Y (NAND3X1)                           0.03       0.20 r
+  decode0/ctrl/U30/Y (INVX1)                              0.02       0.23 f
+  decode0/ctrl/U29/Y (OR2X2)                              0.04       0.26 f
+  decode0/ctrl/U28/Y (OR2X2)                              0.05       0.31 f
+  decode0/ctrl/whichImm<1> (control)                      0.00       0.31 f
+  decode0/U62/Y (INVX1)                                   0.00       0.31 r
+  decode0/U344/Y (AND2X2)                                 0.03       0.34 r
+  decode0/U154/Y (AND2X2)                                 0.03       0.37 r
+  decode0/U155/Y (INVX1)                                  0.01       0.39 f
+  decode0/U381/Y (AND2X2)                                 0.04       0.43 f
+  decode0/U93/Y (INVX4)                                   0.02       0.44 r
+  decode0/pcImmAdd/B<8> (adder_3)                         0.00       0.44 r
+  decode0/pcImmAdd/add2/B<0> (cla_4_14)                   0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/B (fulladder_1_59)            0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/U4/Y (XOR2X1)                 0.04       0.49 r
+  decode0/pcImmAdd/add2/fa1/p (fulladder_1_59)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/p<0> (groupcla_15)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/U43/Y (NAND3X1)               0.02       0.51 f
+  decode0/pcImmAdd/add2/cla/U18/Y (BUFX2)                 0.03       0.55 f
+  decode0/pcImmAdd/add2/cla/U13/Y (OR2X2)                 0.04       0.58 f
+  decode0/pcImmAdd/add2/cla/U14/Y (INVX1)                 0.00       0.58 r
+  decode0/pcImmAdd/add2/cla/pg (groupcla_15)              0.00       0.58 r
+  decode0/pcImmAdd/add2/p (cla_4_14)                      0.00       0.58 r
+  decode0/pcImmAdd/cla/p<2> (groupcla_23)                 0.00       0.58 r
+  decode0/pcImmAdd/cla/U26/Y (INVX1)                      0.02       0.60 f
+  decode0/pcImmAdd/cla/U35/Y (OAI21X1)                    0.05       0.65 r
+  decode0/pcImmAdd/cla/c<2> (groupcla_23)                 0.00       0.65 r
+  decode0/pcImmAdd/add1/Cin (cla_4_15)                    0.00       0.65 r
+  decode0/pcImmAdd/add1/U3/Y (BUFX4)                      0.02       0.67 r
+  decode0/pcImmAdd/add1/cla/Cin (groupcla_16)             0.00       0.67 r
+  decode0/pcImmAdd/add1/cla/U11/Y (OR2X2)                 0.04       0.71 r
+  decode0/pcImmAdd/add1/cla/U12/Y (INVX1)                 0.02       0.72 f
+  decode0/pcImmAdd/add1/cla/U38/Y (AOI21X1)               0.02       0.74 r
+  decode0/pcImmAdd/add1/cla/c<1> (groupcla_16)            0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/Cin (fulladder_1_61)          0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/U3/Y (INVX1)                  0.03       0.77 f
+  decode0/pcImmAdd/add1/fa3/U2/Y (XNOR2X1)                0.03       0.80 f
+  decode0/pcImmAdd/add1/fa3/S (fulladder_1_61)            0.00       0.80 f
+  decode0/pcImmAdd/add1/S<2> (cla_4_15)                   0.00       0.80 f
+  decode0/pcImmAdd/Sum<14> (adder_3)                      0.00       0.80 f
+  decode0/U427/Y (OAI21X1)                                0.04       0.84 r
+  decode0/U428/Y (OAI21X1)                                0.02       0.86 f
+  decode0/nextPC<14> (decode)                             0.00       0.86 f
+  fetch0/nextPC<14> (fetch)                               0.00       0.86 f
+  fetch0/U82/Y (AND2X2)                                   0.04       0.89 f
+  fetch0/U83/Y (INVX1)                                    0.00       0.89 r
+  fetch0/U34/Y (AND2X2)                                   0.03       0.92 r
+  fetch0/U35/Y (INVX1)                                    0.02       0.94 f
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.94 f
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       0.98 f
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.05       1.03 f
+  fetch0/instrmem/U1196/Y (INVX1)                         0.00       1.02 r
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.06 r
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.10 r
+  fetch0/instrmem/U4446/Y (INVX1)                         0.02       1.12 f
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.16 f
+  fetch0/instrmem/U3256/Y (INVX1)                         0.00       1.16 r
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.19 r
+  fetch0/instrmem/U2174/Y (INVX1)                         0.02       1.21 f
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.03       1.24 r
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.27 r
+  fetch0/instrmem/U689/Y (INVX1)                          0.02       1.29 f
+  fetch0/instrmem/U461/Y (INVX1)                          0.01       1.30 r
+  fetch0/instrmem/U463/Y (INVX1)                          0.02       1.32 f
+  fetch0/instrmem/U6038/Y (NAND2X1)                       0.02       1.34 r
+  fetch0/instrmem/U6039/Y (NAND3X1)                       0.02       1.36 f
+  fetch0/instrmem/mem_reg<8><5>/D (DFFPOSX1)              0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><5>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: ifidReg/address[14]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><7>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[14]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[14]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[14]/q (dff_353)                         0.00       0.11 f
+  ifidReg/addrOut<14> (IFID)                              0.00       0.11 f
+  decode0/instr<14> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<3> (control)                         0.00       0.11 f
+  decode0/ctrl/U20/Y (INVX1)                              0.01       0.13 r
+  decode0/ctrl/U131/Y (INVX1)                             0.02       0.14 f
+  decode0/ctrl/U33/Y (AND2X2)                             0.04       0.18 f
+  decode0/ctrl/U180/Y (NAND3X1)                           0.03       0.20 r
+  decode0/ctrl/U30/Y (INVX1)                              0.02       0.23 f
+  decode0/ctrl/U29/Y (OR2X2)                              0.04       0.26 f
+  decode0/ctrl/U28/Y (OR2X2)                              0.05       0.31 f
+  decode0/ctrl/whichImm<1> (control)                      0.00       0.31 f
+  decode0/U62/Y (INVX1)                                   0.00       0.31 r
+  decode0/U344/Y (AND2X2)                                 0.03       0.34 r
+  decode0/U154/Y (AND2X2)                                 0.03       0.37 r
+  decode0/U155/Y (INVX1)                                  0.01       0.39 f
+  decode0/U381/Y (AND2X2)                                 0.04       0.43 f
+  decode0/U93/Y (INVX4)                                   0.02       0.44 r
+  decode0/pcImmAdd/B<8> (adder_3)                         0.00       0.44 r
+  decode0/pcImmAdd/add2/B<0> (cla_4_14)                   0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/B (fulladder_1_59)            0.00       0.44 r
+  decode0/pcImmAdd/add2/fa1/U4/Y (XOR2X1)                 0.04       0.49 r
+  decode0/pcImmAdd/add2/fa1/p (fulladder_1_59)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/p<0> (groupcla_15)            0.00       0.49 r
+  decode0/pcImmAdd/add2/cla/U43/Y (NAND3X1)               0.02       0.51 f
+  decode0/pcImmAdd/add2/cla/U18/Y (BUFX2)                 0.03       0.55 f
+  decode0/pcImmAdd/add2/cla/U13/Y (OR2X2)                 0.04       0.58 f
+  decode0/pcImmAdd/add2/cla/U14/Y (INVX1)                 0.00       0.58 r
+  decode0/pcImmAdd/add2/cla/pg (groupcla_15)              0.00       0.58 r
+  decode0/pcImmAdd/add2/p (cla_4_14)                      0.00       0.58 r
+  decode0/pcImmAdd/cla/p<2> (groupcla_23)                 0.00       0.58 r
+  decode0/pcImmAdd/cla/U26/Y (INVX1)                      0.02       0.60 f
+  decode0/pcImmAdd/cla/U35/Y (OAI21X1)                    0.05       0.65 r
+  decode0/pcImmAdd/cla/c<2> (groupcla_23)                 0.00       0.65 r
+  decode0/pcImmAdd/add1/Cin (cla_4_15)                    0.00       0.65 r
+  decode0/pcImmAdd/add1/U3/Y (BUFX4)                      0.02       0.67 r
+  decode0/pcImmAdd/add1/cla/Cin (groupcla_16)             0.00       0.67 r
+  decode0/pcImmAdd/add1/cla/U11/Y (OR2X2)                 0.04       0.71 r
+  decode0/pcImmAdd/add1/cla/U12/Y (INVX1)                 0.02       0.72 f
+  decode0/pcImmAdd/add1/cla/U38/Y (AOI21X1)               0.02       0.74 r
+  decode0/pcImmAdd/add1/cla/c<1> (groupcla_16)            0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/Cin (fulladder_1_61)          0.00       0.74 r
+  decode0/pcImmAdd/add1/fa3/U3/Y (INVX1)                  0.03       0.77 f
+  decode0/pcImmAdd/add1/fa3/U2/Y (XNOR2X1)                0.03       0.80 f
+  decode0/pcImmAdd/add1/fa3/S (fulladder_1_61)            0.00       0.80 f
+  decode0/pcImmAdd/add1/S<2> (cla_4_15)                   0.00       0.80 f
+  decode0/pcImmAdd/Sum<14> (adder_3)                      0.00       0.80 f
+  decode0/U427/Y (OAI21X1)                                0.04       0.84 r
+  decode0/U428/Y (OAI21X1)                                0.02       0.86 f
+  decode0/nextPC<14> (decode)                             0.00       0.86 f
+  fetch0/nextPC<14> (fetch)                               0.00       0.86 f
+  fetch0/U82/Y (AND2X2)                                   0.04       0.89 f
+  fetch0/U83/Y (INVX1)                                    0.00       0.89 r
+  fetch0/U34/Y (AND2X2)                                   0.03       0.92 r
+  fetch0/U35/Y (INVX1)                                    0.02       0.94 f
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.94 f
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       0.98 f
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.05       1.03 f
+  fetch0/instrmem/U1196/Y (INVX1)                         0.00       1.02 r
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.06 r
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.10 r
+  fetch0/instrmem/U4446/Y (INVX1)                         0.02       1.12 f
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.16 f
+  fetch0/instrmem/U3256/Y (INVX1)                         0.00       1.16 r
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.19 r
+  fetch0/instrmem/U2174/Y (INVX1)                         0.02       1.21 f
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.03       1.24 r
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.27 r
+  fetch0/instrmem/U689/Y (INVX1)                          0.02       1.29 f
+  fetch0/instrmem/U461/Y (INVX1)                          0.01       1.30 r
+  fetch0/instrmem/U464/Y (INVX1)                          0.02       1.32 f
+  fetch0/instrmem/U6042/Y (NAND2X1)                       0.02       1.34 r
+  fetch0/instrmem/U6043/Y (NAND3X1)                       0.02       1.36 f
+  fetch0/instrmem/mem_reg<8><7>/D (DFFPOSX1)              0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><7>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><0>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5977/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2084/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U459/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U2589/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U2590/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5978/Y (NAND3X1)                       0.01       1.36 f
+  fetch0/instrmem/mem_reg<14><0>/D (DFFPOSX1)             0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><0>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><1>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5977/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2084/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U459/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U2591/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U2592/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5979/Y (NAND3X1)                       0.01       1.36 f
+  fetch0/instrmem/mem_reg<14><1>/D (DFFPOSX1)             0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><1>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><2>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5977/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2084/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U459/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U2593/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U2594/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5980/Y (NAND3X1)                       0.01       1.36 f
+  fetch0/instrmem/mem_reg<14><2>/D (DFFPOSX1)             0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><2>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><3>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5977/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2084/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U457/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U2595/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U2596/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5981/Y (NAND3X1)                       0.01       1.36 f
+  fetch0/instrmem/mem_reg<14><3>/D (DFFPOSX1)             0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><3>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><5>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5977/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2084/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U457/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U2599/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U2600/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5983/Y (NAND3X1)                       0.01       1.36 f
+  fetch0/instrmem/mem_reg<14><5>/D (DFFPOSX1)             0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><5>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><7>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5977/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2084/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U457/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U2603/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U2604/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5985/Y (NAND3X1)                       0.01       1.36 f
+  fetch0/instrmem/mem_reg<14><7>/D (DFFPOSX1)             0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><7>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.42
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: ifidReg/pc[11]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U9/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U40/Y (OAI21X1)                  0.03       0.57 r
+  decode0/jumpRegAdd/cla/c<0> (groupcla_22)               0.00       0.57 r
+  decode0/jumpRegAdd/add3/Cin (cla_4_9)                   0.00       0.57 r
+  decode0/jumpRegAdd/add3/cla/Cin (groupcla_10)           0.00       0.57 r
+  decode0/jumpRegAdd/add3/cla/U48/Y (NAND3X1)             0.02       0.59 f
+  decode0/jumpRegAdd/add3/cla/U7/Y (INVX1)                0.00       0.59 r
+  decode0/jumpRegAdd/add3/cla/U6/Y (OR2X2)                0.04       0.63 r
+  decode0/jumpRegAdd/add3/cla/c<1> (groupcla_10)          0.00       0.63 r
+  decode0/jumpRegAdd/add3/fa3/Cin (fulladder_1_37)        0.00       0.63 r
+  decode0/jumpRegAdd/add3/fa3/U1/Y (XOR2X1)               0.03       0.66 r
+  decode0/jumpRegAdd/add3/fa3/S (fulladder_1_37)          0.00       0.66 r
+  decode0/jumpRegAdd/add3/S<2> (cla_4_9)                  0.00       0.66 r
+  decode0/jumpRegAdd/Sum<6> (adder_2)                     0.00       0.66 r
+  decode0/U79/Y (AND2X2)                                  0.03       0.70 r
+  decode0/U205/Y (INVX1)                                  0.02       0.71 f
+  decode0/U419/Y (NAND3X1)                                0.03       0.74 r
+  decode0/nextPC<6> (decode)                              0.00       0.74 r
+  fetch0/nextPC<6> (fetch)                                0.00       0.74 r
+  fetch0/U54/Y (BUFX2)                                    0.03       0.78 r
+  fetch0/U85/Y (AND2X2)                                   0.03       0.81 r
+  fetch0/U86/Y (INVX1)                                    0.02       0.82 f
+  fetch0/U133/Y (OAI21X1)                                 0.04       0.86 r
+  fetch0/pcAdd/A<6> (adder_4)                             0.00       0.86 r
+  fetch0/pcAdd/add3/A<2> (cla_4_17)                       0.00       0.86 r
+  fetch0/pcAdd/add3/fa3/A (fulladder_1_69)                0.00       0.86 r
+  fetch0/pcAdd/add3/fa3/U8/Y (XNOR2X1)                    0.05       0.91 f
+  fetch0/pcAdd/add3/fa3/p (fulladder_1_69)                0.00       0.91 f
+  fetch0/pcAdd/add3/cla/p<2> (groupcla_18)                0.00       0.91 f
+  fetch0/pcAdd/add3/cla/U42/Y (NAND3X1)                   0.04       0.95 r
+  fetch0/pcAdd/add3/cla/U21/Y (BUFX2)                     0.03       0.98 r
+  fetch0/pcAdd/add3/cla/U14/Y (OR2X2)                     0.04       1.03 r
+  fetch0/pcAdd/add3/cla/U15/Y (INVX1)                     0.02       1.04 f
+  fetch0/pcAdd/add3/cla/pg (groupcla_18)                  0.00       1.04 f
+  fetch0/pcAdd/add3/p (cla_4_17)                          0.00       1.04 f
+  fetch0/pcAdd/cla/p<1> (groupcla_24)                     0.00       1.04 f
+  fetch0/pcAdd/cla/U38/Y (OAI21X1)                        0.02       1.06 r
+  fetch0/pcAdd/cla/U17/Y (AND2X2)                         0.03       1.09 r
+  fetch0/pcAdd/cla/U5/Y (INVX1)                           0.02       1.12 f
+  fetch0/pcAdd/cla/c<1> (groupcla_24)                     0.00       1.12 f
+  fetch0/pcAdd/add2/Cin (cla_4_18)                        0.00       1.12 f
+  fetch0/pcAdd/add2/cla/Cin (groupcla_19)                 0.00       1.12 f
+  fetch0/pcAdd/add2/cla/U43/Y (AOI22X1)                   0.03       1.15 r
+  fetch0/pcAdd/add2/cla/U27/Y (BUFX2)                     0.04       1.18 r
+  fetch0/pcAdd/add2/cla/U17/Y (AND2X2)                    0.03       1.21 r
+  fetch0/pcAdd/add2/cla/U11/Y (OR2X2)                     0.04       1.26 r
+  fetch0/pcAdd/add2/cla/U12/Y (INVX1)                     0.01       1.27 f
+  fetch0/pcAdd/add2/cla/c<2> (groupcla_19)                0.00       1.27 f
+  fetch0/pcAdd/add2/fa4/Cin (fulladder_1_72)              0.00       1.27 f
+  fetch0/pcAdd/add2/fa4/U6/Y (INVX1)                      0.01       1.28 r
+  fetch0/pcAdd/add2/fa4/U5/Y (XNOR2X1)                    0.02       1.30 f
+  fetch0/pcAdd/add2/fa4/S (fulladder_1_72)                0.00       1.30 f
+  fetch0/pcAdd/add2/S<3> (cla_4_18)                       0.00       1.30 f
+  fetch0/pcAdd/Sum<11> (adder_4)                          0.00       1.30 f
+  fetch0/PC2<11> (fetch)                                  0.00       1.30 f
+  ifidReg/PC<11> (IFID)                                   0.00       1.30 f
+  ifidReg/U80/Y (INVX1)                                   0.00       1.31 r
+  ifidReg/U77/Y (MUX2X1)                                  0.02       1.32 f
+  ifidReg/pc[11]/d (dff_366)                              0.00       1.32 f
+  ifidReg/pc[11]/U3/Y (AND2X1)                            0.03       1.36 f
+  ifidReg/pc[11]/state_reg/D (DFFPOSX1)                   0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  ifidReg/pc[11]/state_reg/CLK (DFFPOSX1)                 0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.41
+
+
+  Startpoint: ifidReg/address[12]/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: ifidReg/pc[13]/state_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ifidReg/address[12]/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  ifidReg/address[12]/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  ifidReg/address[12]/q (dff_351)                         0.00       0.11 f
+  ifidReg/addrOut<12> (IFID)                              0.00       0.11 f
+  decode0/instr<12> (decode)                              0.00       0.11 f
+  decode0/ctrl/instr<1> (control)                         0.00       0.11 f
+  decode0/ctrl/U118/Y (INVX1)                             0.01       0.12 r
+  decode0/ctrl/U177/Y (NOR3X1)                            0.02       0.14 f
+  decode0/ctrl/U178/Y (OAI21X1)                           0.05       0.19 r
+  decode0/ctrl/whichImm<0> (control)                      0.00       0.19 r
+  decode0/U107/Y (INVX2)                                  0.02       0.21 f
+  decode0/U340/Y (AND2X2)                                 0.04       0.25 f
+  decode0/U336/Y (INVX1)                                  0.00       0.25 r
+  decode0/U139/Y (AND2X2)                                 0.03       0.28 r
+  decode0/U141/Y (INVX1)                                  0.01       0.29 f
+  decode0/U238/Y (AND2X2)                                 0.03       0.33 f
+  decode0/pcImmAdd/B<5> (adder_3)                         0.00       0.33 f
+  decode0/pcImmAdd/add3/B<1> (cla_4_13)                   0.00       0.33 f
+  decode0/pcImmAdd/add3/fa2/B (fulladder_1_54)            0.00       0.33 f
+  decode0/pcImmAdd/add3/fa2/U5/Y (AND2X2)                 0.03       0.36 f
+  decode0/pcImmAdd/add3/fa2/g (fulladder_1_54)            0.00       0.36 f
+  decode0/pcImmAdd/add3/cla/g<1> (groupcla_14)            0.00       0.36 f
+  decode0/pcImmAdd/add3/cla/U7/Y (OR2X2)                  0.05       0.41 f
+  decode0/pcImmAdd/add3/cla/U8/Y (INVX1)                  0.00       0.40 r
+  decode0/pcImmAdd/add3/cla/U21/Y (AND2X2)                0.03       0.44 r
+  decode0/pcImmAdd/add3/cla/U23/Y (INVX1)                 0.02       0.45 f
+  decode0/pcImmAdd/add3/cla/U43/Y (OAI21X1)               0.04       0.50 r
+  decode0/pcImmAdd/add3/cla/U4/Y (OR2X2)                  0.05       0.54 r
+  decode0/pcImmAdd/add3/cla/U5/Y (INVX1)                  0.02       0.56 f
+  decode0/pcImmAdd/add3/cla/gg (groupcla_14)              0.00       0.56 f
+  decode0/pcImmAdd/add3/g (cla_4_13)                      0.00       0.56 f
+  decode0/pcImmAdd/cla/g<1> (groupcla_23)                 0.00       0.56 f
+  decode0/pcImmAdd/cla/U9/Y (INVX1)                       0.00       0.56 r
+  decode0/pcImmAdd/cla/U11/Y (AND2X2)                     0.03       0.59 r
+  decode0/pcImmAdd/cla/U12/Y (INVX1)                      0.02       0.61 f
+  decode0/pcImmAdd/cla/c<1> (groupcla_23)                 0.00       0.61 f
+  decode0/pcImmAdd/add2/Cin (cla_4_14)                    0.00       0.61 f
+  decode0/pcImmAdd/add2/cla/Cin (groupcla_15)             0.00       0.61 f
+  decode0/pcImmAdd/add2/cla/U21/Y (AND2X2)                0.04       0.65 f
+  decode0/pcImmAdd/add2/cla/U22/Y (INVX1)                 0.00       0.64 r
+  decode0/pcImmAdd/add2/cla/U11/Y (AND2X2)                0.03       0.67 r
+  decode0/pcImmAdd/add2/cla/U12/Y (INVX1)                 0.02       0.70 f
+  decode0/pcImmAdd/add2/cla/c<2> (groupcla_15)            0.00       0.70 f
+  decode0/pcImmAdd/add2/fa4/Cin (fulladder_1_56)          0.00       0.70 f
+  decode0/pcImmAdd/add2/fa4/U2/Y (XOR2X1)                 0.03       0.73 r
+  decode0/pcImmAdd/add2/fa4/S (fulladder_1_56)            0.00       0.73 r
+  decode0/pcImmAdd/add2/S<3> (cla_4_14)                   0.00       0.73 r
+  decode0/pcImmAdd/Sum<11> (adder_3)                      0.00       0.73 r
+  decode0/U106/Y (AND2X2)                                 0.03       0.76 r
+  decode0/U136/Y (INVX1)                                  0.02       0.78 f
+  decode0/U424/Y (NAND3X1)                                0.03       0.81 r
+  decode0/nextPC<11> (decode)                             0.00       0.81 r
+  fetch0/nextPC<11> (fetch)                               0.00       0.81 r
+  fetch0/U50/Y (BUFX2)                                    0.03       0.84 r
+  fetch0/U8/Y (AND2X2)                                    0.03       0.87 r
+  fetch0/U90/Y (INVX1)                                    0.01       0.89 f
+  fetch0/U63/Y (AND2X2)                                   0.03       0.92 f
+  fetch0/U26/Y (INVX1)                                    0.00       0.92 r
+  fetch0/pcAdd/A<11> (adder_4)                            0.00       0.92 r
+  fetch0/pcAdd/add2/A<3> (cla_4_18)                       0.00       0.92 r
+  fetch0/pcAdd/add2/fa4/A (fulladder_1_72)                0.00       0.92 r
+  fetch0/pcAdd/add2/fa4/U3/Y (INVX1)                      0.02       0.94 f
+  fetch0/pcAdd/add2/fa4/U2/Y (XNOR2X1)                    0.03       0.98 r
+  fetch0/pcAdd/add2/fa4/p (fulladder_1_72)                0.00       0.98 r
+  fetch0/pcAdd/add2/cla/p<3> (groupcla_19)                0.00       0.98 r
+  fetch0/pcAdd/add2/cla/U13/Y (INVX1)                     0.02       1.00 f
+  fetch0/pcAdd/add2/cla/U9/Y (AND2X2)                     0.03       1.03 f
+  fetch0/pcAdd/add2/cla/U41/Y (AOI21X1)                   0.01       1.05 r
+  fetch0/pcAdd/add2/cla/U23/Y (BUFX2)                     0.03       1.08 r
+  fetch0/pcAdd/add2/cla/U42/Y (AND2X2)                    0.03       1.12 r
+  fetch0/pcAdd/add2/cla/gg (groupcla_19)                  0.00       1.12 r
+  fetch0/pcAdd/add2/g (cla_4_18)                          0.00       1.12 r
+  fetch0/pcAdd/cla/g<2> (groupcla_24)                     0.00       1.12 r
+  fetch0/pcAdd/cla/U24/Y (AOI21X1)                        0.01       1.13 f
+  fetch0/pcAdd/cla/U18/Y (BUFX2)                          0.04       1.16 f
+  fetch0/pcAdd/cla/U14/Y (INVX4)                          0.02       1.18 r
+  fetch0/pcAdd/cla/c<2> (groupcla_24)                     0.00       1.18 r
+  fetch0/pcAdd/add1/Cin (cla_4_19)                        0.00       1.18 r
+  fetch0/pcAdd/add1/cla/Cin (groupcla_20)                 0.00       1.18 r
+  fetch0/pcAdd/add1/cla/U1/Y (INVX1)                      0.01       1.19 f
+  fetch0/pcAdd/add1/cla/U2/Y (INVX1)                      0.00       1.20 r
+  fetch0/pcAdd/add1/cla/U20/Y (AND2X2)                    0.03       1.23 r
+  fetch0/pcAdd/add1/cla/U21/Y (INVX1)                     0.01       1.24 f
+  fetch0/pcAdd/add1/cla/U10/Y (AND2X2)                    0.03       1.27 f
+  fetch0/pcAdd/add1/cla/U11/Y (INVX1)                     0.01       1.28 r
+  fetch0/pcAdd/add1/cla/c<0> (groupcla_20)                0.00       1.28 r
+  fetch0/pcAdd/add1/fa2/Cin (fulladder_1_78)              0.00       1.28 r
+  fetch0/pcAdd/add1/fa2/U3/Y (XNOR2X1)                    0.02       1.30 f
+  fetch0/pcAdd/add1/fa2/S (fulladder_1_78)                0.00       1.30 f
+  fetch0/pcAdd/add1/S<1> (cla_4_19)                       0.00       1.30 f
+  fetch0/pcAdd/Sum<13> (adder_4)                          0.00       1.30 f
+  fetch0/PC2<13> (fetch)                                  0.00       1.30 f
+  ifidReg/PC<13> (IFID)                                   0.00       1.30 f
+  ifidReg/U50/Y (INVX1)                                   0.00       1.31 r
+  ifidReg/U36/Y (MUX2X1)                                  0.02       1.32 f
+  ifidReg/pc[13]/d (dff_368)                              0.00       1.32 f
+  ifidReg/pc[13]/U3/Y (AND2X2)                            0.03       1.36 f
+  ifidReg/pc[13]/state_reg/D (DFFPOSX1)                   0.00       1.36 f
+  data arrival time                                                  1.36
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  ifidReg/pc[13]/state_reg/CLK (DFFPOSX1)                 0.00       1.00 r
+  library setup time                                     -0.05       0.95
+  data required time                                                 0.95
+  --------------------------------------------------------------------------
+  data required time                                                 0.95
+  data arrival time                                                 -1.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.41
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><4>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5976/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2083/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U511/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U1893/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U1894/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5982/Y (NAND3X1)                       0.01       1.35 f
+  fetch0/instrmem/mem_reg<14><4>/D (DFFPOSX1)             0.00       1.35 f
+  data arrival time                                                  1.35
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><4>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.35
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.41
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<14><6>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3248/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U2146/Y (AND2X2)                        0.04       1.17 f
+  fetch0/instrmem/U3371/Y (AND2X2)                        0.04       1.21 f
+  fetch0/instrmem/U5976/Y (NAND3X1)                       0.03       1.25 r
+  fetch0/instrmem/U2083/Y (BUFX2)                         0.04       1.28 r
+  fetch0/instrmem/U512/Y (INVX1)                          0.02       1.31 f
+  fetch0/instrmem/U1897/Y (AND2X2)                        0.04       1.35 f
+  fetch0/instrmem/U1898/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U5984/Y (NAND3X1)                       0.01       1.35 f
+  fetch0/instrmem/mem_reg<14><6>/D (DFFPOSX1)             0.00       1.35 f
+  data arrival time                                                  1.35
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<14><6>/CLK (DFFPOSX1)           0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.35
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.41
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><6>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U4446/Y (INVX1)                         0.00       1.14 r
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.17 r
+  fetch0/instrmem/U3256/Y (INVX1)                         0.01       1.19 f
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.22 f
+  fetch0/instrmem/U2174/Y (INVX1)                         0.00       1.22 r
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.02       1.24 f
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.28 f
+  fetch0/instrmem/U456/Y (AND2X2)                         0.04       1.31 f
+  fetch0/instrmem/U1167/Y (AND2X2)                        0.03       1.35 f
+  fetch0/instrmem/U1168/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U6041/Y (NAND3X1)                       0.01       1.35 f
+  fetch0/instrmem/mem_reg<8><6>/D (DFFPOSX1)              0.00       1.35 f
+  data arrival time                                                  1.35
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><6>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.35
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.41
+
+
+  Startpoint: memwbReg/memToRegFF/state_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch0/instrmem/mem_reg<8><2>
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  memwbReg/memToRegFF/state_reg/CLK (DFFPOSX1)            0.00 #     0.00 r
+  memwbReg/memToRegFF/state_reg/Q (DFFPOSX1)              0.11       0.11 f
+  memwbReg/memToRegFF/q (dff_183)                         0.00       0.11 f
+  memwbReg/memToRegOut (MEMWB)                            0.00       0.11 f
+  wb0/memToReg (writeBack)                                0.00       0.11 f
+  wb0/U69/Y (INVX1)                                       0.01       0.12 r
+  wb0/U29/Y (INVX1)                                       0.02       0.14 f
+  wb0/U73/Y (MUX2X1)                                      0.05       0.19 r
+  wb0/writeBackData<0> (writeBack)                        0.00       0.19 r
+  decode0/writeBackData<0> (decode)                       0.00       0.19 r
+  decode0/U99/Y (AND2X2)                                  0.03       0.22 r
+  decode0/U165/Y (INVX1)                                  0.01       0.23 f
+  decode0/U110/Y (AND2X2)                                 0.03       0.27 f
+  decode0/U111/Y (INVX1)                                  0.00       0.27 r
+  decode0/register/writedata<0> (rf_bypass)               0.00       0.27 r
+  decode0/register/U52/Y (AND2X2)                         0.05       0.31 r
+  decode0/register/read1data<0> (rf_bypass)               0.00       0.31 r
+  decode0/jumpRegAdd/A<0> (adder_2)                       0.00       0.31 r
+  decode0/jumpRegAdd/add4/A<0> (cla_4_8)                  0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/A (fulladder_1_35)          0.00       0.31 r
+  decode0/jumpRegAdd/add4/fa1/U6/Y (AND2X2)               0.04       0.35 r
+  decode0/jumpRegAdd/add4/fa1/g (fulladder_1_35)          0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/g<0> (groupcla_9)           0.00       0.35 r
+  decode0/jumpRegAdd/add4/cla/U34/Y (OR2X2)               0.04       0.39 r
+  decode0/jumpRegAdd/add4/cla/U35/Y (INVX1)               0.02       0.41 f
+  decode0/jumpRegAdd/add4/cla/U60/Y (AOI22X1)             0.04       0.44 r
+  decode0/jumpRegAdd/add4/cla/U23/Y (BUFX2)               0.04       0.48 r
+  decode0/jumpRegAdd/add4/cla/U61/Y (AND2X2)              0.03       0.51 r
+  decode0/jumpRegAdd/add4/cla/gg (groupcla_9)             0.00       0.51 r
+  decode0/jumpRegAdd/add4/g (cla_4_8)                     0.00       0.51 r
+  decode0/jumpRegAdd/cla/g<0> (groupcla_22)               0.00       0.51 r
+  decode0/jumpRegAdd/cla/U7/Y (INVX1)                     0.02       0.53 f
+  decode0/jumpRegAdd/cla/U12/Y (AND2X2)                   0.03       0.56 f
+  decode0/jumpRegAdd/cla/U13/Y (INVX1)                    0.00       0.56 r
+  decode0/jumpRegAdd/cla/U42/Y (AOI21X1)                  0.02       0.58 f
+  decode0/jumpRegAdd/cla/U35/Y (INVX1)                    0.00       0.59 r
+  decode0/jumpRegAdd/cla/U36/Y (AOI21X1)                  0.02       0.61 f
+  decode0/jumpRegAdd/cla/U11/Y (BUFX2)                    0.04       0.65 f
+  decode0/jumpRegAdd/cla/U10/Y (INVX4)                    0.02       0.66 r
+  decode0/jumpRegAdd/cla/c<2> (groupcla_22)               0.00       0.66 r
+  decode0/jumpRegAdd/add1/Cin (cla_4_11)                  0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/Cin (groupcla_12)           0.00       0.66 r
+  decode0/jumpRegAdd/add1/cla/U34/Y (INVX1)               0.02       0.68 f
+  decode0/jumpRegAdd/add1/cla/U33/Y (AOI21X1)             0.03       0.71 r
+  decode0/jumpRegAdd/add1/cla/c<1> (groupcla_12)          0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/Cin (fulladder_1_45)        0.00       0.71 r
+  decode0/jumpRegAdd/add1/fa3/U8/Y (BUFX2)                0.04       0.75 r
+  decode0/jumpRegAdd/add1/fa3/U6/Y (AND2X2)               0.03       0.78 r
+  decode0/jumpRegAdd/add1/fa3/U7/Y (INVX1)                0.01       0.80 f
+  decode0/jumpRegAdd/add1/fa3/U2/Y (AND2X2)               0.03       0.83 f
+  decode0/jumpRegAdd/add1/fa3/U3/Y (INVX1)                0.00       0.82 r
+  decode0/jumpRegAdd/add1/fa3/S (fulladder_1_45)          0.00       0.82 r
+  decode0/jumpRegAdd/add1/S<2> (cla_4_11)                 0.00       0.82 r
+  decode0/jumpRegAdd/Sum<14> (adder_2)                    0.00       0.82 r
+  decode0/U378/Y (INVX1)                                  0.01       0.84 f
+  decode0/U428/Y (OAI21X1)                                0.04       0.88 r
+  decode0/nextPC<14> (decode)                             0.00       0.88 r
+  fetch0/nextPC<14> (fetch)                               0.00       0.88 r
+  fetch0/U82/Y (AND2X2)                                   0.03       0.91 r
+  fetch0/U83/Y (INVX1)                                    0.02       0.93 f
+  fetch0/U34/Y (AND2X2)                                   0.04       0.96 f
+  fetch0/U35/Y (INVX1)                                    0.00       0.97 r
+  fetch0/instrmem/addr<14> (memory2c_1)                   0.00       0.97 r
+  fetch0/instrmem/U899/Y (OR2X2)                          0.04       1.01 r
+  fetch0/instrmem/U1195/Y (OR2X2)                         0.04       1.05 r
+  fetch0/instrmem/U1196/Y (INVX1)                         0.01       1.06 f
+  fetch0/instrmem/U5090/Y (AND2X2)                        0.04       1.10 f
+  fetch0/instrmem/U3251/Y (AND2X2)                        0.04       1.14 f
+  fetch0/instrmem/U4446/Y (INVX1)                         0.00       1.14 r
+  fetch0/instrmem/U3254/Y (OR2X2)                         0.04       1.17 r
+  fetch0/instrmem/U3256/Y (INVX1)                         0.01       1.19 f
+  fetch0/instrmem/U2173/Y (AND2X2)                        0.03       1.22 f
+  fetch0/instrmem/U2174/Y (INVX1)                         0.00       1.22 r
+  fetch0/instrmem/U5095/Y (AOI21X1)                       0.02       1.24 f
+  fetch0/instrmem/U2077/Y (BUFX2)                         0.04       1.28 f
+  fetch0/instrmem/U688/Y (AND2X2)                         0.04       1.31 f
+  fetch0/instrmem/U2689/Y (AND2X2)                        0.03       1.35 f
+  fetch0/instrmem/U2690/Y (INVX1)                         0.00       1.35 r
+  fetch0/instrmem/U6033/Y (NAND3X1)                       0.01       1.35 f
+  fetch0/instrmem/mem_reg<8><2>/D (DFFPOSX1)              0.00       1.35 f
+  data arrival time                                                  1.35
+
+  clock clk (rise edge)                                   1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  fetch0/instrmem/mem_reg<8><2>/CLK (DFFPOSX1)            0.00       1.00 r
+  library setup time                                     -0.06       0.94
+  data required time                                                 0.94
+  --------------------------------------------------------------------------
+  data required time                                                 0.94
+  data arrival time                                                 -1.35
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.41
+
+
+1

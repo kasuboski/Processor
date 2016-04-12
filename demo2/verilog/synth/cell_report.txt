@@ -1,0 +1,86 @@
+ 
+****************************************
+Report : cell
+Design : proc
+Version: B-2008.09-SP3
+Date   : Mon Apr 11 22:12:41 2016
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+U10                       INVX2           gscl45nm        1.877200  
+U11                       INVX1           gscl45nm        1.407900  
+U12                       AND2X1          gscl45nm        2.346500  
+U13                       AND2X1          gscl45nm        2.346500  
+U14                       AND2X1          gscl45nm        2.346500  
+U15                       INVX1           gscl45nm        1.407900  
+U16                       BUFX2           gscl45nm        2.346500  
+U17                       INVX1           gscl45nm        1.407900  
+U18                       INVX1           gscl45nm        1.407900  
+U19                       BUFX2           gscl45nm        2.346500  
+U20                       BUFX2           gscl45nm        2.346500  
+U21                       BUFX2           gscl45nm        2.346500  
+U22                       BUFX2           gscl45nm        2.346500  
+U23                       BUFX2           gscl45nm        2.346500  
+U24                       INVX1           gscl45nm        1.407900  
+U25                       INVX1           gscl45nm        1.407900  
+U26                       BUFX2           gscl45nm        2.346500  
+U27                       INVX1           gscl45nm        1.407900  
+U28                       INVX2           gscl45nm        1.877200  
+U29                       INVX1           gscl45nm        1.407900  
+U30                       INVX1           gscl45nm        1.407900  
+U31                       INVX1           gscl45nm        1.407900  
+U32                       BUFX2           gscl45nm        2.346500  
+U33                       INVX1           gscl45nm        1.407900  
+U34                       INVX1           gscl45nm        1.407900  
+U35                       BUFX2           gscl45nm        2.346500  
+U36                       INVX1           gscl45nm        1.407900  
+U37                       INVX2           gscl45nm        1.877200  
+U38                       BUFX2           gscl45nm        2.346500  
+U39                       BUFX2           gscl45nm        2.346500  
+U40                       BUFX2           gscl45nm        2.346500  
+U41                       BUFX2           gscl45nm        2.346500  
+U42                       BUFX2           gscl45nm        2.346500  
+U43                       BUFX2           gscl45nm        2.346500  
+U44                       BUFX2           gscl45nm        2.346500  
+U45                       INVX2           gscl45nm        1.877200  
+U47                       INVX1           gscl45nm        1.407900  
+U48                       INVX1           gscl45nm        1.407900  
+U49                       BUFX2           gscl45nm        2.346500  
+U50                       BUFX2           gscl45nm        2.346500  
+U51                       BUFX2           gscl45nm        2.346500  
+U52                       INVX1           gscl45nm        1.407900  
+U53                       INVX8           gscl45nm        3.285100  
+U54                       INVX8           gscl45nm        3.285100  
+decode0                   decode                          5165.115686
+                                                                    h, n
+ex0                       execute                         4989.128198
+                                                                    h
+exmemReg                  EXMEM                           693.625384
+                                                                    h, n
+fetch0                    fetch                           19461.401372
+                                                                    h, n
+forward                   forwarding                      176.456796
+                                                                    h
+haz                       hazard                          559.405585
+                                                                    h
+idexReg                   IDEX                            1124.442773
+                                                                    h, n
+ifidReg                   IFID                            637.309390
+                                                                    h, n
+memory0                   memory                          12590.380216
+                                                                    h, n
+memwbReg                  MEMWB                           664.059484
+                                                                    h, n
+wb0                       writeBack                       151.583899
+                                                                    h
+--------------------------------------------------------------------------------
+Total 55 cells                                            46301.137180
+1

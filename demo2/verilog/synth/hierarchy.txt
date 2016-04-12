@@ -1,0 +1,133 @@
+ 
+****************************************
+Report : hierarchy
+Design : proc
+Version: B-2008.09-SP3
+Date   : Mon Apr 11 22:08:28 2016
+****************************************
+
+Information: This design contains unmapped logic. (RPT-7)
+
+proc
+    EXMEM
+        dff
+            GTECH_BUF                                gtech
+            GTECH_NOT                                gtech
+    GTECH_BUF                                        gtech
+    GTECH_NOT                                        gtech
+    GTECH_OR2                                        gtech
+    IDEX
+        dff
+            ...
+    IFID
+        GTECH_BUF                                    gtech
+        GTECH_NOT                                    gtech
+        dff
+            ...
+    MEMWB
+        dff
+            ...
+    decode
+        GTECH_AND2                                   gtech
+        GTECH_BUF                                    gtech
+        GTECH_NOT                                    gtech
+        GTECH_OR2                                    gtech
+        adder
+            GTECH_XOR2                               gtech
+            cla_4
+                fulladder_1
+                    GTECH_AND2                       gtech
+                    GTECH_XOR2                       gtech
+                groupcla
+                    GTECH_AND2                       gtech
+                    GTECH_OR2                        gtech
+            groupcla
+                ...
+        control
+            GTECH_AND2                               gtech
+            GTECH_BUF                                gtech
+            GTECH_NOT                                gtech
+            GTECH_OR2                                gtech
+            GTECH_OR3                                gtech
+            GTECH_OR4                                gtech
+            GTECH_OR5                                gtech
+        dff
+            ...
+        rf_bypass
+            GTECH_AND2                               gtech
+            GTECH_BUF                                gtech
+            GTECH_NOT                                gtech
+            rf
+                GTECH_AND2                           gtech
+                GTECH_BUF                            gtech
+                GTECH_NOT                            gtech
+                GTECH_OR2                            gtech
+                register
+                    dff
+                        ...
+    execute
+        GTECH_AND2                                   gtech
+        GTECH_BUF                                    gtech
+        GTECH_NOT                                    gtech
+        GTECH_OR2                                    gtech
+        adder
+            ...
+        alu
+            GTECH_AND2                               gtech
+            GTECH_BUF                                gtech
+            GTECH_NOT                                gtech
+            GTECH_OR2                                gtech
+            GTECH_OR4                                gtech
+            GTECH_XOR2                               gtech
+            adder
+                ...
+            shifter
+                shifter_1
+                    GTECH_BUF                        gtech
+                    GTECH_NOT                        gtech
+                    GTECH_OR2                        gtech
+                    GTECH_OR3                        gtech
+                shifter_2
+                    GTECH_BUF                        gtech
+                    GTECH_NOT                        gtech
+                    GTECH_OR2                        gtech
+                    GTECH_OR3                        gtech
+                shifter_4
+                    GTECH_BUF                        gtech
+                    GTECH_NOT                        gtech
+                    GTECH_OR2                        gtech
+                    GTECH_OR3                        gtech
+                shifter_8
+                    GTECH_BUF                        gtech
+                    GTECH_NOT                        gtech
+                    GTECH_OR2                        gtech
+                    GTECH_OR3                        gtech
+    fetch
+        GTECH_BUF                                    gtech
+        GTECH_NOT                                    gtech
+        adder
+            ...
+        dff
+            ...
+        memory2c
+            GTECH_AND2                               gtech
+            GTECH_BUF                                gtech
+            GTECH_NOT                                gtech
+            GTECH_OR2                                gtech
+    forwarding
+        GTECH_AND2                                   gtech
+        GTECH_NOT                                    gtech
+        GTECH_OR2                                    gtech
+    hazard
+        GTECH_AND2                                   gtech
+        GTECH_NOT                                    gtech
+        GTECH_OR2                                    gtech
+        GTECH_OR3                                    gtech
+    memory
+        GTECH_NOT                                    gtech
+        memory2c
+            ...
+    writeBack
+        GTECH_BUF                                    gtech
+        GTECH_NOT                                    gtech
+1
