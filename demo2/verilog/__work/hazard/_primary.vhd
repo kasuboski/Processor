@@ -17,6 +17,9 @@ entity hazard is
         ifid_pc         : in     vl_logic_vector(15 downto 0);
         idex_pc         : in     vl_logic_vector(15 downto 0);
         exmem_pc        : in     vl_logic_vector(15 downto 0);
-        memwb_pc        : in     vl_logic_vector(15 downto 0)
+        memwb_pc        : in     vl_logic_vector(15 downto 0);
+        idex_regwrite   : in     vl_logic;
+        exmem_regwrite  : in     vl_logic;
+        memwb_regwrite  : in     vl_logic
     );
 end hazard;
