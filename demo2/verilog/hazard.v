@@ -1,16 +1,18 @@
-module hazard(idex_memRead, idex_rt, ifid_rs, ifid_rt, ifid_write, pcWrite, stall, idex_writereg, exmem_writereg, memwb_writereg, jalr);
-	input idex_memRead, jalr;
+module hazard(idex_memRead, idex_rt, ifid_rs, ifid_rt, ifid_write, pcWrite, stall, idex_writereg, exmem_writereg, memwb_writereg, jalr, willBranch, ifid_PC, idex_PC, exmem_PC, memwb_PC);
+	input idex_memRead, jalr, willBranch;
 	input [2:0] idex_rt, ifid_rs, ifid_rt, idex_writereg, exmem_writereg, memwb_writereg;
+	input [15:0] ifid_PC, idex_PC, exmem_PC, memwb_PC;
 	output reg ifid_write, pcWrite, stall;
 
 	wire idex_eqrs, idex_eqrt;
-	
+ 	wire jumpBranchStall, jalrDep, brDep;	
 	assign idex_eqrs = idex_rt == ifid_rs;
 	assign idex_eqrt = idex_rt == ifid_rt;
-	assign jalrDep = jalr & ((idex_writereg == ifid_rs) | (exmem_writereg == ifid_rs) | (memwb_writereg == ifid_rs));
-	
+	assign jalrDep = jalr & (((idex_writereg == ifid_rs) & (ifid_PC != idex_PC)) | (exmem_writereg == ifid_rs & (ifid_PC != exmem_PC)) | (memwb_writereg == ifid_rs & (ifid_PC != memwb_PC)));
+	assign brDep = willBranch & ((idex_writereg == ifid_rs) | (exmem_writereg == ifid_rs) | (memwb_writereg == ifid_rs));
+ 	assign jumpBranchStall = jalrDep | brDep;
 	always @(*) begin
-		casex({idex_memRead, idex_eqrs, idex_eqrt, jalrDep})
+		casex({idex_memRead, idex_eqrs, idex_eqrt, jumpBranchStall})
 		4'b1_1_x_x: begin
 			ifid_write = 1'b0;
 			pcWrite = 1'b0;

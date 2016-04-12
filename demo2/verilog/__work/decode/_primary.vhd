@@ -37,6 +37,7 @@ entity decode is
         regdstout       : out    vl_logic_vector(1 downto 0);
         linkpc          : in     vl_logic_vector(15 downto 0);
         flush           : out    vl_logic;
-        jalr            : out    vl_logic
+        jalr            : out    vl_logic;
+        willbranch      : out    vl_logic
     );
 end decode;

@@ -1,5 +1,5 @@
 `include "control_config.v"
-module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, rs, rt, err, nextPC, regDstIn, regDstOut, linkPC, flush, jalr);
+module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readdata1, readdata2, immediate, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, halt, passthrough, reverse, writereg, regWrite, rs, rt, err, nextPC, regDstIn, regDstOut, linkPC, flush, jalr, willBranch);
 
     input clk, rst;
     
@@ -29,7 +29,7 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     output [2:0] rs, rt;
     output [1:0] regDstOut;
     output reg [2:0] writereg; // where to get the writeregsel
-    output jalr;
+    output jalr, willBranch;
     wire [15:0] writedata;
 
     reg writeRegMuxErr, immediateMuxErr;
@@ -87,6 +87,7 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     assign rs = instr[10:8];
     assign rt = instr[7:5];
     assign jalr = instr[15:11] == 5'b00111;
+    assign willBranch = branchCondition & branch;
     control ctrl(.instr(instr[15:11]), .func(instr[1:0]), .regDst(regDst), .regWrite(regWrite), .whichImm(whichImm), .toExt(toExt), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(haltCtrl), .passthrough(passthrough), .reverse(reverse), .err(ctrlErr));
 
     rf_bypass register(

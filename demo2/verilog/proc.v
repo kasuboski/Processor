@@ -68,7 +68,7 @@ module proc (/*AUTOARG*/
 
    wire [15:0] memwb_memData, memwb_ALUData, memwb_nextPC;
    wire [2:0] memwb_writereg;
-   wire memwb_memToReg, memwb_regWrite, memwb_halt, jalr;
+   wire memwb_memToReg, memwb_regWrite, memwb_halt, jalr, willBranch;
   
    wire [1:0] decodeForward;
    assign err = fetchErr | decodeErr | executeErr | memoryErr | writeBackErr;
@@ -77,9 +77,9 @@ module proc (/*AUTOARG*/
 
    IFID ifidReg(.clk(clk), .rst(rst), .ifid_write(ifid_write), .PC(PC), .addr(instr), .PCout(ifidPC), .addrOut(ifidAddr), .flush(flush));
 
-   decode decode0(.clk(clk), .rst(rst), .instr(ifidAddr), .PC(ifidPC), .linkPC(memwb_nextPC), .writeBackData(writeBackData), .writeregIn(memwb_writereg), .regWriteIn(memwb_regWrite),  .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(regWrite), .rs(rs), .rt(rt), .nextPC(dec_nextPC), .err(decodeErr), .regDstIn(memwb_regDst), .regDstOut(regDstOut), .flush(flush), .jalr(jalr));
+   decode decode0(.clk(clk), .rst(rst), .instr(ifidAddr), .PC(ifidPC), .linkPC(memwb_nextPC), .writeBackData(writeBackData), .writeregIn(memwb_writereg), .regWriteIn(memwb_regWrite),  .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(regWrite), .rs(rs), .rt(rt), .nextPC(dec_nextPC), .err(decodeErr), .regDstIn(memwb_regDst), .regDstOut(regDstOut), .flush(flush), .jalr(jalr), .willBranch(willBranch));
 
-   hazard haz(.idex_memRead(idex_memRead), .idex_rt(idex_rt), .ifid_rs(rs), .ifid_rt(rt), .ifid_write(ifid_write), .pcWrite(pcWrite), .stall(stall), .jalr(jalr), .idex_writereg(idex_writereg), .exmem_writereg(exmem_writeReg), .memwb_writereg(memwb_writereg));
+   hazard haz(.idex_memRead(idex_memRead), .idex_rt(idex_rt), .ifid_rs(rs), .ifid_rt(rt), .ifid_write(ifid_write), .pcWrite(pcWrite), .stall(stall), .jalr(jalr), .idex_writereg(idex_writereg), .exmem_writereg(exmem_writeReg), .memwb_writereg(memwb_writereg), .willBranch(branch), .idex_PC(idex_PC), .exmem_PC(exmem_nextPC), .memwb_PC(memwb_nextPC), .ifid_PC(ifidPC));
 
    assign stalled_regWrite = stall ? 1'b0 : regWrite;
    assign stalled_memWrite = stall ? 1'b0 : memWrite;
