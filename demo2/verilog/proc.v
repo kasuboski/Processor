@@ -68,7 +68,7 @@ module proc (/*AUTOARG*/
 
    wire [15:0] memwb_memData, memwb_ALUData, memwb_nextPC;
    wire [2:0] memwb_writereg;
-   wire memwb_memToReg, memwb_regWrite, memwb_halt, jalr, willBranch;
+   wire memwb_memToReg, memwb_regWrite, memwb_halt, jalr, willBranch, stalled_memRead;
   
    wire [1:0] decodeForward;
    assign err = fetchErr | decodeErr | executeErr | memoryErr | writeBackErr;
@@ -84,9 +84,10 @@ module proc (/*AUTOARG*/
    assign stalled_regWrite = stall ? 1'b0 : regWrite;
    assign stalled_memWrite = stall ? 1'b0 : memWrite;
    assign stalled_memToReg = stall ? 1'b0 : memToReg;
+   assign stalled_memRead =  stall ? 1'b0 : memRead;   
 
    IDEX idexReg(.clk(clk), .rst(rst), 
-    .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .PC(ifidPC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(stalled_memWrite), .memToReg(stalled_memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(stalled_regWrite), .halt(halt), .rs(rs), .rt(rt),
+    .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .PC(ifidPC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(stalled_memRead), .memWrite(stalled_memWrite), .memToReg(stalled_memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(stalled_regWrite), .halt(halt), .rs(rs), .rt(rt),
     .readdata1Out(idex_readdata1), .readdata2Out(idex_readdata2), .immediateOut(idex_immediate), .jumpOut(idex_jump), .jumpRegOut(idex_jumpReg), .branchOut(idex_branch), .branchOpOut(idex_branchOp), .memReadOut(idex_memRead), .memWriteOut(idex_memWrite), .memToRegOut(idex_memToReg), .ALUOpOut(idex_ALUOp), .ALUSrcOut(idex_ALUSrc), .invSrc1Out(idex_invSrc1), .invSrc2Out(idex_invSrc2), .subOut(idex_sub), .passthroughOut(idex_passthrough), .reverseOut(idex_reverse), .writeregOut(idex_writereg), .PCOut(idex_PC), .regWriteOut(idex_regWrite), .haltOut(idex_halt), .rsOut(idex_rs), .rtOut(idex_rt), .regDst(regDstOut), .regDstOut(idex_regDst));
 
    forwarding forward(.idex_rs(idex_rs), .idex_rt(idex_rt), .exmem_rd(exmem_writeReg), .memwb_rd(memwb_writereg), .exmem_regWrite(exmem_regWrite), .memwb_regWrite(memwb_regWrite), .exmem_regDst(exmem_regDst), .memwb_regDst(memwb_regDst), .forwardA(forwardA), .forwardB(forwardB));

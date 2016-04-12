@@ -6,8 +6,8 @@ module hazard(idex_memRead, idex_rt, ifid_rs, ifid_rt, ifid_write, pcWrite, stal
 
 	wire idex_eqrs, idex_eqrt;
  	wire jumpBranchStall, jalrDep, brDep;	
-	assign idex_eqrs = idex_rt == ifid_rs;
-	assign idex_eqrt = idex_rt == ifid_rt;
+	assign idex_eqrs = idex_rt == ifid_rs & (ifid_PC != idex_PC);
+	assign idex_eqrt = idex_rt == ifid_rt & (ifid_PC != idex_PC);
 	assign jalrDep = jalr & (((idex_writereg == ifid_rs) & (ifid_PC != idex_PC)) | (exmem_writereg == ifid_rs & (ifid_PC != exmem_PC)) | (memwb_writereg == ifid_rs & (ifid_PC != memwb_PC)));
 	assign brDep = willBranch & (((idex_writereg == ifid_rs) && idex_regWrite) | ((exmem_writereg == ifid_rs) && exmem_regWrite) | ((memwb_writereg == ifid_rs) & memwb_regWrite));
  	assign jumpBranchStall = jalrDep | brDep;
