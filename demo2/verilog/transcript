@@ -42,4 +42,4 @@ run -all
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 216605 ns  Iteration: 0  Instance: /proc_hier_pbench
+#    Time: 4605 ns  Iteration: 0  Instance: /proc_hier_pbench
