@@ -1,28 +1,8 @@
-          // Original test: ./sadashiv/hw4/problem6/jalr_1.asm
-          // Author: sadashiv
+          // Original test: ./shojaei/hw4/problem6/xori_2.asm
+          // Author: shojaei
           // Test source code follows
           
           
-          // JALR Rs, immediate	R7 <- PC + 2 PC <- Rs + I(sign ext.)
-0000      .start: 
-0000 c108 	lbi r1, 0x8
-0002 c7bb 	lbi r7, 0xBB
-0004 3906 	jalr r1 , .jump // jump to 5th instruction after .jump 
-          
-0006      .jump: 
-0006 4126 	addi r1,r1,6   // this will not be executed
-0008 4144 	addi r2,r1,4   // this will not be executed
-000a 4268 	addi r3, r2,8  // this will not be executed
-000c 0000 	halt	       // this wil be executed from jump3		
-000e da7d 	sub r7,r2,r3   // r7 = 0
-0010 0800 	nop
-0012 0800 	nop
-0014 3f16 	jalr r7,.jump2  // no offset, continue execution
-0016      .jump2: 
-0016 41e8 	addi r7, r1, 0x8
-0018 c1f2 	lbi r1, -14
-001a      .jump3: 
-001a 0800 	nop
-001c 0800 	nop
-001e 391a 	jalr r1, .jump3  // backward jump // 7 instructions before .jump3	 
-          	
+0000 c118 lbi r1, 24
+0002 5147 xori r2, r1, 7
+0004 0000 halt
