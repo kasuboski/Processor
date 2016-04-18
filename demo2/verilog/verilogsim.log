@@ -1,18 +1,16 @@
-SIMLOG:: Cycle           4 PC:     0000 I:     c102 R: 0   0     0000 M: 0 0     0000     0000
-SIMLOG:: Cycle           5 PC:     0002 I:     c304 R: 0   0     0000 M: 0 0     0000     0000
-SIMLOG:: Cycle           6 PC:     0004 I:     2908 R: 0   0     0000 M: 0 0     0000     0000
-SIMLOG:: Cycle           7 PC:     0008 I:     d96c R: 0   0     0000 M: 0 0     0002     0000
-SIMLOG:: Cycle           8 PC:     000a I:     0000 R: 1   1     0002 M: 0 0     0004     0000
-SIMLOG:: Cycle           9 PC:     000c I:     0000 R: 1   3     0004 M: 0 0     000a     0000
-SIMLOG:: Cycle          10 PC:     000e I:     0000 R: 0   7     0006 M: 0 0     0006     0004
-SIMLOG:: Cycle          11 PC:     0010 I:     0000 R: 1   3     0006 M: 0 0     0000     0000
-SIMLOG:: Cycle          12 PC:     0012 I:     0000 R: 0   0     0000 M: 0 0     0000     0000
-SIMLOG:: Cycle          13 PC:     0014 I:     0000 R: 0   0     0000 M: 0 0     0000     0000
+SIMLOG:: Cycle           4 PC:     0000 I:     c118 R: 0   0     0000 M: 0 0     0000     0000
+SIMLOG:: Cycle           5 PC:     0002 I:     5147 R: 0   0     0000 M: 0 0     0000     0000
+SIMLOG:: Cycle           6 PC:     0004 I:     0000 R: 0   0     0000 M: 0 0     0000     0000
+SIMLOG:: Cycle           7 PC:     0006 I:     0000 R: 0   0     0000 M: 0 0     0018     0000
+SIMLOG:: Cycle           8 PC:     0008 I:     0000 R: 1   1     0018 M: 0 0     001f     0000
+SIMLOG:: Cycle           9 PC:     000a I:     0000 R: 1   2     001f M: 0 0     0000     0000
+SIMLOG:: Cycle          10 PC:     000c I:     0000 R: 0   0     0000 M: 0 0     0000     0000
+SIMLOG:: Cycle          11 PC:     000e I:     0000 R: 0   0     0000 M: 0 0     0000     0000
 SIMLOG:: Processor halted
 
-SIMLOG:: sim_cycles          13
+SIMLOG:: sim_cycles          11
 
-SIMLOG:: inst_count           4
+SIMLOG:: inst_count           3
 
 SIMLOG:: dcachehit_count           0
 

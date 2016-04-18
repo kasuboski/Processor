@@ -1,9 +1,8 @@
-          // Test provided by Karu 
-0000 c102 lbi r1, 2
-0002 c304 lbi r3, 4
-          // should jump to PC=0x000a
-          // skip the 2 add instructions
-0004 2908 jr r1, 8 
-0006 d968 add r2, r1, r3
-0008 d96c add r3, r1, r3
-000a 0000 halt
+          // Original test: ./shojaei/hw4/problem6/xori_2.asm
+          // Author: shojaei
+          // Test source code follows
+          
+          
+0000 c118 lbi r1, 24
+0002 5147 xori r2, r1, 7
+0004 0000 halt
