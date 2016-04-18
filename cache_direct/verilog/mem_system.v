@@ -18,47 +18,61 @@ module mem_system(/*AUTOARG*/
    input        rst;
    
    output [15:0] DataOut;
-   output Done;
+   output reg Done;
    output Stall;
    output CacheHit;
    output err;
 
+
+
+	wire [15:0] memDataOut;
+	wire [3:0] state;
+	wire [3:0] memBusy;
+	reg [2:0] memOffset; 
+	reg enable, compare, cacheWrite, memRead, memWrite;
+ 	wire  dirty, valid, mem_stall, cacheErr, memErr;
+ 	reg [15:0] cacheAddr, cacheDataIn, memDataIn;
+	wire [4:0] cacheTagOut;
+	wire [15:0] memAddr;
+	reg [4:0] memTag;
+	wire [3:0] next_state;
+
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
    parameter mem_type = 0;
-   cache (0 + memtype) c0(// Outputs
-                          .tag_out              (),
-                          .data_out             (),
-                          .hit                  (hit),
+   cache #(0 + mem_type) c0(// Outputs
+                          .tag_out              (cacheTagOut),
+                          .data_out             (DataOut),
+                          .hit                  (CacheHit),
                           .dirty                (dirty),
                           .valid                (valid),
-                          .err                  (),
+                          .err                  (cacheErr),
                           // Inputs
-                          .enable               (),
-                          .clk                  (),
-                          .rst                  (),
-                          .createdump           (),
-                          .tag_in               (),
-                          .index                (),
-                          .offset               (),
-                          .data_in              (),
-                          .comp                 (),
-                          .write                (),
-                          .valid_in             ());
+                          .enable               (enable),
+                          .clk                  (clk),
+                          .rst                  (rst),
+                          .createdump           (createdump),
+                          .tag_in               (cacheAddr[15:11]),
+                          .index                (cacheAddr[10:3]),
+                          .offset               (cacheAddr[2:0]),
+                          .data_in              (cacheDataIn),
+                          .comp                 (compare),
+                          .write                (cacheWrite),
+                          .valid_in             (1'b1));
 
    four_bank_mem mem(// Outputs
-                     .data_out          (),
+                     .data_out          (memDataOut),
                      .stall             (mem_stall),
-                     .busy              (),
-                     .err               (),
+                     .busy              (memBusy),
+                     .err               (memErr),
                      // Inputs
-                     .clk               (),
-                     .rst               (),
-                     .createdump        (),
-                     .addr              (),
-                     .data_in           (),
-                     .wr                (),
-                     .rd                ());
+                     .clk               (clk),
+                     .rst               (rst),
+                     .createdump        (createdump),
+                     .addr              (memAddr),
+                     .data_in           (memDataIn),
+                     .wr                (memWrite),
+                     .rd                (memRead));
 
    
    // your code here
@@ -85,17 +99,16 @@ module mem_system(/*AUTOARG*/
    	* 4'b1101 = Write 3
   	* 4'b1110 = Write 4
 	*************************************************/
-	reg [3:0] state, next_state; 
- 	wire hit, dirty, valid, mem_stall;
- 
    	dff SM_Flops [3:0] (.q(state), .d(next_state), .clk(clk), .rst(rst));
 
-
-	assign next_state = ((state == 4'b0) & ~Rd & ~Wr)) ? 4'b0 : 
+	assign Stall = (~Done & (state != 4'b0));	
+	assign memAddr = {memTag, cacheAddr[11:3], memOffset};
+	assign err = cacheErr | memErr;
+	assign next_state = ((state == 4'b0) & ~Rd & ~Wr) ? 4'b0 : 
 			    ((state == 4'b0) & (Wr | Rd))  ? 4'b1 : 
-			    ((state == 4'b1) & (valid & hit)) ? 4'b0010 : 
-			    ((state == 4'b1) & (~hit & ~ dirty)) ? 4'b0011 :
-			    ((state == 4'b1) & (~hit & dirty)) ? 4'b1011 :
+			    ((state == 4'b1) & (valid & CacheHit)) ? 4'b0010 : 
+			    ((state == 4'b1) & (~CacheHit & ~ dirty)) ? 4'b0011 :
+			    ((state == 4'b1) & (~CacheHit & dirty)) ? 4'b1011 :
 			    ((state == 4'b0010) & (Rd | Wr)) ? 4'b1 : 
 			    ((state == 4'b0010) & ~(Rd | Wr)) ? 4'b0 :
 			    ((state == 4'b0011) & mem_stall) ? 4'b0011 :
@@ -108,8 +121,9 @@ module mem_system(/*AUTOARG*/
 			    ((state == 4'b0111) & ~mem_stall) ? 4'b1000 : 
 			    ((state == 4'b1000) & mem_stall) ? 4'b1000 : 
 			    ((state == 4'b1000) & ~mem_stall) ? 4'b1001 :
-		   	    (state == 4'b1001) ? 4'b1010 : 
-			    (state == 4'b1010) ? 4'b0 :  //Might want to add transition from Read 4 right to Compare again
+		   	    (state == 4'b1001) ? 4'b1010 :
+			    ((state == 4'b1010) & (Rd | Wr)) ? 4'b0001 : 
+			    ((state == 4'b1010) & ~(Rd | Wr)) ? 4'b0 :  
 			    ((state == 4'b1011) & mem_stall) ? 4'b1011 : 
 			    ((state == 4'b1011) & ~mem_stall) ? 4'b1100 : 
 			    ((state == 4'b1100) & mem_stall) ? 4'b1100 :
@@ -121,84 +135,132 @@ module mem_system(/*AUTOARG*/
 			    4'b0;  			   
  
 	always @(*) begin
-	
+		
+		enable = 1'b1;
+		Done = 1'b0;
+		compare = 1'b0;
+		memOffset = 3'b0;
+		cacheAddr = Addr;
+		cacheDataIn = DataIn;
+		cacheWrite = 1'b0;
+		memDataIn = DataOut;		
+		memWrite = 1'b0;
+		memRead = 1'b0;
+		memTag = cacheAddr[15:11];
 		casex(state)
 
 			//Compare state
 			4'b0001: begin
-
+				compare = 1'b1;
+				cacheWrite = Wr & ~Rd;	
 			end
 
 			//Hit State
 			4'b0010: begin
-
+				Done = 1'b1;	
 			end
 			
 			//Miss Read Request 1 State
 			4'b0011: begin
-
+				memOffset = 3'b0;
+				memRead = 1'b1;			
 			end
 			
 			//Miss Read Request 2 State
 			4'b0100: begin
 
+				memOffset = 3'b010;
+				memRead = 1'b1;			
 			end
 
 			//Read 1 State
 			4'b0101: begin
-
+				cacheWrite = 1'b1;
+				memOffset = 3'b0;
+				cacheAddr = memAddr;	
+				cacheDataIn = memDataOut; 	
 			end
 
 			//Read 2 State
 			4'b0110: begin
-
+				cacheAddr = memAddr;
+				memOffset = 3'b010;
+				cacheWrite = 1'b1;
+				cacheDataIn = memDataOut; 	
 			end
 
 			//Miss Read Request 3 State
 			4'b0111: begin
 
+				memOffset = 3'b100;
+				memRead = 1'b1;			
 			end
 
 			//Miss Read Request 4 State
 			4'b1000: begin
 
+				memOffset = 3'b110;
+				memRead = 1'b1;			
 			end
 
 			//Read 3 State
 			4'b1001: begin
-
+				
+				cacheWrite = 1'b1;
+				memOffset = 3'b100;
+				cacheAddr = memAddr;	
+				cacheDataIn = memDataOut; 	
 			end
 
 			//Read 4 State
 			4'b1010: begin
 
+				cacheWrite = 1'b1;
+				memOffset = 3'b110;
+				cacheAddr = memAddr;	
+				cacheDataIn = memDataOut; 	
 			end
 
 			//Write 1 State
 			4'b1011: begin
-
+				memWrite = 1'b1;
+				memOffset = 3'b0;
+				
+				memTag = cacheTagOut;
+					
 			end
 		
 			//Write 2 State
 			4'b1100: begin
 
+				memWrite = 1'b1;
+				memOffset = 3'b010;
+				
+				memTag = cacheTagOut;
 
 			end
 
 			//Write 3 State
 			4'b1101: begin
 
+				memWrite = 1'b1;
+				memOffset = 3'b100;
+				
+				memTag = cacheTagOut;
 			end
 
 			//Write 4 State
 			4'b1110: begin
 
+				memWrite = 1'b1;
+				memOffset = 3'b110;
+				
+				memTag = cacheTagOut;
 			end
 
 			//Idle State
 			default: begin
-				
-				
+				enable = 1'b0;			
 			end 
 		endcase
 	end

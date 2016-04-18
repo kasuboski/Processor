@@ -1,0 +1,34 @@
+# vsim +addr_trace_file_name=..//verification//mem.addr -lib __work -c mem_system_perfbench 
+# //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.32-573.7.1.el6.x86_64
+# //
+# //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
+# //                         All Rights Reserved.
+# //                   UNPUBLISHED, LICENSED SOFTWARE.
+# //         CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+# //        PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS.
+# //
+# Loading __work.mem_system_perfbench
+# Loading __work.mem_system_hier
+# Loading __work.clkrst
+# Loading __work.mem_system
+# Loading __work.cache
+# Loading __work.memc
+# Loading __work.memv
+# Loading __work.four_bank_mem
+# Loading __work.final_memory
+# Loading __work.dff
+# Loading __work.mem_system_ref
+run -all
+# Using trace file                                                                                                                                                                                                                                       ..//verification//mem.addr
+# LOG: ReQNum    0 Cycle        5 ReqCycle        3 Wr Addr 0x015c Value 0x0018
+# 
+# ERROR! Request dropped
+# LOG: ReqNum    1 Cycle        7 ReqCycle        5 Rd Addr 0x015c RefValue 0x0018
+# 
+# ERROR! Request dropped
+# LOG: Done all Requests:          2 Replies:          2 Cycles:          7 Hits:          0
+# Test status: FAIL
+# Break at mem_system_perfbench.v line 200
+# Stopped at mem_system_perfbench.v line 200 
+# 
+# <EOF> 
