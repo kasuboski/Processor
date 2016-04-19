@@ -234,6 +234,7 @@ module mem_system(/*AUTOARG*/
 				
 				memTag = cacheTagOut;
 					
+				cacheAddr = { Addr[15:3], 3'b0};
 			end
 		
 			//Write 2 State
@@ -243,7 +244,8 @@ module mem_system(/*AUTOARG*/
 				memOffset = 3'b010;
 				
 				memTag = cacheTagOut;
-
+				
+				cacheAddr = { Addr[15:3], 3'b010};
 			end
 
 			//Write 3 State
@@ -253,6 +255,8 @@ module mem_system(/*AUTOARG*/
 				memOffset = 3'b100;
 				
 				memTag = cacheTagOut;
+
+				cacheAddr = { Addr[15:3], 3'b100};
 			end
 
 			//Write 4 State
@@ -262,6 +266,8 @@ module mem_system(/*AUTOARG*/
 				memOffset = 3'b110;
 				
 				memTag = cacheTagOut;
+
+				cacheAddr = { Addr[15:3], 3'b110};
 			end
 			
 			//cache write

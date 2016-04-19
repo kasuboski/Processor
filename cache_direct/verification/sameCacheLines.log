@@ -1,0 +1,4 @@
+# LOG: ReQNum 122 Cycle 1327 ReqCycle 1316 Wr Addr 0x29e8 Value 0x2a7d ValueRef 0x2a7d HIT 0
+# LOG: ReqNum 347 Cycle 3883 ReqCycle 3869 Rd Addr 0x01e8 Value 0xcd65 ValueRef 0xcd65 HIT 0
+# LOG: ReqNum 516 Cycle 5952 ReqCycle 5942 Rd Addr 0xa9e8 Value 0x1995 ValueRef 0x1995 HIT 0
+# LOG: ReqNum 525 Cycle 6035 ReqCycle 6025 Rd Addr 0x29ee Value 0x2a7d ValueRef 0x361d HIT 0
