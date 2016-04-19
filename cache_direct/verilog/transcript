@@ -1,4 +1,4 @@
-# vsim +addr_trace_file_name=..//verification//randTests2.addr -lib __work -c mem_system_perfbench 
+# vsim +addr_trace_file_name=..//verification//seq.addr -lib __work -c mem_system_perfbench 
 # //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.32-573.7.1.el6.x86_64
 # //
 # //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
@@ -19,19 +19,27 @@
 # Loading __work.dff
 # Loading __work.mem_system_ref
 run -all
-# Using trace file                                                                                                                                                                                                                                ..//verification//randTests2.addr
-# LOG: ReQNum    1 Cycle       14 ReqCycle        3 Wr Addr 0x0854 Value 0x81c6 ValueRef 0x81c6 HIT 0
+# Using trace file                                                                                                                                                                                                                                       ..//verification//seq.addr
+# LOG: ReQNum    1 Cycle       14 ReqCycle        3 Wr Addr 0x015c Value 0x0018 ValueRef 0x0018 HIT 0
 # 
-# LOG: ReQNum    2 Cycle       25 ReqCycle       14 Wr Addr 0xdb48 Value 0xe3f4 ValueRef 0xe3f4 HIT 0
+# LOG: ReqNum    2 Cycle       16 ReqCycle       14 Rd Addr 0x015c Value 0x0018 ValueRef 0x0018 HIT 1
 # 
-# LOG: ReqNum    3 Cycle       35 ReqCycle       25 Rd Addr 0xebca Value 0x093a ValueRef 0x6acd HIT 0
+# LOG: ReqNum    3 Cycle       18 ReqCycle       16 Rd Addr 0x015e Value 0xf35e ValueRef 0xf35e HIT 1
 # 
-# ERROR Ref: 0x6acd DUT: 0x093a
-# LOG: ReqNum    4 Cycle       45 ReqCycle       35 Rd Addr 0x67bc Value 0xb11d ValueRef 0x4c20 HIT 0
+# LOG: ReqNum    4 Cycle       28 ReqCycle       18 Rd Addr 0x0160 Value 0xe840 ValueRef 0xe840 HIT 0
 # 
-# ERROR Ref: 0x4c20 DUT: 0xb11d
-# LOG: Done all Requests:          4 Replies:          4 Cycles:         45 Hits:          0
-# Test status: FAIL
+# LOG: ReqNum    5 Cycle       30 ReqCycle       28 Rd Addr 0x0162 Value 0x6c56 ValueRef 0x6c56 HIT 1
+# 
+# LOG: ReqNum    6 Cycle       32 ReqCycle       30 Rd Addr 0x0164 Value 0xa504 ValueRef 0xa504 HIT 1
+# 
+# LOG: ReqNum    7 Cycle       34 ReqCycle       32 Rd Addr 0x0166 Value 0xf1b8 ValueRef 0xf1b8 HIT 1
+# 
+# LOG: ReqNum    8 Cycle       44 ReqCycle       34 Rd Addr 0x0168 Value 0xc11f ValueRef 0xc11f HIT 0
+# 
+# LOG: ReqNum    9 Cycle       46 ReqCycle       44 Rd Addr 0x016a Value 0xc2c0 ValueRef 0xc2c0 HIT 1
+# 
+# LOG: Done all Requests:          9 Replies:          9 Cycles:         46 Hits:          6
+# Test status: SUCCESS
 # Break at mem_system_perfbench.v line 200
 # Stopped at mem_system_perfbench.v line 200 
 # 

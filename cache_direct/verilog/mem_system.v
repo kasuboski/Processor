@@ -105,7 +105,7 @@ module mem_system(/*AUTOARG*/
    	dff SM_Flops [4:0] (.q(state), .d(next_state), .clk(clk), .rst(rst));
 	
 	assign Stall = (~Done & (state != 5'b0));	
-	assign memAddr = {memTag, cacheAddr[11:3], memOffset};
+	assign memAddr = {memTag, cacheAddr[10:3], memOffset};
 	assign err = cacheErr | memErr;
 	assign next_state = ((state == 5'b0) & ~Rd & ~Wr) ? 5'b0 : 
 			    ((state == 5'b0) & (Wr | Rd))  ? 5'b1 : 
@@ -162,9 +162,8 @@ module mem_system(/*AUTOARG*/
 
 			//Hit State
 			5'b0010: begin
-				enable = 1'b0;
+				Done = 1'b1;
 				CacheHit = 1'b1;
-				Done = 1'b1;	
 			end
 			
 			//Miss Read Request 1 State
