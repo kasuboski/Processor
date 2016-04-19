@@ -135,8 +135,8 @@ module mem_system(/*AUTOARG*/
 			    ((state == 5'b1101) & ~mem_stall) ? 5'b1110 : 
 			    ((state == 5'b1110) & mem_stall) ? 5'b1110 :
 			    ((state == 5'b1110) & ~mem_stall) ? 5'b0011 :
-			    ((state == 5'b1111)) ? 5'b10000:
-			    ((state == 5'b10000) & (Rd | Wr)) ? 5'b1:
+			    ((state == 5'b1111) ? 5'b10000:
+			    ((state == 5'b10000) & (Rd | Wr)) ? 5'b1):
 			    5'b0; 			   
  
 	always @(*) begin
@@ -183,7 +183,6 @@ module mem_system(/*AUTOARG*/
 
 			//Read 1 State
 			5'b0101: begin
-				cacheAddr = { Addr[15:3], 3'b0};
 				cacheWrite = 1'b1;
 				memOffset = 3'b0;
 				cacheDataIn = memDataOut; 	
@@ -192,7 +191,6 @@ module mem_system(/*AUTOARG*/
 			//Read 2 State
 			5'b0110: begin
 				memOffset = 3'b010;
-				cacheAddr = { Addr[15:3], 3'b010};
 				cacheWrite = 1'b1;
 				cacheDataIn = memDataOut; 	
 			end
@@ -214,7 +212,6 @@ module mem_system(/*AUTOARG*/
 			//Read 3 State
 			5'b1001: begin
 				
-				cacheAddr = { Addr[15:3], 3'b100};
 				cacheWrite = 1'b1;
 				memOffset = 3'b100;
 				cacheDataIn = memDataOut; 	
@@ -222,7 +219,6 @@ module mem_system(/*AUTOARG*/
 
 			//Read 4 State
 			5'b1010: begin
-				cacheAddr = { Addr[15:3], 3'b110};
 				cacheWrite = 1'b1;
 				memOffset = 3'b110;
 				cacheDataIn = memDataOut; 	
@@ -273,7 +269,9 @@ module mem_system(/*AUTOARG*/
 			
 			//Done
 			5'b10000 : begin
-				Done = 1'b1;	
+				Done = 1'b1;
+				cacheRead = 1'b1;
+					
 			end
 
 			//Idle State

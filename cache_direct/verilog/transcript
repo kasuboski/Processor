@@ -1,4 +1,4 @@
-# vsim +addr_trace_file_name=..//verification//mem.addr -lib __work -c mem_system_perfbench 
+# vsim +addr_trace_file_name=..//verification//randTests2.addr -lib __work -c mem_system_perfbench 
 # //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.32-573.7.1.el6.x86_64
 # //
 # //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
@@ -19,14 +19,18 @@
 # Loading __work.dff
 # Loading __work.mem_system_ref
 run -all
-# Using trace file                                                                                                                                                                                                                                       ..//verification//mem.addr
-# LOG: ReQNum    0 Cycle        5 ReqCycle        3 Wr Addr 0x015c Value 0x0018
+# Using trace file                                                                                                                                                                                                                                ..//verification//randTests2.addr
+# LOG: ReQNum    1 Cycle       14 ReqCycle        3 Wr Addr 0x0854 Value 0x81c6 ValueRef 0x81c6 HIT 0
 # 
-# ERROR! Request dropped
-# LOG: ReqNum    1 Cycle        7 ReqCycle        5 Rd Addr 0x015c RefValue 0x0018
+# LOG: ReQNum    2 Cycle       25 ReqCycle       14 Wr Addr 0xdb48 Value 0xe3f4 ValueRef 0xe3f4 HIT 0
 # 
-# ERROR! Request dropped
-# LOG: Done all Requests:          2 Replies:          2 Cycles:          7 Hits:          0
+# LOG: ReqNum    3 Cycle       35 ReqCycle       25 Rd Addr 0xebca Value 0x093a ValueRef 0x6acd HIT 0
+# 
+# ERROR Ref: 0x6acd DUT: 0x093a
+# LOG: ReqNum    4 Cycle       45 ReqCycle       35 Rd Addr 0x67bc Value 0xb11d ValueRef 0x4c20 HIT 0
+# 
+# ERROR Ref: 0x4c20 DUT: 0xb11d
+# LOG: Done all Requests:          4 Replies:          4 Cycles:         45 Hits:          0
 # Test status: FAIL
 # Break at mem_system_perfbench.v line 200
 # Stopped at mem_system_perfbench.v line 200 
