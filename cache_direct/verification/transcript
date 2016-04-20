@@ -1,3 +1,7 @@
-# vsim +addr_trace_file_name=..//verification//read.addr -lib __work -c mem_system_perfbench 
+# ** Warning: (vish-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+# No such file or directory. (errno = ENOENT)
+# vsim +addr_trace_file_name=..//verification//testShort.addr -lib __work -c mem_system_perfbench 
+# ** Warning: (vsim-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+# No such file or directory. (errno = ENOENT)
 # ** Error: (vsim-3170) Could not find '__work.mem_system_perfbench'.
 # Error loading design

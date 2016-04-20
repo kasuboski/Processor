@@ -1,0 +1,30 @@
+-------------------------------------------------
+Step: 1
+Compiling the following verilog files: *.v 
+Top module: mem_system_perfbench
+Compilation log in wsrun.log
+Executing rm -rf __work dump.wlf dump.vcd diff.trace diff.ptrace archsim.trace archsim.ptrace verilogsim.trace verilogsim.ptrace
+Executing vlib __work
+** Warning: (vlib-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+No such file or directory. (errno = ENOENT)
+Executing vlog +define+RANDSEED=3 -work __work *.v
+** Warning: (vlog-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+No such file or directory. (errno = ENOENT)
+Model Technology ModelSim SE vlog 5.8b Compiler 2004.01 Jan 26 2004
+** Error: (vlog-7) Failed to open design unit file "*.v" in read mode.
+No such file or directory. (errno = ENOENT)
+-------------------------------------------------
+Step: 2
+Running Verilog simulation...details in wsrun.log
+Reading /afs/cs.wisc.edu/s/mentor-2004/common/modeltech-5.8b/tcl/vsim/pref.tcl 
+# ** Warning: (vish-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+# No such file or directory. (errno = ENOENT)
+
+# 5.8b
+
+# vsim +addr_trace_file_name=..//verification//testShort.addr -lib __work -c mem_system_perfbench 
+# ** Warning: (vsim-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-3170) Could not find '__work.mem_system_perfbench'.
+# Error loading design
+Did not create a dump file...something went wrong

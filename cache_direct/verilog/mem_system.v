@@ -100,7 +100,7 @@ module mem_system(/*AUTOARG*/
    	* 4'b01101 = Write 3
   	* 4'b01110 = Write 4
   	* 4'b01111 = cache write
-	* 5'b10000 = Done 
+	* 5'b10000 = Done
 	*************************************************/
    	dff SM_Flops [4:0] (.q(state), .d(next_state), .clk(clk), .rst(rst));
 	
@@ -109,7 +109,7 @@ module mem_system(/*AUTOARG*/
 	assign err = cacheErr | memErr;
 	assign next_state = ((state == 5'b0) & ~Rd & ~Wr) ? 5'b0 : 
 			    ((state == 5'b0) & (Wr | Rd))  ? 5'b1 : 
-			    ((state == 5'b1) & (hit & valid)) ? 5'b0010 : 
+			    ((state == 5'b1) & (hit & valid)) ? 5'b0010 :
 			    ((state == 5'b1) & (~(hit & valid) & (~dirty))) ? 5'b0011 :
 			    ((state == 5'b1) & (~(hit & valid) & (dirty | Wr))) ? 5'b1011 :
 			    ((state == 5'b0010) & (Rd | Wr)) ? 5'b1 : 
@@ -135,7 +135,7 @@ module mem_system(/*AUTOARG*/
 			    ((state == 5'b1101) & ~mem_stall) ? 5'b1110 : 
 			    ((state == 5'b1110) & mem_stall) ? 5'b1110 :
 			    ((state == 5'b1110) & ~mem_stall) ? 5'b0011 :
-			    ((state == 5'b1111)) ? 5'b10000:
+			    ((state == 5'b1111))  ? 5'b10000:
 			    ((state == 5'b10000) & (Rd | Wr)) ? 5'b1:
 			    5'b0; 			   
  
@@ -158,6 +158,7 @@ module mem_system(/*AUTOARG*/
 			//Compare state
 			5'b0001: begin
 				compare = 1'b1;
+				cacheWrite = Wr;
 			end
 
 			//Hit State
@@ -280,7 +281,7 @@ module mem_system(/*AUTOARG*/
 			5'b10000 : begin
 				Done = 1'b1;	
 			end
-
+			
 			//Idle State
 			default: begin
 				enable = 1'b0;			
