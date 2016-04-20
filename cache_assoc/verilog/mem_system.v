@@ -38,10 +38,13 @@ module mem_system(/*AUTOARG*/
 	reg [4:0] memTag;
 	wire [4:0] next_state;
 
+	reg startedAnOp;
+
    /* data_mem = 1, inst_mem = 0 *
     * needed for cache parameter */
    parameter mem_type = 0;
-   cache #(0 + mem_type) c0(// Outputs
+   cache2way #(mem_type) cache(
+			  // Outputs
                           .tag_out              (cacheTagOut),
                           .data_out             (DataOut),
                           .hit                  (hit),
@@ -59,29 +62,9 @@ module mem_system(/*AUTOARG*/
                           .data_in              (cacheDataIn),
                           .comp                 (compare),
                           .write                (cacheWrite),
-                          .valid_in             (1'b1));
-
-
-   cache (2 + memtype) c1(// Outputs
-                          .tag_out              (),
-                          .data_out             (),
-                          .hit                  (),
-                          .dirty                (),
-                          .valid                (),
-                          .err                  (),
-                          // Inputs
-                          .enable               (),
-                          .clk                  (),
-                          .rst                  (),
-                          .createdump           (),
-                          .tag_in               (),
-                          .index                (),
-                          .offset               (),
-                          .data_in              (),
-                          .comp                 (),
-                          .write                (),
-                          .valid_in             ());
-
+                          .valid_in             (1'b1),
+	                  .invert_victimway     (startedAnOp)
+);
 
    four_bank_mem mem(// Outputs
                      .data_out          (memDataOut),
@@ -175,12 +158,15 @@ module mem_system(/*AUTOARG*/
 		memRead = 1'b0;
 		memTag = cacheAddr[15:11];
 		CacheHit = 1'b0;
+		startedAnOp = 1'b0;
+
 		casex(state)
 
 			//Compare state
 			5'b0001: begin
 				compare = 1'b1;
 				cacheWrite = Wr;
+				startedAnOp = 1'b1;
 			end
 
 			//Hit State
