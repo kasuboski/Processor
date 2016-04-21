@@ -1,0 +1,7 @@
+Line: 65 # LOG: ReqNum 65 Cycle 675 ReqCycle 673 Rd Addr 0x00f2 Value 0x0000 ValueRef 0x5e0c HIT 1
+Line: 82 # LOG: ReqNum 82 Cycle 842 ReqCycle 840 Rd Addr 0x01a6 Value 0x0000 ValueRef 0x3b3e HIT 1
+Line: 186 # LOG: ReqNum 186 Cycle 1952 ReqCycle 1950 Rd Addr 0x01e0 Value 0x0000 ValueRef 0xb2c7 HIT 1
+Line: 347 # LOG: ReqNum 347 Cycle 3606 ReqCycle 3604 Rd Addr 0x01e8 Value 0x0000 ValueRef 0xcd65 HIT 1
+Line: 522 # LOG: ReqNum 522 Cycle 5599 ReqCycle 5597 Rd Addr 0x01a2 Value 0x0000 ValueRef 0x7f51 HIT 1
+Line: 609 # LOG: ReqNum 609 Cycle 6558 ReqCycle 6556 Rd Addr 0x07aa Value 0x0000 ValueRef 0x69a2 HIT 1
+Line: 916 # LOG: ReqNum 916 Cycle 10124 ReqCycle 10122 Rd Addr 0x0100 Value 0x0000 ValueRef 0x3cb4 HIT 1
