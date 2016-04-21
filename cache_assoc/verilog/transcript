@@ -1,6 +1,3 @@
-# ** Warning: (vish-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
-# No such file or directory. (errno = ENOENT)
-# vsim -lib __work -c mem_system_randbench 
 # //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.32-573.7.1.el6.x86_64
 # //
 # //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
@@ -9,21 +6,13 @@
 # //         CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
 # //        PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS.
 # //
-# ** Warning: (vsim-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
-# No such file or directory. (errno = ENOENT)
-# Loading __work.mem_system_randbench
-# Loading __work.mem_system_hier
-# Loading __work.clkrst
-# Loading __work.mem_system
-# Loading __work.cache2way
-# Loading __work.cache
-# Loading __work.memc
-# Loading __work.memv
-# Loading __work.dff
-# Loading __work.four_bank_mem
-# Loading __work.final_memory
-# Loading __work.mem_system_ref
-run -all
-# ** Error: (vsim-3601) Iteration limit reached at time 1901 ns.
-# 
-# <EOF> 
+# vsim -view dataset=dump.wlf 
+# dump.wlf opened as dataset "dataset"
+view -new wave
+# .wave1
+view memory
+# .memory
+destroy .memory
+view memory
+# .memory
+destroy .memory

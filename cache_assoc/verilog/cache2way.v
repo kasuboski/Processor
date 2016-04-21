@@ -74,20 +74,20 @@ module cache2way(
                           .write                (write1),
                           .valid_in             (valid_in));
 
-	assign hit = selectedCache ? hit0 : hit1;
-	assign valid = selectedCache ? valid0 : valid1;
-	assign dirty = selectedCache ? dirty0 : dirty1;
-	assign data_out = selectedCache ? data_out0 : data_out1;
-	assign tag_out = selectedCache ? tag_out0 : tag_out1;
+	assign hit = selectedCache ? hit1: hit0;
+	assign valid = selectedCache ? valid1 : valid0;
+	assign dirty = selectedCache ? dirty1 : dirty0;
+	assign data_out = selectedCache ? data_out1 : data_out0;
+	assign tag_out = selectedCache ? tag_out1 : tag_out0;
 	assign err = err0 | err1; 
 
 	assign victimwayIn = invert_victimway ? ~victimway : victimway;
 	dff victimway0(.q(victimway), .d(victimwayIn), .clk(clk), .rst(rst));
 	
-	assign write0 = selectedCache ? write : 1'b0;
-	assign write1 = selectedCache ? 1'b0 : write;
+	assign write0 = selectedCache ? 1'b0 : write;
+	assign write1 = selectedCache ? write : 1'b0;
 
-	always @(*) begin
+	always @(hit0, hit1, valid0, valid1, victimway) begin
 		casex({hit0, hit1, valid0, valid1})
 		//cache 0 has a hit
 		4'b1_0_x_x: selectedCache = 1'b0;

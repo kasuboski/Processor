@@ -144,9 +144,8 @@ module mem_system(/*AUTOARG*/
 			    ((state == 5'b10000) & (Rd | Wr)) ? 5'b1:
 			    5'b0; 			   
  
-	always @(*) begin
+	always @(state, Wr, Addr, DataIn, DataOut, cacheAddr, memDataOut, cacheTagOut) begin
 		
-		enable = 1'b1;
 		Done = 1'b0;
 		compare = 1'b0;
 		memOffset = 3'b0;
@@ -164,15 +163,17 @@ module mem_system(/*AUTOARG*/
 
 			//Compare state
 			5'b0001: begin
+				enable = 1'b1;
 				compare = 1'b1;
 				cacheWrite = Wr;
-				startedAnOp = 1'b1;
 			end
 
 			//Hit State
 			5'b0010: begin
 				Done = 1'b1;
+				enable = 1'b1;
 				CacheHit = 1'b1;
+				startedAnOp = 1'b1;
 			end
 			
 			//Miss Read Request 1 State
@@ -192,6 +193,7 @@ module mem_system(/*AUTOARG*/
 			//Read 1 State
 			5'b0101: begin
 				cacheAddr = { Addr[15:3], 3'b0};
+				enable = 1'b1;
 				cacheWrite = 1'b1;
 				memOffset = 3'b0;
 				cacheDataIn = memDataOut; 	
@@ -200,6 +202,7 @@ module mem_system(/*AUTOARG*/
 			//Read 2 State
 			5'b0110: begin
 				memOffset = 3'b010;
+				enable = 1'b1;
 				cacheAddr = { Addr[15:3], 3'b010};
 				cacheWrite = 1'b1;
 				cacheDataIn = memDataOut; 	
@@ -212,7 +215,7 @@ module mem_system(/*AUTOARG*/
 				memRead = 1'b1;			
 			end
 
-			//Miss Read Request 5 State
+			//Miss Read Request 4 State
 			5'b1000: begin
 				enable = 1'b0;
 				memOffset = 3'b110;
@@ -221,7 +224,7 @@ module mem_system(/*AUTOARG*/
 
 			//Read 3 State
 			5'b1001: begin
-				
+				enable = 1'b1;
 				cacheAddr = { Addr[15:3], 3'b100};
 				cacheWrite = 1'b1;
 				memOffset = 3'b100;
@@ -230,6 +233,7 @@ module mem_system(/*AUTOARG*/
 
 			//Read 4 State
 			5'b1010: begin
+				enable = 1'b1;
 				cacheAddr = { Addr[15:3], 3'b110};
 				cacheWrite = 1'b1;
 				memOffset = 3'b110;
@@ -240,6 +244,7 @@ module mem_system(/*AUTOARG*/
 			5'b1011: begin
 				memWrite = 1'b1;
 				memOffset = 3'b0;
+				enable = 1'b1;
 				
 				memTag = cacheTagOut;
 					
@@ -249,6 +254,7 @@ module mem_system(/*AUTOARG*/
 			//Write 2 State
 			5'b1100: begin
 
+				enable = 1'b1;
 				memWrite = 1'b1;
 				memOffset = 3'b010;
 				
@@ -263,6 +269,7 @@ module mem_system(/*AUTOARG*/
 				memWrite = 1'b1;
 				memOffset = 3'b100;
 				
+				enable = 1'b1;
 				memTag = cacheTagOut;
 
 				cacheAddr = { Addr[15:3], 3'b100};
@@ -271,6 +278,7 @@ module mem_system(/*AUTOARG*/
 			//Write 4 State
 			5'b1110: begin
 
+				enable = 1'b1;
 				memWrite = 1'b1;
 				memOffset = 3'b110;
 				
@@ -282,12 +290,15 @@ module mem_system(/*AUTOARG*/
 			//cache write
 			5'b1111 : begin
 				cacheWrite = 1'b1;
+				enable = 1'b1;
 				compare = 1'b1;			
 			end			
 			
 			//Done
 			5'b10000 : begin
 				Done = 1'b1;	
+				startedAnOp = 1'b1;
+				enable = 1'b1;
 			end
 			
 			//Idle State

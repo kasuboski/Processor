@@ -1,0 +1,16 @@
+Wed Apr 20 20:07:43 CDT 2016
+Trace back: can't read "vsimPriv(.:grid)": no such element in array
+    while executing
+"set grid $vsimPriv($winname:grid)"
+    (procedure "grid_widget2rowname" line 5)
+    invoked from within
+"grid_widget2rowname $widget"
+    (procedure "WaveSelectPane" line 5)
+    invoked from within
+"WaveSelectPane $widget"
+    (procedure "WaveKeyShortcuts" line 13)
+    invoked from within
+"WaveKeyShortcuts .wave1.grid.row0,name.data ?? 1822 631 noshift"
+    (command bound to event)
+  2: tkerror {can't read "vsimPriv(.:grid)": no such element in array}
+  1: bgerror {can't read "vsimPriv(.:grid)": no such element in array}
