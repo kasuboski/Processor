@@ -1,1 +1,8 @@
-/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/pipeTest.asm RELAX-PASS
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/alignTest.asm SUCCESS CPI:2.1 CYCLES:15 ICOUNT:7 IHITRATE: 0 DHITRATE: 0
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/perf-test-dep-all.asm SUCCESS CPI:1.9 CYCLES:17 ICOUNT:9 IHITRATE: 100.0 DHITRATE: 100.0
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/perf-test-dep-ld.asm SUCCESS CPI:2.4 CYCLES:19 ICOUNT:8 IHITRATE: 0 DHITRATE: 0
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/perf-test-dep-ldst.asm SUCCESS CPI:2.0 CYCLES:22 ICOUNT:11 IHITRATE: 100.0 DHITRATE: 100.0
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/perf-test-dep-waw.asm SUCCESS CPI:1.9 CYCLES:17 ICOUNT:9 IHITRATE: 100.0 DHITRATE: 100.0
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/perf-test-dep-zero.asm SUCCESS CPI:5.4 CYCLES:27 ICOUNT:5 IHITRATE: 0 DHITRATE: 0
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/pipeTest.asm SUCCESS CPI:2.1 CYCLES:47 ICOUNT:22 IHITRATE: 100.0 DHITRATE: 100.0
+/u/k/a/karu/courses/cs552/spring2013/handouts/testprograms/public/complex_demo2/stallTest.asm SUCCESS CPI:2.1 CYCLES:154 ICOUNT:73 IHITRATE: 100.0 DHITRATE: 100.0
