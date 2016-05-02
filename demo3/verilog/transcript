@@ -1,0 +1,52 @@
+# ** Warning: (vish-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+# No such file or directory. (errno = ENOENT)
+# ** Warning: (vsim-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
+# No such file or directory. (errno = ENOENT)
+# vsim +seed=45 -lib __work -c proc_hier_pbench 
+# //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.32-573.7.1.el6.x86_64
+# //
+# //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
+# //                         All Rights Reserved.
+# //                   UNPUBLISHED, LICENSED SOFTWARE.
+# //         CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+# //        PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS.
+# //
+# Loading __work.proc_hier_pbench
+# Loading __work.proc_hier
+# Loading __work.clkrst
+# Loading __work.proc
+# Loading __work.fetch
+# Loading __work.dff
+# Loading __work.stallmem
+# Loading __work.adder
+# Loading __work.cla_4
+# Loading __work.fulladder_1
+# Loading __work.groupcla
+# Loading __work.IFID
+# Loading __work.decode
+# Loading __work.control
+# Loading __work.rf_bypass
+# Loading __work.rf
+# Loading __work.register
+# Loading __work.hazard
+# Loading __work.IDEX
+# Loading __work.forwarding
+# Loading __work.execute
+# Loading __work.alu
+# Loading __work.shifter
+# Loading __work.shifter_1
+# Loading __work.shifter_2
+# Loading __work.shifter_4
+# Loading __work.shifter_8
+# Loading __work.EXMEM
+# Loading __work.memory
+# Loading __work.memory2c
+# Loading __work.MEMWB
+# Loading __work.writeBack
+run -all
+# Using seed          45
+# rand_pat=802f6e00 10000000001011110110111000000000
+# Hello world...simulation starting
+# See verilogsim.log and verilogsim.ptrace for output
+# ** Note: $finish    : proc_hier_pbench.v(115)
+#    Time: 1905 ns  Iteration: 0  Instance: /proc_hier_pbench

@@ -1,0 +1,63 @@
+module IDEX(clk, rst, 
+    readdata1, readdata2, immediate, PC, jump, jumpReg, branch, branchOp, memRead, memWrite, memToReg, ALUOp, ALUSrc, invSrc1, invSrc2, sub, passthrough, reverse, writereg, regWrite, halt, rs, rt, regDst,
+    readdata1Out, readdata2Out, immediateOut, PCOut, jumpOut, jumpRegOut, branchOut, branchOpOut, memReadOut, memWriteOut, memToRegOut, ALUOpOut, ALUSrcOut, invSrc1Out, invSrc2Out, subOut, passthroughOut, reverseOut, writeregOut, regWriteOut, haltOut, rsOut, rtOut, regDstOut
+    );
+    input clk, rst;
+
+    input [15:0] readdata1, readdata2, immediate, PC;
+    input jump, jumpReg, branch;
+    input [1:0] branchOp;
+    input memRead, memWrite, memToReg;
+    input [3:0] ALUOp;
+    input ALUSrc;
+    input [1:0] regDst;
+    input invSrc1, invSrc2, sub, passthrough, reverse;
+
+    input [2:0] writereg, rs, rt;
+    input regWrite, halt;
+
+    output [15:0] readdata1Out, readdata2Out, immediateOut, PCOut;
+    output jumpOut, jumpRegOut, branchOut;
+    output [1:0] branchOpOut;
+    output memReadOut, memWriteOut, memToRegOut;
+    output [3:0] ALUOpOut;
+    output ALUSrcOut;
+    output [1:0] regDstOut;
+    output invSrc1Out, invSrc2Out, subOut, passthroughOut, reverseOut;
+
+    output [2:0] writeregOut, rsOut, rtOut;
+    output regWriteOut, haltOut;
+
+    dff readdata1Reg[15:0](.q(readdata1Out), .d(readdata1), .clk(clk), .rst(rst));
+    dff readdata2Reg[15:0](.q(readdata2Out), .d(readdata2), .clk(clk), .rst(rst));
+    dff immediateReg[15:0](.q(immediateOut), .d(immediate), .clk(clk), .rst(rst));
+    dff PCReg[15:0](.q(PCOut), .d(PC), .clk(clk), .rst(rst));
+
+    dff jumpFF(.q(jumpOut), .d(jump), .clk(clk), .rst(rst));
+    dff jumpRegFF(.q(jumpRegOut), .d(jumpReg), .clk(clk), .rst(rst));
+    dff branchReg(.q(branchOut), .d(branch), .clk(clk), .rst(rst));
+    
+    dff branchOpReg[1:0](.q(branchOpOut), .d(branchOp), .clk(clk), .rst(rst));
+    
+    dff memReadReg(.q(memReadOut), .d(memRead), .clk(clk), .rst(rst));
+    dff memWriteReg(.q(memWriteOut), .d(memWrite), .clk(clk), .rst(rst));
+    dff memToRegFF(.q(memToRegOut), .d(memToReg), .clk(clk), .rst(rst));
+
+    dff ALUOpReg[3:0](.q(ALUOpOut), .d(ALUOp), .clk(clk), .rst(rst));
+    
+    dff ALUSrcReg(.q(ALUSrcOut), .d(ALUSrc), .clk(clk), .rst(rst));
+
+    dff invSrc1Reg(.q(invSrc1Out), .d(invSrc1), .clk(clk), .rst(rst));
+    dff invSrc2Reg(.q(invSrc2Out), .d(invSrc2), .clk(clk), .rst(rst));
+    dff subReg(.q(subOut), .d(sub), .clk(clk), .rst(rst));
+    dff passthroughReg(.q(passthroughOut), .d(passthrough), .clk(clk), .rst(rst));
+    dff reverseReg(.q(reverseOut), .d(reverse), .clk(clk), .rst(rst));
+
+    dff writeregFF[2:0](.q(writeregOut), .d(writereg), .clk(clk), .rst(rst));
+    dff rsFF[2:0](.q(rsOut), .d(rs), .clk(clk), .rst(rst));
+    dff rtFF[2:0](.q(rtOut), .d(rt), .clk(clk), .rst(rst));
+
+    dff regWriteReg(.q(regWriteOut), .d(regWrite), .clk(clk), .rst(rst));
+    dff haltReg(.q(haltOut), .d(halt), .clk(clk), .rst(rst));
+    dff regDstReg[1:0](.q(regDstOut), .d(regDst), .clk(clk), .rst(rst));
+endmodule
