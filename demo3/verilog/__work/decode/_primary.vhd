@@ -39,6 +39,7 @@ entity decode is
         flush           : out    vl_logic;
         jalr            : out    vl_logic;
         willbranch      : out    vl_logic;
-        stall           : in     vl_logic
+        stall           : in     vl_logic;
+        fetch_stall     : in     vl_logic
     );
 end decode;

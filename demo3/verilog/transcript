@@ -2,7 +2,7 @@
 # No such file or directory. (errno = ENOENT)
 # ** Warning: (vsim-18) Environment variable MGC_LOCATION_MAP does not point to a valid path: "/u/k/a/kasuboski/mentor/.location".
 # No such file or directory. (errno = ENOENT)
-# vsim +seed=45 -lib __work -c proc_hier_pbench 
+# vsim -lib __work -c proc_hier_pbench 
 # //  ModelSim SE 5.8b Jan 01 2004 Linux 2.6.32-573.7.1.el6.x86_64
 # //
 # //  Copyright Model Technology, a Mentor Graphics Corporation company, 2004
@@ -17,7 +17,13 @@
 # Loading __work.proc
 # Loading __work.fetch
 # Loading __work.dff
-# Loading __work.stallmem
+# Loading __work.mem_system
+# Loading __work.cache2way
+# Loading __work.cache
+# Loading __work.memc
+# Loading __work.memv
+# Loading __work.four_bank_mem
+# Loading __work.final_memory
 # Loading __work.adder
 # Loading __work.cla_4
 # Loading __work.fulladder_1
@@ -44,9 +50,7 @@
 # Loading __work.MEMWB
 # Loading __work.writeBack
 run -all
-# Using seed          45
-# rand_pat=802f6e00 10000000001011110110111000000000
 # Hello world...simulation starting
 # See verilogsim.log and verilogsim.ptrace for output
 # ** Note: $finish    : proc_hier_pbench.v(115)
-#    Time: 1905 ns  Iteration: 0  Instance: /proc_hier_pbench
+#    Time: 40405 ns  Iteration: 0  Instance: /proc_hier_pbench
