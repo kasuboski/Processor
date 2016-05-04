@@ -44,7 +44,7 @@ module decode(clk, rst, instr, PC, writeBackData, writeregIn, regWriteIn, readda
     output [15:0] nextPC;
     reg branchCondition;
 
-    assign haltWire = (((haltCtrl & cycle) | halt) & ~stall) & ~((cycle & ~cycle2) & fetch_stall);
+    assign haltWire = (((haltCtrl & cycle) & ~stall) & ~((cycle & ~cycle2) & fetch_stall)) | halt;
     assign regDstOut = regDst;
     dff haltFF(.q(halt), .d(haltWire), .clk(clk), .rst(rst));
 
