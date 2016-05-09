@@ -12,7 +12,7 @@ module memory (clk, rst, addr, writeData, halt, memWrite, memRead, readData, err
     //memory2c instrmem(.data_out(readData), .data_in(writeData), .addr(addr), .enable(~halt), .wr(memWrite), .createdump(halt), .clk(clk), .rst(rst));
 
     
-    mem_system dcachemem(.DataOut(readData), .Done(done), .Stall(memStall), .CacheHit(), .err(), .Addr(addr), .DataIn(writeData), .Rd(memRead), .Wr(memWrite), .createdump(halt), .clk(clk), .rst(rst));
+    mem_system dcachemem(.DataOut(readData), .Done(done), .Stall(memStall), .CacheHit(), .err(), .Addr(addr), .DataIn(writeData), .Rd(memRead & ~done), .Wr(memWrite & ~done), .createdump(halt), .clk(clk), .rst(rst));
 
     //dff doneFF(.q(done), .d(doneIn), .clk(clk), .rst(rst));
 
