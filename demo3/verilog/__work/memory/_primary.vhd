@@ -10,6 +10,7 @@ entity memory is
         memwrite        : in     vl_logic;
         memread         : in     vl_logic;
         readdata        : out    vl_logic_vector(15 downto 0);
-        err             : out    vl_logic
+        err             : out    vl_logic;
+        stall           : out    vl_logic
     );
 end memory;

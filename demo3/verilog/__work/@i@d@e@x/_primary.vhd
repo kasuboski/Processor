@@ -51,6 +51,7 @@ entity idex is
         haltout         : out    vl_logic;
         rsout           : out    vl_logic_vector(2 downto 0);
         rtout           : out    vl_logic_vector(2 downto 0);
-        regdstout       : out    vl_logic_vector(1 downto 0)
+        regdstout       : out    vl_logic_vector(1 downto 0);
+        memstall        : in     vl_logic
     );
 end idex;

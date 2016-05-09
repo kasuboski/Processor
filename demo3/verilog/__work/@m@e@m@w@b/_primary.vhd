@@ -19,6 +19,7 @@ entity memwb is
         regdst          : in     vl_logic_vector(1 downto 0);
         regdstout       : out    vl_logic_vector(1 downto 0);
         nextpc          : in     vl_logic_vector(15 downto 0);
-        nextpcout       : out    vl_logic_vector(15 downto 0)
+        nextpcout       : out    vl_logic_vector(15 downto 0);
+        memstall        : in     vl_logic
     );
 end memwb;

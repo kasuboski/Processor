@@ -23,6 +23,7 @@ entity exmem is
         memwriteout     : out    vl_logic;
         haltout         : out    vl_logic;
         regdst          : in     vl_logic_vector(1 downto 0);
-        regdstout       : out    vl_logic_vector(1 downto 0)
+        regdstout       : out    vl_logic_vector(1 downto 0);
+        memstall        : in     vl_logic
     );
 end exmem;
