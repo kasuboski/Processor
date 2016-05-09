@@ -78,17 +78,17 @@ module proc (/*AUTOARG*/
 
    fetch fetch0(.clk(clk), .rst(rst), .pcWrite(pcWrite & ~memStall), .halt(idex_halt), .nextPC(dec_nextPC), .PC2(PC), .instr(instr), .err(fetchErr), .stall(fetch_stall));
 
-   IFID ifidReg(.clk(clk), .rst(rst), .ifid_write(ifid_write & ~fetch_stall & ~memStall), .PC(PC), .addr(instr), .PCout(ifidPC), .addrOut(ifidAddr), .flush(flush), .stall(fetch_stall | memStall), .stallOut(ifid_stall));
+   IFID ifidReg(.clk(clk), .rst(rst), .ifid_write(ifid_write & ~fetch_stall & ~memStall), .PC(PC), .addr(instr), .PCout(ifidPC), .addrOut(ifidAddr), .flush(flush), .stall(fetch_stall), .stallOut(ifid_stall));
 
    decode decode0(.clk(clk), .rst(rst), .instr(ifidAddr), .PC(ifidPC), .linkPC(memwb_nextPC), .writeBackData(writeBackData), .writeregIn(memwb_writereg), .regWriteIn(~memwb_halt & memwb_regWrite),  .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(memRead), .memWrite(memWrite), .memToReg(memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .halt(halt), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(regWrite), .rs(rs), .rt(rt), .nextPC(dec_nextPC), .err(decodeErr), .regDstIn(memwb_regDst), .regDstOut(regDstOut), .flush(flush), .jalr(jalr), .willBranch(willBranch), .stall(ifid_stall), .fetch_stall(fetch_stall));
 
    
    hazard haz(.idex_memRead(idex_memRead), .idex_rt(idex_rt), .ifid_rs(rs), .ifid_rt(rt), .ifid_write(ifid_write), .pcWrite(pcWrite), .stall(stall), .jalr(jalr | jumpReg), .idex_writereg(idex_writereg), .exmem_writereg(exmem_writeReg), .memwb_writereg(memwb_writereg), .willBranch(branch), .idex_PC(idex_PC), .exmem_PC(exmem_nextPC), .memwb_PC(memwb_nextPC), .ifid_PC(ifidPC), .idex_regWrite(idex_regWrite), .exmem_regWrite(exmem_regWrite), .memwb_regWrite(memwb_regWrite));
 
-   assign stalled_regWrite = (stall | ifid_stall | memStall) ? 1'b0 : regWrite;
-   assign stalled_memWrite = (stall | ifid_stall | memStall) ? 1'b0 : memWrite;
-   assign stalled_memToReg = (stall | ifid_stall | memStall) ? 1'b0 : memToReg;
-   assign stalled_memRead =  (stall | ifid_stall | memStall) ? 1'b0 : memRead;  
+   assign stalled_regWrite = (stall | ifid_stall) ? 1'b0 : regWrite;
+   assign stalled_memWrite = (stall | ifid_stall) ? 1'b0 : memWrite;
+   assign stalled_memToReg = (stall | ifid_stall) ? 1'b0 : memToReg;
+   assign stalled_memRead =  (stall | ifid_stall) ? 1'b0 : memRead;  
 
    IDEX idexReg(.clk(clk), .rst(rst), 
     .readdata1(readdata1), .readdata2(readdata2), .immediate(immediate), .PC(ifidPC), .jump(jump), .jumpReg(jumpReg), .branch(branch), .branchOp(branchOp), .memRead(stalled_memRead), .memWrite(stalled_memWrite), .memToReg(stalled_memToReg), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .invSrc1(invSrc1), .invSrc2(invSrc2), .sub(sub), .passthrough(passthrough), .reverse(reverse), .writereg(writereg), .regWrite(stalled_regWrite), .halt(halt), .rs(rs), .rt(rt),
